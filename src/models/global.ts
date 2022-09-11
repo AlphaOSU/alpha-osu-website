@@ -1,5 +1,4 @@
 import { ConfigKeys } from '../common/config-keys';
-import { getConfig } from '../services/requests/get-config';
 import { IModel } from './types';
 
 export interface IGlobalState {
@@ -27,15 +26,6 @@ const model: IModel<IGlobalState> = {
         ...state,
         config: payload,
       };
-    },
-  },
-  effects: {
-    * getConfigAsync(_, { put, call }) {
-      const config = yield call(getConfig);
-      yield put({
-        type: 'setConfig',
-        payload: config,
-      });
     },
   },
 };

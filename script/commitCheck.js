@@ -1,5 +1,3 @@
-// Invoked on the commit-msg git hook by yorkie.
-
 const chalk = require('chalk');
 const msgPath = process.env.GIT_PARAMS;
 const msg = require('fs').readFileSync(msgPath, 'utf-8').trim();
@@ -8,8 +6,6 @@ const releaseRE = /^v\d/;
 
 const commitRE =
   /^(revert: )?(feat|fix|docs|dx|refactor|perf|test|workflow|build|ci|chore|types|wip|release|deps|style|Merge)(\(.+\))?: .{1,50}/;
-
-const bindRequirements = /to #\d+/;
 
 if (!releaseRE.test(msg) && !commitRE.test(msg)) {
   console.log();
@@ -26,24 +22,3 @@ if (!releaseRE.test(msg) && !commitRE.test(msg)) {
   );
   process.exit(1);
 }
-
-// if (!bindRequirements.test(msg)) {
-//   console.log()
-//   console.error(
-//     `  ${chalk.bgRed.white(' ERROR ')} ${chalk.red(
-//       `Invalid commit message.`,
-//     )}\n\n` +
-//     `  The commit message should in format: ${chalk.green(
-//       'feat/fix: to #xxxx',
-//     )}\n\n`
-//   )
-//
-//   process.exit(1);
-// } else {
-//   console.log()
-//   console.log(
-//     `  ${chalk.bgGreen.white(' SUCCESS ')} ${chalk.green(
-//       `[Bind Requirements] successfully commit.`,
-//     )}\n\n`
-//   )
-// }

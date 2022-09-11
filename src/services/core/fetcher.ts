@@ -1,4 +1,3 @@
-import { gdoic } from '../../utils/factory';
 import type { IHttpInstance, RequestInterceptor, ResponseInterceptor } from './request';
 import { baseHttpFactory } from './request';
 
@@ -12,13 +11,10 @@ const httpRequestInterceptorFactory = () => {
   const onFulfilled: RequestOnFulfilled = (config) => {
     const { headers } = config;
 
-    const token = localStorage.getItem('token') ?? '';
-
     return {
       ...config,
       headers: {
         ...headers,
-        ...gdoic(token, { Authorization: `JWT ${token}` }),
       },
     };
   };
