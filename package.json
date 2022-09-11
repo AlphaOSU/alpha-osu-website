@@ -1,6 +1,6 @@
 {
-  "name": "yu-project",
-  "version": "0.0.0",
+  "name": "alpha-osu-front",
+  "version": "0.1.0",
   "scripts": {
     "prepare": "npx husky install",
     "reinstall": "rm -rf node_modules && pnpm i",

@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import { initReactI18next, useTranslation as _useTranslation } from 'react-i18next';
 import { devLog } from '../utils/log';
 import { resources } from './resources';
-import type { TI18nKeys } from './locals/keys';
+import type { I18nKeys } from './locals/keys';
 
 export enum Language {
   EN = 'en',
@@ -12,7 +12,7 @@ export enum Language {
 
 export const DEFAULT_LANGUAGE = 'zh';
 
-type TranslationFunctionType = (key: TI18nKeys, options?: Record<string, string>) => string;
+type TranslationFunctionType = (key: I18nKeys, options?: Record<string, string>) => string;
 
 export const initI18n = () => {
   i18next
@@ -29,8 +29,8 @@ export const initI18n = () => {
     });
 };
 
-export const t = (key: TI18nKeys, options?: Record<string, string>): string => {
-  return i18next.t<string, TI18nKeys>(key, options);
+export const t = (key: I18nKeys, options?: Record<string, string>): string => {
+  return i18next.t<string, I18nKeys>(key, options);
 };
 
 export const i18n = i18next;
@@ -39,7 +39,7 @@ export const useTranslation = () => {
   const { t, ...restMembers } = _useTranslation();
 
   const translation: TranslationFunctionType = useCallback((...args) => {
-    return t<TI18nKeys>(...args);
+    return t<I18nKeys>(...args);
   }, [t]);
 
   return {

@@ -19,6 +19,7 @@ const ignoreWords = [
   'debounce',
   'debounced',
   'cls',
+  'Osu',
 ];
 
 module.exports = {
@@ -85,7 +86,7 @@ module.exports = {
     'jsx-quotes': 'error',
     'key-spacing': 'error',
     'keyword-spacing': 'error',
-    'line-comment-position': 'error',
+    // 'line-comment-position': 'error',
     'lines-around-comment': 'error',
     'lines-between-class-members': 'error',
     'max-params': ['error', { 'max': 3 }],
