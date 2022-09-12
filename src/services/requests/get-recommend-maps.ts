@@ -4,7 +4,7 @@ import { KeyCount, RecommendListItem } from '../../data/table';
 import { transformList } from '../tools/transform-list';
 import { IListRequestQuery } from '../core/types';
 import { http, transformResponse } from '../core/http';
-import { gdaic, gdoic } from '../../utils/factory';
+import { gdoic } from '../../utils/factory';
 
 export interface GetRecommendMapsParams extends Partial<IListRequestQuery>{
   newRecordPercent?: number[];

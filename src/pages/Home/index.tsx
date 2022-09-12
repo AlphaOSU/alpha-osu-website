@@ -1,8 +1,5 @@
-import { useMemoizedFn, usePagination } from 'ahooks';
-import { useHistory, useLocation } from 'react-router';
+import { usePagination } from 'ahooks';
 import useUrlState from '@ahooksjs/use-url-state';
-import { isNumber } from 'lodash';
-import { KeyCount } from '../../data/table';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { RecommendTable } from '../../components/RecommendTable';
 import { GameMode } from '../../data/game-mode';
