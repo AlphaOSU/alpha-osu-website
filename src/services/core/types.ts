@@ -41,8 +41,8 @@ export interface IListData<T> {
 }
 
 export interface IListRequestQuery {
-  pageSize: number;
-  current: number;
+  pageSize?: number;
+  current?: number;
 }
 
 export type IInfiniteRequestData<T> = IListData<T>;

@@ -1,1 +1,1 @@
-export const CONST = 'CONST';
+export const LOCAL_USER_META_KEY = 'USER_META_DATA';

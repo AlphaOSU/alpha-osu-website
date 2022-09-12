@@ -20,6 +20,11 @@ const ignoreWords = [
   'debounced',
   'cls',
   'Osu',
+  'uid',
+  'Memoized',
+  'Dropdown',
+  'deserializer',
+  'Booleans',
 ];
 
 module.exports = {
@@ -90,7 +95,7 @@ module.exports = {
     'lines-around-comment': 'error',
     'lines-between-class-members': 'error',
     'max-params': ['error', { 'max': 3 }],
-    'multiline-comment-style': 'error',
+    // 'multiline-comment-style': 'error',
     'new-cap': 'error',
     'no-alert': 'error',
     'no-console': 'error',

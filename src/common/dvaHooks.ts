@@ -1,9 +1,6 @@
-import { useCallback } from 'react';
 import { Dispatch } from 'redux';
-import {
-  useSelector as _useSelector,
-  useDispatch as _useDispatch,
-} from 'dva';
+import { useDispatch as _useDispatch, useSelector as _useSelector } from 'dva';
+import { useMemoizedFn } from 'ahooks';
 import { gdoic } from '../utils/factory';
 import { ICustomAction, IRootState } from '../models/types';
 
@@ -20,10 +17,10 @@ export const useDispatch = (): Dispatch<ICustomAction> => {
 
 export const useAction = <T = any>(action: string) => {
   const dispatch = useDispatch();
-  return useCallback((payload?: T) => {
+  return useMemoizedFn((payload?: T) => {
     dispatch({
       type: action,
       ...gdoic(payload, { payload }),
     });
-  }, [dispatch, action]);
+  });
 };

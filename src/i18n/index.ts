@@ -51,3 +51,7 @@ export const useTranslation = () => {
 export const changeLanguage = async (language: Language) => {
   await i18n.changeLanguage(language);
 };
+
+export const getCurrentLanguage = (): Language => {
+  return i18next.language as Language;
+};

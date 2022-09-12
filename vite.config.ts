@@ -17,4 +17,12 @@ export default defineConfig({
     minify,
     outDir: 'dist',
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://47.94.243.9:8081',
+        changeOrigin: true,
+      },
+    },
+  }
 });

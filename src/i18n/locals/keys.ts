@@ -5,9 +5,14 @@ type Keys = [
   'app-title', // AlphaOsu!
   'common-difficulty', // 难度
   'common-exit', // 退出
+  'common-key-count', // key count
+  'common-language', // 语言
+  'common-login', // 登录
   'common-map', // 谱面
   'common-mod', // mod
+  'common-game-mode', // 游戏模式
   'label-current-pp', // 当前 pp
+  'label-current-search-maps', // 搜索谱面
   'label-current-score', // 目前得分
   'label-current-user', // 当前玩家：
   'label-new-record-probability', // 破纪录概率
@@ -15,6 +20,8 @@ type Keys = [
   'label-pp-increment', // 破纪录 pp 提升
   'label-pp-increment-expect', // pp 提升潜力
   'label-predict-score', // 预测得分
+  'label-predict-pp', // 预测 pp
+  'label-total-maps', // 共 {{total}} 张谱面
   'player-real-ranking', // 玩家实力榜
   'player-who-related-with-you', // 与你实力相近的玩家
   'pp-personal-recommend-system', // pp 个性化推荐系统
