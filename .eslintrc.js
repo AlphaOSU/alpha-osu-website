@@ -25,6 +25,9 @@ const ignoreWords = [
   'Dropdown',
   'deserializer',
   'Booleans',
+  'Tooltip',
+  'interpolate',
+  'rgb',
 ];
 
 module.exports = {

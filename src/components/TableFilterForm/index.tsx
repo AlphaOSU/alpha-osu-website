@@ -1,8 +1,10 @@
 import { Form, Input, Radio, Slider } from 'antd';
+import { FileOutlined } from '@ant-design/icons';
 import { useTranslation } from '../../i18n';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
-import { GameMode } from '../../data/game-mode';
 import { IListRequestQuery } from '../../services/core/types';
+import { GameMode } from '../../data/game-mode';
+import { config } from '../../common/config';
 
 const marks = {
   0: '0%',
@@ -53,7 +55,11 @@ export const TableFilterForm = ({
         name="search"
         label={t('label-current-search-maps')}
       >
-        <Input.Search allowClear />
+        <Input.Search
+          prefix={<FileOutlined />}
+          allowClear
+          placeholder={t('placeholder-search-map-name')}
+        />
       </Form.Item>
       <Form.Item
         name="passPercent"
@@ -82,17 +88,19 @@ export const TableFilterForm = ({
           <Radio.Button value={7}>7k</Radio.Button>
         </Radio.Group>
       </Form.Item>
-      <Form.Item
-        name="gameMode"
-        label={t('common-game-mode')}
-      >
-        <Radio.Group buttonStyle="solid">
-          <Radio.Button value={GameMode.STD}>osu!standard</Radio.Button>
-          <Radio.Button value={GameMode.TAIKO}>osu!taiko</Radio.Button>
-          <Radio.Button value={GameMode.CTB}>osu!catch the beats</Radio.Button>
-          <Radio.Button value={GameMode.MANIA}>osu!mania</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
+      {config.enableFilterGameMode && (
+        <Form.Item
+          name="gameMode"
+          label={t('common-game-mode')}
+        >
+          <Radio.Group buttonStyle="solid">
+            <Radio.Button value={GameMode.STD}>osu!standard</Radio.Button>
+            <Radio.Button value={GameMode.TAIKO}>osu!taiko</Radio.Button>
+            <Radio.Button value={GameMode.CTB}>osu!catch the beats</Radio.Button>
+            <Radio.Button value={GameMode.MANIA}>osu!mania</Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+      )}
     </Form>
   );
 };

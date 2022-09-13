@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { TablePaginationConfig } from 'antd';
 
 export interface Pagination {
   current: number;
@@ -10,7 +11,10 @@ export interface Pagination {
   changePageSize: (pageSize: number) => void;
 }
 
-export const getPagination = (pagination: Pagination, showTotal: (total: number) => ReactNode) => {
+export const getPagination = (
+  pagination: Pagination,
+  showTotal: (total: number) => ReactNode,
+): TablePaginationConfig => {
   return {
     total: pagination.total,
     pageSize: pagination.pageSize,

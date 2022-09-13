@@ -8,14 +8,20 @@ export const useSetUserMeta = () => {
   return useAction<UserMeta>('global/setUserMeta');
 };
 
-export const useLocalUserMeta = (): [UserMeta | null, (value: UserMeta) => void] => {
-  const [userMeta, setUserMeta] = useLocalStorageState<UserMeta | null>(LOCAL_USER_META_KEY, {
-    defaultValue: null,
+type Result = {
+  userMeta?: UserMeta;
+  setLocalUserMeta: (value: UserMeta) => void;
+  clearLocalUserMeta: () => void;
+};
+
+export const useLocalUserMeta = (): Result => {
+  const [userMeta, setLocalUserMeta] = useLocalStorageState<UserMeta | undefined>(LOCAL_USER_META_KEY, {
+    defaultValue: undefined,
     deserializer: (value) => {
       if (isJson(value)) {
         return JSON.parse(value) as UserMeta;
       } else {
-        return null;
+        return undefined;
       }
     },
     serializer: (value) => {
@@ -23,5 +29,11 @@ export const useLocalUserMeta = (): [UserMeta | null, (value: UserMeta) => void]
     },
   });
 
-  return [userMeta, setUserMeta];
+  return {
+    userMeta,
+    setLocalUserMeta,
+    clearLocalUserMeta() {
+      setLocalUserMeta(undefined);
+    },
+  };
 };

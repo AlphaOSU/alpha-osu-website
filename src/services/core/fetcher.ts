@@ -1,3 +1,4 @@
+import { getUid } from '../../common/get-uid';
 import type { IHttpInstance, RequestInterceptor, ResponseInterceptor } from './request';
 import { baseHttpFactory } from './request';
 
@@ -15,6 +16,7 @@ const httpRequestInterceptorFactory = () => {
       ...config,
       headers: {
         ...headers,
+        uid: getUid(),
       },
     };
   };

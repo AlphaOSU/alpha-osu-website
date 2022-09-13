@@ -1,6 +1,7 @@
 import { Button, Form, Input } from 'antd';
 import { useRequest } from 'ahooks';
 import { useHistory } from 'react-router';
+import { UserOutlined } from '@ant-design/icons';
 import { userLogin } from '../../services/requests/user-login';
 import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
 import { useTranslation } from '../../i18n';
@@ -15,7 +16,7 @@ export const Login = () => {
   const { t } = useTranslation();
   const { push } = useHistory();
   const setUserMeta = useSetUserMeta();
-  const [, setLocalUserMeta] = useLocalUserMeta();
+  const { setLocalUserMeta } = useLocalUserMeta();
 
   const {
     run: handleLogin,
@@ -37,6 +38,9 @@ export const Login = () => {
 
   return (
     <Container>
+      <div className="title">
+        AlphaOsu!
+      </div>
       <Form<FormData>
         style={{
           width: 450,
@@ -48,7 +52,11 @@ export const Login = () => {
         <Form.Item
           name="username"
         >
-          <Input />
+          <Input
+            prefix={<UserOutlined />}
+            allowClear
+            placeholder={t('placeholder-input-username')}
+          />
         </Form.Item>
         <Form.Item
           name="username"

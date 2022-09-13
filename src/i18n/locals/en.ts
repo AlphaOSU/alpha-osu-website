@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { I18nKeys } from './keys';
 
 const resource: Record<I18nKeys, string> = {
@@ -20,11 +21,14 @@ const resource: Record<I18nKeys, string> = {
   'label-pp-increment-expect': 'PP Increment Expect',
   'label-predict-score': 'Predict Score',
   'label-predict-pp': 'Predict PP',
+  'placeholder-input-username': 'Username',
+  'placeholder-search-map-name': 'Map name, map id, creator or version',
   'player-real-ranking': 'Player Real Ranking',
   'player-who-related-with-you': 'Player with similar strength to you ',
   'pp-personal-recommend-system': 'PP Personal Recommended System',
   'label-total-maps': 'Total {{total}} maps',
   'label-current-search-maps': 'Search Maps',
+  'tooltip-no-score': 'Data source: personal best performance, global NM, DT, HT ranking of ranked beatmaps with the corresponding CN country ranking',
 };
 
 export const en = {

@@ -3,12 +3,15 @@ import { Button, Dropdown, Menu } from 'antd';
 import { Language, useTranslation } from '../i18n';
 import { useSelector } from '../common/dvaHooks';
 import { useCookieLanguage } from '../hooks/useCookieLanguage';
+import { useLocalUserMeta, useSetUserMeta } from '../hooks/userHooks';
 import { Header, Nav, NavItem, NavLeft, NavRight } from './styles';
 
 export const Navigator = () => {
   const { t } = useTranslation();
   const { username = '' } = useSelector(state => state.global.userMeta) || {};
   const [, setLanguage] = useCookieLanguage();
+  const setUserMeta = useSetUserMeta();
+  const { clearLocalUserMeta } = useLocalUserMeta();
 
   return (
     <Header>
@@ -35,7 +38,13 @@ export const Navigator = () => {
           {username && (
             <NavItem>
               <Link to="/login">
-                <Button type="link">
+                <Button
+                  type="link"
+                  onClick={() => {
+                    clearLocalUserMeta();
+                    setUserMeta();
+                  }}
+                >
                   {t('common-exit')}
                 </Button>
               </Link>
@@ -44,7 +53,9 @@ export const Navigator = () => {
           {!username && (
             <NavItem>
               <Link to="/login">
-                <Button type="link">
+                <Button
+                  type="link"
+                >
                   {t('common-login')}
                 </Button>
               </Link>

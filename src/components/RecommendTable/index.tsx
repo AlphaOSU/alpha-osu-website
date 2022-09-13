@@ -1,12 +1,50 @@
 import { memo } from 'react';
+import { scaleLinear } from 'd3-scale';
+import { interpolateRgb } from 'd3-interpolate';
 import { round } from 'lodash';
 import { useMemoizedFn } from 'ahooks';
-import { Button, Space, Table } from 'antd';
+import { Button, Space, Table, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { ArrowUpOutlined } from '@ant-design/icons';
+import { ArrowUpOutlined, QuestionCircleFilled, RiseOutlined, StarFilled } from '@ant-design/icons';
 import { useTranslation } from '../../i18n';
 import { getPagination, Pagination } from '../../common/get-pagination';
 import { RecommendListItem } from '../../data/table';
+import { DifficultyBadge, TableContainer } from './styles';
+
+const difficultyColorSpectrum = scaleLinear<string>()
+  .domain([0.1, 1.25, 2, 2.5, 3.3, 4.2, 4.9, 5.8, 6.7, 7.7, 9])
+  .clamp(true)
+  // eslint-disable-next-line max-len
+  .range(['#4290FB', '#4FC0FF', '#4FFFD5', '#7CFF4F', '#F6F05C', '#FF8068', '#FF4E6F', '#C645B8', '#6563DE', '#18158E', '#000000'])
+  .interpolate(interpolateRgb.gamma(2.2));
+
+const getDifficultyColor = (rating: number) => {
+  if (rating < 0.1) {
+    return '#AAAAAA';
+  }
+  if (rating >= 9) {
+    return '#000000';
+  }
+
+  return difficultyColorSpectrum(rating);
+};
+
+const difficultyRender = (rating: number) => {
+  const color = getDifficultyColor(rating);
+
+  return (
+    <DifficultyBadge
+      color={rating < 6.5 ? 'hsl(200, 10%, 10%)' : 'rgb(255, 217, 102)'}
+      backgroundColor={color}
+    >
+      <div className="rate-content">
+        <span>{round(rating, 2)}</span>
+        &nbsp;
+        <StarFilled />
+      </div>
+    </DifficultyBadge>
+  );
+};
 
 const percentRender = (value: number) => {
   const percent = round(value * 100, 2);
@@ -37,9 +75,10 @@ export const RecommendTable = memo<RecommendTableProps>(({
   const getColumns = useMemoizedFn(() => {
     const columns: ColumnsType<RecommendListItem> = [
       {
-        key: 'id',
+        key: 'index',
         title: '#',
-        dataIndex: 'id',
+        dataIndex: 'index',
+        align: 'center',
       },
       {
         key: 'mapName',
@@ -57,23 +96,39 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'mod',
         title: t('common-mod'),
         dataIndex: 'mod',
+        align: 'center',
       },
       {
         key: 'keyCount',
         title: t('common-key-count'),
         dataIndex: 'keyCount',
+        align: 'center',
       },
       {
         key: 'difficulty',
         title: t('common-difficulty'),
         dataIndex: 'difficulty',
-        render: (_, { difficulty }) => round(difficulty, 2),
+        render: (_, { difficulty }) => difficultyRender(difficulty),
+        align: 'center',
       },
       {
         key: 'currentScore',
-        title: t('label-current-score'),
+        title: (
+          <Space>
+            <span>{t('label-current-score')}</span>
+            <Tooltip title={t('tooltip-no-score')}>
+              <Button icon={<QuestionCircleFilled />} type="link" />
+            </Tooltip>
+          </Space>
+        ),
         dataIndex: 'currentScore',
+        align: 'center',
+        className: 'current-column',
         render(value, { currentScoreLink }) {
+          if (!value) {
+            return '-';
+          }
+
           return (
             <Button type="link" target="_blank" href={currentScoreLink}>
               {value}
@@ -85,29 +140,37 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'currentPP',
         title: t('label-current-pp'),
         dataIndex: 'currentPP',
-        render: (_, { currentPP }) => round(currentPP, 2),
+        align: 'center',
+        className: 'current-column',
+        render(_, { currentPP }) {
+          return currentPP ? round(currentPP, 2) : '-';
+        },
       },
       {
         key: 'predictScore',
         title: t('label-predict-score'),
         dataIndex: 'predictScore',
+        className: 'predict-column',
       },
       {
         key: 'predictPP',
         title: t('label-predict-pp'),
         dataIndex: 'predictPP',
+        className: 'predict-column',
         render: (_, { predictPP }) => round(predictPP, 2),
       },
       {
         key: 'newRecordPercent',
         title: t('label-new-record-probability'),
         dataIndex: 'newRecordPercent',
+        className: 'predict-column',
         render: percentRender,
       },
       {
         key: 'ppIncrement',
         title: t('label-pp-increment'),
         dataIndex: 'ppIncrement',
+        className: 'predict-column',
         render: (_, { ppIncrement }) => {
           return (
             <Space style={{ color: 'green' }}>
@@ -119,15 +182,22 @@ export const RecommendTable = memo<RecommendTableProps>(({
       },
       {
         key: 'passPercent',
+        className: 'predict-column',
         title: t('label-pass-probability'),
         dataIndex: 'passPercent',
         render: percentRender,
       },
       {
         key: 'ppIncrementExpect',
+        className: 'predict-column',
         title: t('label-pp-increment-expect'),
         dataIndex: 'ppIncrementExpect',
-        render: (_, { ppIncrementExpect }) => round(ppIncrementExpect, 2),
+        render: (_, { ppIncrementExpect }) => (
+          <Space style={{ color: 'green' }}>
+            <RiseOutlined />
+            {round(ppIncrementExpect, 2)}
+          </Space>
+        ),
       },
     ];
 
@@ -135,13 +205,19 @@ export const RecommendTable = memo<RecommendTableProps>(({
   });
 
   return (
-    <Table
-      size="small"
-      columns={getColumns()}
-      dataSource={data.map(item => ({ key: item.id, ...item }))}
-      loading={loading}
-      pagination={getPagination(pagination, (total) => `${t('label-total-maps', { total: String(total) })}`)}
-    />
+    <TableContainer>
+      <Table
+        size="small"
+        columns={getColumns()}
+        dataSource={data.map((item, index) => ({
+          key: item.id,
+          index: index + pagination.pageSize * (pagination.current - 1) + 1,
+          ...item,
+        }))}
+        loading={loading}
+        pagination={getPagination(pagination, (total) => `${t('label-total-maps', { total: String(total) })}`)}
+      />
+    </TableContainer>
   );
 });
 
