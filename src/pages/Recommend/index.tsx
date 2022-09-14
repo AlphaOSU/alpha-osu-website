@@ -1,5 +1,6 @@
 import { useMount, usePagination } from 'ahooks';
 import useUrlState from '@ahooksjs/use-url-state';
+import { BackTop } from 'antd';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { RecommendTable } from '../../components/RecommendTable';
 import { GameMode } from '../../data/game-mode';
@@ -17,7 +18,7 @@ const getInitQuery = (userMeta: UserMeta) => ({
   search: '',
 });
 
-export const Home = () => {
+export const Recommend = () => {
   const userMeta = useSelector(state => state.global.userMeta);
   const [query, setQuery] = useUrlState<GetRecommendMapsParams>(
     getInitQuery(userMeta),
@@ -71,6 +72,7 @@ export const Home = () => {
           loading={loading}
           pagination={pagination}
         />
+        <BackTop />
       </Container>
     </Authorization>
   );

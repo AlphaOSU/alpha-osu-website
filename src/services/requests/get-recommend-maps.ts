@@ -1,6 +1,6 @@
 import qs from 'qs';
 import { GameMode } from '../../data/game-mode';
-import { KeyCount, RecommendListItem } from '../../data/table';
+import { KeyCount, RecommendTableItem } from '../../data/table';
 import { transformList } from '../tools/transform-list';
 import { IListRequestQuery } from '../core/types';
 import { http, transformResponse } from '../core/http';
@@ -33,5 +33,5 @@ export const getRecommendMaps = async (params: GetRecommendMapsParams) => {
     },
   });
   const data = transformResponse(res);
-  return transformList<RecommendListItem>(data, v => v);
+  return transformList<RecommendTableItem>(data, v => v);
 };

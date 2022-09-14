@@ -10,7 +10,13 @@ export const Container = styled.div`
   .title {
     text-align: center;
     font-size: 48px;
-    margin: 80px;
+    color: #1890ff;
+  }
+  
+  .description {
+    font-size: 13PX;
+    margin-top: 25px;
+    margin-bottom: 80px;
     color: #1890ff;
   }
 `;

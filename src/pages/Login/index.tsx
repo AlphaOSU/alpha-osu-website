@@ -31,7 +31,7 @@ export const Login = () => {
         };
         setUserMeta(userMeta);
         setLocalUserMeta(userMeta);
-        push('/home');
+        push('/self/pp-recommend');
       },
     },
   );
@@ -39,8 +39,13 @@ export const Login = () => {
   return (
     <Container>
       <div className="title">
-        AlphaOsu!
+        {t('app-title')}
       </div>
+      <a href="https://osu.ppy.sh" rel="noreferrer" target="_blank">
+        <div className="description">
+          {t('app-description')}
+        </div>
+      </a>
       <Form<FormData>
         style={{
           width: 450,

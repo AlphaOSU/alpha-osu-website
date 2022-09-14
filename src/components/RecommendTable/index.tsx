@@ -8,7 +8,7 @@ import { ColumnsType } from 'antd/es/table';
 import { ArrowUpOutlined, QuestionCircleFilled, RiseOutlined, StarFilled } from '@ant-design/icons';
 import { useTranslation } from '../../i18n';
 import { getPagination, Pagination } from '../../common/get-pagination';
-import { RecommendListItem } from '../../data/table';
+import { RecommendTableItem } from '../../data/table';
 import { Mod } from '../../data/mod';
 import * as assets from '../../assets';
 import { DifficultyBadge, TableContainer, ModImg } from './styles';
@@ -74,21 +74,25 @@ const difficultyRender = (rating: number) => {
   );
 };
 
+const percentColorSpectrum = scaleLinear<string>()
+  .domain([0, 1])
+  .clamp(true)
+  // eslint-disable-next-line max-len
+  .range(['#00ff00', '#ff0000'])
+  .interpolate(interpolateRgb.gamma(2.2));
+
+const getPercentColor = (percent: number) => {
+  return percentColorSpectrum(percent);
+};
+
 const percentRender = (value: number) => {
+  const color = getPercentColor(value);
   const percent = round(value * 100, 2);
-  let color = 'red';
-
-  if (percent < 25) {
-    color = 'green';
-  } else if (percent < 75 && percent >= 25) {
-    color = 'blue';
-  }
-
-  return <div style={{ color, fontWeight: 500 }}>{percent}%</div>;
+  return <div style={{ color, fontWeight: 700 }}>{percent}%</div>;
 };
 
 export interface RecommendTableProps {
-  data: RecommendListItem[];
+  data: RecommendTableItem[];
   loading?: boolean;
   pagination: Pagination;
 }
@@ -101,7 +105,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
   const { t } = useTranslation();
 
   const getColumns = useMemoizedFn(() => {
-    const columns: ColumnsType<RecommendListItem> = [
+    const columns: ColumnsType<RecommendTableItem> = [
       {
         key: 'index',
         title: '#',
@@ -148,7 +152,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
           <Space>
             <span>{t('label-current-score')}</span>
             <Tooltip title={t('tooltip-no-score')}>
-              <Button icon={<QuestionCircleFilled />} type="link" />
+              <QuestionCircleFilled />
             </Tooltip>
           </Space>
         ),
@@ -168,6 +172,13 @@ export const RecommendTable = memo<RecommendTableProps>(({
         },
       },
       {
+        key: 'predictScore',
+        title: t('label-predict-score'),
+        dataIndex: 'predictScore',
+        align: 'center',
+        className: 'predict-column',
+      },
+      {
         key: 'currentPP',
         title: t('label-current-pp'),
         dataIndex: 'currentPP',
@@ -176,13 +187,6 @@ export const RecommendTable = memo<RecommendTableProps>(({
         render(_, { currentPP }) {
           return currentPP ? round(currentPP, 2) : '-';
         },
-      },
-      {
-        key: 'predictScore',
-        title: t('label-predict-score'),
-        dataIndex: 'predictScore',
-        align: 'center',
-        className: 'predict-column',
       },
       {
         key: 'predictPP',

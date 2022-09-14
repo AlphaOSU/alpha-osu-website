@@ -18,8 +18,13 @@ const RouteMenu = () => {
         className="nav-menu"
         items={[
           {
-            key: '/self/recommend',
-            label: <NavLink to="/self/recommend">{t('pp-personal-recommend-system')}</NavLink>,
+            key: '/self/pp-recommend',
+            label: <NavLink to="/self/pp-recommend">{t('pp-personal-recommend-system')}</NavLink>,
+            className: 'nav-menu-item',
+          },
+          {
+            key: '/self/similarity-users',
+            label: <NavLink to="/self/similarity-users">{t('similarity-user')}</NavLink>,
             className: 'nav-menu-item',
           },
           {

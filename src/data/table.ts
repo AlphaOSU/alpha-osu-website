@@ -2,7 +2,7 @@ import { Mod } from './mod';
 
 export type KeyCount = 4 | 7;
 
-export interface RecommendListItem {
+export interface RecommendTableItem {
   id: string;
   mapName: string;
   mapLink: string;
@@ -18,4 +18,12 @@ export interface RecommendListItem {
   ppIncrement: number;
   passPercent: number;
   ppIncrementExpect: number;
+}
+
+export interface SimilarityUser {
+  id: string;
+  username: string;
+  userLink: string;
+  pp: number;
+  similarity: number;
 }
