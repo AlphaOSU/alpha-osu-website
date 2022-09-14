@@ -10,7 +10,8 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "commit-check": "node script/commitCheck.js",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "release": "tsc && vite build --emptyOutDir --outDir ../alpha-osu-web-build/dist"
   },
   "dependencies": {
     "@ahooksjs/use-url-state": "^3.5.0",
