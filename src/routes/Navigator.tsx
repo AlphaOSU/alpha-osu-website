@@ -1,94 +1,96 @@
 import { Link, NavLink } from 'react-router-dom';
-import { Button, Dropdown, Menu } from 'antd';
-import { Language, useTranslation } from '../i18n';
+import { Menu } from 'antd';
+import { useMemoizedFn } from 'ahooks';
+import { useTranslation } from '../i18n';
 import { useSelector } from '../common/dvaHooks';
-import { useCookieLanguage } from '../hooks/useCookieLanguage';
 import { useLocalUserMeta, useSetUserMeta } from '../hooks/userHooks';
+import { Logo } from '../components/Logo';
+import { LanguageSwitch } from '../components/LanguageSwitch';
 import { Header, Nav, NavItem, NavLeft, NavRight } from './styles';
+
+const RouteMenu = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="nav-container">
+      <Menu
+        mode="horizontal"
+        className="nav-menu"
+        items={[
+          {
+            key: '/self/recommend',
+            label: <NavLink to="/self/recommend">{t('pp-personal-recommend-system')}</NavLink>,
+            className: 'nav-menu-item',
+          },
+          {
+            key: '/about',
+            label: <NavLink to="/about">{t('app-about')}</NavLink>,
+            className: 'nav-menu-item',
+          },
+        ]}
+      />
+    </div>
+  );
+};
 
 export const Navigator = () => {
   const { t } = useTranslation();
-  const { username = '' } = useSelector(state => state.global.userMeta) || {};
-  const [, setLanguage] = useCookieLanguage();
+  const userMeta = useSelector(state => state.global.userMeta);
+  const { username = '', uid = '' } = userMeta || {};
   const setUserMeta = useSetUserMeta();
   const { clearLocalUserMeta } = useLocalUserMeta();
+
+  const usernameRender = useMemoizedFn(() => (
+    <NavItem>
+      <a
+        href={`https://osu.ppy.sh/users/${uid}`}
+        rel="noreferrer"
+        target="_blank"
+      >
+        <span>{username}</span>
+      </a>
+    </NavItem>
+  ));
+
+  const logoutRender = useMemoizedFn(() => (
+    <NavItem>
+      <Link to="/login">
+        <div
+          className="link-button"
+          onClick={() => {
+            clearLocalUserMeta();
+            setUserMeta();
+          }}
+        >
+          {t('common-exit')}
+        </div>
+      </Link>
+    </NavItem>
+  ));
+
+  const loginRender = useMemoizedFn(() => (
+    <NavItem>
+      <Link to="/login">
+        <div className="link-button">
+          {t('common-login')}
+        </div>
+      </Link>
+    </NavItem>
+  ));
 
   return (
     <Header>
       <Nav>
         <NavLeft>
-          <Menu
-            mode="horizontal"
-            className="nav-menu"
-            items={[
-              {
-                key: '/self/recommend',
-                label: <NavLink to="/self/recommend">{t('pp-personal-recommend-system')}</NavLink>,
-                className: 'nav-menu-item',
-              },
-            ]}
-          />
+          <Logo />
+          <div className="title">{t('app-title')}</div>
         </NavLeft>
         <NavRight>
-          {username && (
-            <NavItem>
-              <span>{username}</span>
-            </NavItem>
-          )}
-          {username && (
-            <NavItem>
-              <Link to="/login">
-                <Button
-                  type="link"
-                  onClick={() => {
-                    clearLocalUserMeta();
-                    setUserMeta();
-                  }}
-                >
-                  {t('common-exit')}
-                </Button>
-              </Link>
-            </NavItem>
-          )}
-          {!username && (
-            <NavItem>
-              <Link to="/login">
-                <Button
-                  type="link"
-                >
-                  {t('common-login')}
-                </Button>
-              </Link>
-            </NavItem>
-          )}
-          <Dropdown
-            overlay={(
-              <Menu
-                items={[
-                  {
-                    label: '简体中文',
-                    key: Language.ZH,
-                    onClick() {
-                      setLanguage?.(Language.ZH);
-                      location.reload();
-                    },
-                  },
-                  {
-                    label: 'English',
-                    key: Language.EN,
-                    onClick() {
-                      setLanguage?.(Language.EN);
-                      location.reload();
-                    },
-                  },
-                ]}
-              />
-            )}
-          >
-            <Button type="dashed">
-              {t('common-language')}
-            </Button>
-          </Dropdown>
+          <LanguageSwitch />
+          {!username && loginRender()}
+          {userMeta && logoutRender()}
+          {userMeta && usernameRender()}
+          {userMeta && <RouteMenu />}
         </NavRight>
       </Nav>
     </Header>

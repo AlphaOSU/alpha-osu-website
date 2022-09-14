@@ -9,7 +9,35 @@ import { ArrowUpOutlined, QuestionCircleFilled, RiseOutlined, StarFilled } from 
 import { useTranslation } from '../../i18n';
 import { getPagination, Pagination } from '../../common/get-pagination';
 import { RecommendListItem } from '../../data/table';
-import { DifficultyBadge, TableContainer } from './styles';
+import { Mod } from '../../data/mod';
+import * as assets from '../../assets';
+import { DifficultyBadge, TableContainer, ModImg } from './styles';
+
+const modRender = (mod: Mod) => {
+  const getImg = () => {
+    switch (mod) {
+    case Mod.DT: return assets.dt;
+    case Mod.HT: return assets.ht;
+    case Mod.NM: return assets.nm;
+    default: return assets.nm;
+    }
+  };
+
+  const getTooltip = () => {
+    switch (mod) {
+    case Mod.DT: return 'Double Time';
+    case Mod.HT: return 'Half Time';
+    case Mod.NM: return 'No Mod';
+    default: return 'No Mod';
+    }
+  };
+
+  return (
+    <Tooltip title={getTooltip()}>
+      <ModImg src={getImg()} alt={mod} key={mod} />
+    </Tooltip>
+  );
+};
 
 const difficultyColorSpectrum = scaleLinear<string>()
   .domain([0.1, 1.25, 2, 2.5, 3.3, 4.2, 4.9, 5.8, 6.7, 7.7, 9])
@@ -97,6 +125,9 @@ export const RecommendTable = memo<RecommendTableProps>(({
         title: t('common-mod'),
         dataIndex: 'mod',
         align: 'center',
+        render(value: Mod[]) {
+          return value.map(modRender);
+        },
       },
       {
         key: 'keyCount',
@@ -150,12 +181,14 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'predictScore',
         title: t('label-predict-score'),
         dataIndex: 'predictScore',
+        align: 'center',
         className: 'predict-column',
       },
       {
         key: 'predictPP',
         title: t('label-predict-pp'),
         dataIndex: 'predictPP',
+        align: 'center',
         className: 'predict-column',
         render: (_, { predictPP }) => round(predictPP, 2),
       },
@@ -163,6 +196,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'newRecordPercent',
         title: t('label-new-record-probability'),
         dataIndex: 'newRecordPercent',
+        align: 'center',
         className: 'predict-column',
         render: percentRender,
       },
@@ -170,6 +204,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'ppIncrement',
         title: t('label-pp-increment'),
         dataIndex: 'ppIncrement',
+        align: 'center',
         className: 'predict-column',
         render: (_, { ppIncrement }) => {
           return (
@@ -184,6 +219,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'passPercent',
         className: 'predict-column',
         title: t('label-pass-probability'),
+        align: 'center',
         dataIndex: 'passPercent',
         render: percentRender,
       },
@@ -192,6 +228,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
         className: 'predict-column',
         title: t('label-pp-increment-expect'),
         dataIndex: 'ppIncrementExpect',
+        align: 'center',
         render: (_, { ppIncrementExpect }) => (
           <Space style={{ color: 'green' }}>
             <RiseOutlined />

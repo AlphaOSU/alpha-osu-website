@@ -11,5 +11,6 @@ export const Container = styled.div`
     text-align: center;
     font-size: 48px;
     margin: 80px;
+    color: #1890ff;
   }
 `;

@@ -61,7 +61,11 @@ export const Login = () => {
         <Form.Item
           name="username"
         >
-          <Button block type="primary" htmlType="submit">
+          <Button
+            block type="primary"
+            htmlType="submit"
+            className="login-button"
+          >
             {t('common-login')}
           </Button>
         </Form.Item>

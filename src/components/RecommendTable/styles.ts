@@ -22,5 +22,11 @@ export const DifficultyBadge = styled.div<{
   }
 `;
 
+export const ModImg = styled.img`
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+`;
+
 export const TableContainer = styled.div`
 `;

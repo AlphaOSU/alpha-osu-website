@@ -6,7 +6,7 @@ export interface RecommendListItem {
   id: string;
   mapName: string;
   mapLink: string;
-  mod: Mod;
+  mod: Mod[];
   difficulty: number;
   keyCount?: KeyCount;
   currentScore: number;

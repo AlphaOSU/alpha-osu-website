@@ -3,6 +3,7 @@ import { ArrayToUnion } from '../../utils/types-util';
 type Keys = [
   'app-description', // pp 谱面推荐
   'app-title', // AlphaOsu!
+  'app-about', // 关于
   'common-difficulty', // 难度
   'common-exit', // 退出
   'common-key-count', // key count
