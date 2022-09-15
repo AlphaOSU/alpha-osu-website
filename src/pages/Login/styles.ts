@@ -19,4 +19,18 @@ export const Container = styled.div`
     margin-bottom: 80px;
     color: #1890ff;
   }
+  
+  .user-history-title {
+    margin: 20px 0 5px;
+    font-size: 20px;
+  }
+  
+  .user-history {
+    margin-top: 5px;
+    max-width: 550px;
+    
+    .user-tag:hover {
+      cursor: pointer;
+    }
+  }
 `;

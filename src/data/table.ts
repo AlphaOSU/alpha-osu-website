@@ -18,6 +18,7 @@ export interface RecommendTableItem {
   ppIncrement: number;
   passPercent: number;
   ppIncrementExpect: number;
+  accurate: boolean;
 }
 
 export interface SimilarityUser {

@@ -1,5 +1,5 @@
-import { zh } from './locals/zh';
-import { en } from './locals/en';
+import { zh } from './locales/zh';
+import { en } from './locales/en';
 
 export const resources = {
   en,

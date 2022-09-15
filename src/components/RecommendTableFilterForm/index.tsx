@@ -1,5 +1,4 @@
 import { Form, Input, Radio, Slider } from 'antd';
-import { FileOutlined } from '@ant-design/icons';
 import { useTranslation } from '../../i18n';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { IListRequestQuery } from '../../services/core/types';
@@ -15,21 +14,21 @@ const marks = {
   100: '100%',
 };
 
-export type TableFilterFormData = Omit<GetRecommendMapsParams, keyof IListRequestQuery>;
+export type RecommendTableFilterFormData = Omit<GetRecommendMapsParams, keyof IListRequestQuery>;
 
-export interface TableFilterFormProps {
-  onChange: (values: TableFilterFormData) => void;
-  initialValues?: TableFilterFormData;
+export interface RecommendTableFilterFormProps {
+  onChange: (values: RecommendTableFilterFormData) => void;
+  initialValues?: RecommendTableFilterFormData;
 }
 
-export const TableFilterForm = ({
+export const RecommendTableFilterForm = ({
   onChange,
   initialValues,
-}: TableFilterFormProps) => {
+}: RecommendTableFilterFormProps) => {
   const { t } = useTranslation();
 
   return (
-    <Form<TableFilterFormData>
+    <Form<RecommendTableFilterFormData>
       initialValues={{
         passPercent: [60, 100],
         newRecordPercent: [60, 100],
@@ -42,6 +41,7 @@ export const TableFilterForm = ({
       }}
       wrapperCol={{
         span: 18,
+        offset: 2,
       }}
       style={{
         maxWidth: 750,
@@ -56,7 +56,6 @@ export const TableFilterForm = ({
         label={t('label-current-search-maps')}
       >
         <Input.Search
-          prefix={<FileOutlined />}
           allowClear
           placeholder={t('placeholder-search-map-name')}
         />

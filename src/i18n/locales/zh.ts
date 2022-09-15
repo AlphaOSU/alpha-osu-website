@@ -12,6 +12,8 @@ const resource: Record<I18nKeys, string> = {
   'common-map': '谱面',
   'common-mod': 'MOD',
   'common-game-mode': '游戏模式',
+  'form-error-message-username': '请输入用户名',
+  'form-error-message-username-length': '用户名长度在 4 到 16 个字符',
   'player-username': '玩家',
   'player-similarity': '玩家相似度',
   'label-current-pp': '目前 pp',
@@ -31,11 +33,18 @@ const resource: Record<I18nKeys, string> = {
   'similarity-user': '实力相近的玩家',
   'label-total-maps': '共 {{total}} 张谱面',
   'label-current-search-maps': '搜索谱面',
-  'tooltip-no-score': '数据来源：个人BP榜、ranked图的NM、DT、HT榜以及对应的CN榜',
+  'tooltip-current-score': '数据来源：个人BP榜、ranked图的NM、DT、HT榜以及对应的CN榜',
   'tooltip-user-similarity': '值越接近0，表示你和该玩家各方面的能力越接近',
   'tooltip-pass-probability': '在最佳状态下，这张图能存活并且进入BP榜的概率',
   'tooltip-pp-increment': '在破纪录的情况下，平均能增加多少的个人总PP值。',
   'tooltip-pp-increment-expect': 'PP 提升潜力 = PP 提升（破纪录）× 破纪录概率 × Pass 概率，表示这张图能带给你 PP 提升的期望。',
+  'tooltip-recommend-not-accurate': '由于数据缺乏，本推荐结果可能不准确',
+  'user-login-history': '历史登录账号',
+  'service-error__10500': '服务器开小差了，请稍后重试~',
+  'service-error__10404': '用户名不存在、游戏模式暂不支持或账号排名超出机器学习训练范围',
+  'service-error__10403': 'Uid 不合法',
+  'service-error__10400': '请求参数不合法',
+  'service-error__10600': '未知错误',
 };
 
 export const zh = {

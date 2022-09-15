@@ -1,13 +1,13 @@
-import { useMount, usePagination } from 'ahooks';
+import { usePagination } from 'ahooks';
 import useUrlState from '@ahooksjs/use-url-state';
 import { BackTop } from 'antd';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
-import { RecommendTable } from '../../components/RecommendTable';
 import { GameMode } from '../../data/game-mode';
-import { TableFilterForm } from '../../components/TableFilterForm';
+import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
 import { useSelector } from '../../common/dvaHooks';
 import { Authorization } from '../Authorization';
 import { UserMeta } from '../../data/user-meta';
+import { RecommendTable } from '../../components/Tables/RecommendTable';
 import { Container } from './styles';
 
 const getInitQuery = (userMeta: UserMeta) => ({
@@ -20,6 +20,7 @@ const getInitQuery = (userMeta: UserMeta) => ({
 
 export const Recommend = () => {
   const userMeta = useSelector(state => state.global.userMeta);
+
   const [query, setQuery] = useUrlState<GetRecommendMapsParams>(
     getInitQuery(userMeta),
     {
@@ -34,10 +35,6 @@ export const Recommend = () => {
     },
   );
 
-  useMount(() => {
-    setQuery(getInitQuery(userMeta));
-  });
-
   const {
     data,
     loading,
@@ -50,7 +47,7 @@ export const Recommend = () => {
     {
       defaultPageSize: 20,
       defaultCurrent: 1,
-      debounceWait: 300,
+      throttleWait: 300,
       refreshDeps: [query],
     },
   );
@@ -58,7 +55,7 @@ export const Recommend = () => {
   return (
     <Authorization>
       <Container>
-        <TableFilterForm
+        <RecommendTableFilterForm
           initialValues={query}
           onChange={(values) => {
             const filterParams: GetRecommendMapsParams = {

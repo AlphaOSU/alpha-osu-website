@@ -13,6 +13,8 @@ const resource: Record<I18nKeys, string> = {
   'common-map': 'Map',
   'common-mod': 'MOD',
   'common-game-mode': 'Game Mode',
+  'form-error-message-username': 'Please input username',
+  'form-error-message-username-length': 'The username`s length is between 4 and 16',
   'player-username': 'Player',
   'player-similarity': 'Similarity',
   'label-current-pp': 'Current PP',
@@ -32,11 +34,18 @@ const resource: Record<I18nKeys, string> = {
   'similarity-user': 'Similarity Users',
   'label-total-maps': 'Total {{total}} maps',
   'label-current-search-maps': 'Search Maps',
-  'tooltip-no-score': 'Data source: personal best performance, global NM, DT, HT ranking of ranked beatmaps with the corresponding CN country ranking',
+  'tooltip-current-score': 'Data source: personal best performance, global NM, DT, HT ranking of ranked beatmaps with the corresponding CN country ranking',
   'tooltip-user-similarity': 'The closer the value is to 0, the closer you are to the player\'s abilities in all aspects',
   'tooltip-pass-probability': 'At its best, this graph is expected to survive and make it into the Best Performance',
   'tooltip-pp-increment': 'In a record-breaking situation, how much of an individual\'s total PP can be added on average.',
   'tooltip-pp-increment-expect': 'PP increment Expect = PP Increment (Break Record) × Record Breaking Probability × Pass Probability, Indicates that this chart can give you the expectations that pp will raise.',
+  'tooltip-recommend-not-accurate': 'Due to lack of data, this recommendation may not be accurate',
+  'user-login-history': 'Account log in history',
+  'service-error__10500': 'The server deserted, please try again later~',
+  'service-error__10404': 'The username does not exist, the game mode is not supported, or the account ranking is beyond the scope of machine learning training',
+  'service-error__10403': 'Uid illegal',
+  'service-error__10400': 'The request parameter is not valid',
+  'service-error__10600': 'Unknown Error',
 };
 
 export const en = {

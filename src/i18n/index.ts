@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import { initReactI18next, useTranslation as _useTranslation } from 'react-i18next';
 import { devLog } from '../utils/log';
 import { resources } from './resources';
-import type { I18nKeys } from './locals/keys';
+import type { I18nKeys } from './locales/keys';
 
 export enum Language {
   EN = 'en',

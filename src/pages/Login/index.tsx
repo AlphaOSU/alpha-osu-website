@@ -1,4 +1,4 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Tag } from 'antd';
 import { useRequest } from 'ahooks';
 import { useHistory } from 'react-router';
 import { UserOutlined } from '@ant-design/icons';
@@ -6,6 +6,7 @@ import { userLogin } from '../../services/requests/user-login';
 import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
 import { useTranslation } from '../../i18n';
 import { UserMeta } from '../../data/user-meta';
+import { useLocalUserHistory } from '../../hooks/useLocalUserHistory';
 import { Container } from './styles';
 
 interface FormData {
@@ -17,6 +18,7 @@ export const Login = () => {
   const { push } = useHistory();
   const setUserMeta = useSetUserMeta();
   const { setLocalUserMeta } = useLocalUserMeta();
+  const userHistory = useLocalUserHistory();
 
   const {
     run: handleLogin,
@@ -32,6 +34,7 @@ export const Login = () => {
         setUserMeta(userMeta);
         setLocalUserMeta(userMeta);
         push('/self/pp-recommend');
+        userHistory.addUser(username);
       },
     },
   );
@@ -56,6 +59,10 @@ export const Login = () => {
       >
         <Form.Item
           name="username"
+          rules={[
+            { required: true, message: t('form-error-message-username') },
+            { type: 'string', max: 16, min: 4, message: t('form-error-message-username-length') },
+          ]}
         >
           <Input
             prefix={<UserOutlined />}
@@ -75,6 +82,24 @@ export const Login = () => {
           </Button>
         </Form.Item>
       </Form>
+      <div className="user-history-title">{t('user-login-history')}</div>
+      <div className="user-history">
+        {userHistory.list.map(u => (
+          <Tag
+            className="user-tag"
+            key={u}
+            closable
+            onClick={() => {
+              handleLogin(u);
+            }}
+            onClose={() => {
+              userHistory.removeUser(u);
+            }}
+          >
+            {u}
+          </Tag>
+        ))}
+      </div>
     </Container>
   );
 };

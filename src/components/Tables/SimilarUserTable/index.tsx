@@ -1,10 +1,10 @@
-import { Button, Space, Table, Tooltip } from 'antd';
+import { Button, Table } from 'antd';
 import { useMemoizedFn } from 'ahooks';
 import { ColumnType } from 'antd/es/table';
 import { round } from 'lodash';
-import { QuestionCircleFilled } from '@ant-design/icons';
-import { SimilarityUser } from '../../data/table';
-import { useTranslation } from '../../i18n';
+import { SimilarityUser } from '../../../data/table';
+import { useTranslation } from '../../../i18n';
+import { HelpTitle } from '../base-components';
 
 export interface SimilarUserTableProps {
   data: SimilarityUser[];
@@ -52,14 +52,7 @@ export const SimilarUserTable = ({
       {
         key: 'similarity',
         dataIndex: 'similarity',
-        title: (
-          <Space>
-            <span>{t('player-similarity')}</span>
-            <Tooltip title={t('tooltip-user-similarity')}>
-              <QuestionCircleFilled />
-            </Tooltip>
-          </Space>
-        ),
+        title: <HelpTitle title={t('player-similarity')} tooltip={t('tooltip-user-similarity')} />,
         render(value: number) {
           return round(value, 2);
         },

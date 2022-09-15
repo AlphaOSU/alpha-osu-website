@@ -5,13 +5,26 @@ import { round } from 'lodash';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Space, Table, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { ArrowUpOutlined, QuestionCircleFilled, RiseOutlined, StarFilled } from '@ant-design/icons';
-import { useTranslation } from '../../i18n';
-import { getPagination, Pagination } from '../../common/get-pagination';
-import { RecommendTableItem } from '../../data/table';
-import { Mod } from '../../data/mod';
-import * as assets from '../../assets';
-import { DifficultyBadge, TableContainer, ModImg } from './styles';
+import { ArrowUpOutlined, RiseOutlined, StarFilled, WarningOutlined } from '@ant-design/icons';
+import * as assets from '../../../assets';
+import { KeyCount, RecommendTableItem } from '../../../data/table';
+import { Mod } from '../../../data/mod';
+import { getPagination, Pagination } from '../../../common/get-pagination';
+import { useTranslation } from '../../../i18n';
+import { HelpTitle } from '../base-components';
+import { DifficultyBadge, ModImg, TableContainer } from './styles';
+
+const keyCountRender = (key: KeyCount) => {
+  const getImg = () => {
+    switch (key) {
+    case 4: return assets.m4k;
+    case 7: return assets.m7k;
+    default: return assets.m4k;
+    }
+  };
+
+  return <ModImg src={getImg()} alt={String(key)} key={key} />;
+};
 
 const modRender = (mod: Mod) => {
   const getImg = () => {
@@ -116,11 +129,18 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'mapName',
         title: t('common-map'),
         dataIndex: 'mapName',
-        render(value, { mapLink }) {
+        render(value, { mapLink, accurate }) {
           return (
-            <Button type="link" target="_blank" href={mapLink}>
-              {value}
-            </Button>
+            <Space>
+              <Button type="link" target="_blank" href={mapLink}>
+                {value}
+              </Button>
+              {!accurate && (
+                <Tooltip title={t('tooltip-recommend-not-accurate')}>
+                  <WarningOutlined style={{ color: '#e7bb00' }} />
+                </Tooltip>
+              )}
+            </Space>
           );
         },
       },
@@ -138,6 +158,9 @@ export const RecommendTable = memo<RecommendTableProps>(({
         title: t('common-key-count'),
         dataIndex: 'keyCount',
         align: 'center',
+        render(value: KeyCount) {
+          return keyCountRender(value);
+        },
       },
       {
         key: 'difficulty',
@@ -148,14 +171,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
       },
       {
         key: 'currentScore',
-        title: (
-          <Space>
-            <span>{t('label-current-score')}</span>
-            <Tooltip title={t('tooltip-no-score')}>
-              <QuestionCircleFilled />
-            </Tooltip>
-          </Space>
-        ),
+        title: <HelpTitle title={t('label-current-score')} tooltip={t('tooltip-current-score')} />,
         dataIndex: 'currentScore',
         align: 'center',
         className: 'current-column',
@@ -206,7 +222,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
       },
       {
         key: 'ppIncrement',
-        title: t('label-pp-increment'),
+        title: <HelpTitle title={t('label-pp-increment')} tooltip={t('tooltip-pp-increment')} />,
         dataIndex: 'ppIncrement',
         align: 'center',
         className: 'predict-column',
@@ -222,7 +238,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
       {
         key: 'passPercent',
         className: 'predict-column',
-        title: t('label-pass-probability'),
+        title: <HelpTitle title={t('label-pass-probability')} tooltip={t('tooltip-pass-probability')} />,
         align: 'center',
         dataIndex: 'passPercent',
         render: percentRender,
@@ -230,7 +246,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
       {
         key: 'ppIncrementExpect',
         className: 'predict-column',
-        title: t('label-pp-increment-expect'),
+        title: <HelpTitle title={t('label-pp-increment-expect')} tooltip={t('tooltip-pp-increment-expect')} />,
         dataIndex: 'ppIncrementExpect',
         align: 'center',
         render: (_, { ppIncrementExpect }) => (
