@@ -12,7 +12,7 @@ import { Mod } from '../../../data/mod';
 import { getPagination, Pagination } from '../../../common/get-pagination';
 import { useTranslation } from '../../../i18n';
 import { HelpTitle } from '../base-components';
-import { DifficultyBadge, ModImg, TableContainer } from './styles';
+import { DifficultyBadge, ModImg, TableContainer, CoverImg } from './styles';
 
 const keyCountRender = (key: KeyCount) => {
   const getImg = () => {
@@ -129,9 +129,10 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'mapName',
         title: t('common-map'),
         dataIndex: 'mapName',
-        render(value, { mapLink, accurate }) {
+        render(value, { mapLink, accurate, mapCoverUrl }) {
           return (
             <Space>
+              {mapCoverUrl && <CoverImg title={value} alt="cover" src={mapCoverUrl} />}
               <Button type="link" target="_blank" href={mapLink}>
                 {value}
               </Button>

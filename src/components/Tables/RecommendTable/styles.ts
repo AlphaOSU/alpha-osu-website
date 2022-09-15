@@ -28,5 +28,10 @@ export const ModImg = styled.img`
   object-fit: contain;
 `;
 
+export const CoverImg = styled.img`
+  object-fit: contain;
+  height: 32px;
+`;
+
 export const TableContainer = styled.div`
 `;

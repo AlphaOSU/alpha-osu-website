@@ -8,7 +8,7 @@ export const LayoutWrapper = styled.div`
 
 export const MainWrapper = styled.div`
   width: 100%;
-  padding: 20px 80px 40px;
+  padding: 20px 80px 120px;
   margin: 60px auto;
   box-sizing: border-box;
 `;

@@ -6,6 +6,7 @@ export interface RecommendTableItem {
   id: string;
   mapName: string;
   mapLink: string;
+  mapCoverUrl: string;
   mod: Mod[];
   difficulty: number;
   keyCount?: KeyCount;
