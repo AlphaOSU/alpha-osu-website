@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 import { useMemoizedFn } from 'ahooks';
 import { useTranslation } from '../i18n';
@@ -10,12 +10,16 @@ import { Header, Nav, NavItem, NavLeft, NavRight } from './styles';
 
 const RouteMenu = () => {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   return (
     <div className="nav-container">
       <Menu
         mode="horizontal"
         className="nav-menu"
+        defaultSelectedKeys={[pathname]}
+        activeKey={pathname}
+        multiple={false}
         items={[
           {
             key: '/self/pp-recommend',

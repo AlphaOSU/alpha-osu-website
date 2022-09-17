@@ -3,13 +3,14 @@ import styled from 'styled-components';
 export const LayoutWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
+  position: relative;
   //background-color: rgb(34, 40, 42);
 `;
 
 export const MainWrapper = styled.div`
   width: 100%;
-  padding: 20px 80px 120px;
-  margin: 60px auto;
+  padding: 20px 80px;
+  margin: 60px auto 160px;
   box-sizing: border-box;
 `;
 

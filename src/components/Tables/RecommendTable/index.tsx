@@ -12,7 +12,7 @@ import { Mod } from '../../../data/mod';
 import { getPagination, Pagination } from '../../../common/get-pagination';
 import { useTranslation } from '../../../i18n';
 import { HelpTitle } from '../base-components';
-import { DifficultyBadge, ModImg, TableContainer, CoverImg } from './styles';
+import { CoverImg, DifficultyBadge, MapNameWrapper, ModImg, TableContainer } from './styles';
 
 const keyCountRender = (key: KeyCount) => {
   const getImg = () => {
@@ -129,19 +129,27 @@ export const RecommendTable = memo<RecommendTableProps>(({
         key: 'mapName',
         title: t('common-map'),
         dataIndex: 'mapName',
-        render(value, { mapLink, accurate, mapCoverUrl }) {
+        className: 'map-name-column',
+        render(value: string, { mapLink, accurate, mapCoverUrl }) {
           return (
-            <Space>
+            <MapNameWrapper>
               {mapCoverUrl && <CoverImg title={value} alt="cover" src={mapCoverUrl} />}
-              <Button type="link" target="_blank" href={mapLink}>
-                {value}
-              </Button>
+              <Tooltip title={value}>
+                <Button
+                  className="title-text"
+                  type="link"
+                  target="_blank"
+                  href={mapLink}
+                >
+                  {value}
+                </Button>
+              </Tooltip>
               {!accurate && (
                 <Tooltip title={t('tooltip-recommend-not-accurate')}>
                   <WarningOutlined style={{ color: '#e7bb00' }} />
                 </Tooltip>
               )}
-            </Space>
+            </MapNameWrapper>
           );
         },
       },
@@ -265,6 +273,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
   return (
     <TableContainer>
       <Table
+        scroll={{ x: 1600 }}
         size="small"
         columns={getColumns()}
         dataSource={data.map((item, index) => ({

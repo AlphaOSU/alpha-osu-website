@@ -3,19 +3,16 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   height: 40px;
+  position: absolute;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   
-  @media screen and (min-width: 720px) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  @media screen and (max-width: 720px) {
-    flex-direction: column;
+  .footer-wrapper {
+    width: 1080px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
   }
 `;

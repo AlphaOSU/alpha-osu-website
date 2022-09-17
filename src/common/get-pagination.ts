@@ -25,6 +25,6 @@ export const getPagination = (
     showQuickJumper: true,
     current: pagination.current,
     responsive: true,
-    pageSizeOptions: [20, 50, 100, 1000],
+    pageSizeOptions: [20, 50, 100],
   };
 };
