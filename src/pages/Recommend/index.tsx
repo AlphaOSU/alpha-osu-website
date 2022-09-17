@@ -1,6 +1,7 @@
 import { usePagination } from 'ahooks';
 import useUrlState from '@ahooksjs/use-url-state';
 import { BackTop } from 'antd';
+import dayjs from 'dayjs';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { GameMode } from '../../data/game-mode';
 import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
@@ -8,6 +9,8 @@ import { useSelector } from '../../common/dvaHooks';
 import { Authorization } from '../Authorization';
 import { UserMeta } from '../../data/user-meta';
 import { RecommendTable } from '../../components/Tables/RecommendTable';
+import { useConfig } from '../../hooks/useConfig';
+import { useTranslation } from '../../i18n';
 import { Container } from './styles';
 
 const getInitQuery = (userMeta: UserMeta) => ({
@@ -20,6 +23,8 @@ const getInitQuery = (userMeta: UserMeta) => ({
 
 export const Recommend = () => {
   const userMeta = useSelector(state => state.global.userMeta);
+  const { dataUpdatedTime = -1 } = useConfig();
+  const { t } = useTranslation();
 
   const [query, setQuery] = useUrlState<GetRecommendMapsParams>(
     getInitQuery(userMeta),
@@ -55,6 +60,11 @@ export const Recommend = () => {
   return (
     <Authorization>
       <Container>
+        {dataUpdatedTime > 0 && (
+          <div className="date-time">
+            {t('label-date-update-time')}{dayjs(dataUpdatedTime * 1000).format('YYYY-MM-DD HH:mm:ss')}
+          </div>
+        )}
         <RecommendTableFilterForm
           initialValues={query}
           onChange={(values) => {

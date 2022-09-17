@@ -1,12 +1,13 @@
 import type { WithNull } from '../utils/types-util';
-import { ConfigKeys } from '../common/config-keys';
 import { UserMeta } from '../data/user-meta';
 import { LOCAL_USER_META_KEY } from '../common/constants';
 import { isJson } from '../utils/is-json';
+import { getConfig } from '../services/requests/get-config';
+import { Config } from '../data/config';
 import { IModel } from './types';
 
 export interface IGlobalState {
-  config: Partial<Record<ConfigKeys, any>>;
+  config: Config;
   userMeta: UserMeta;
 }
 
@@ -31,15 +32,31 @@ const model: IModel<WithNull<IGlobalState>> = {
         userMeta: payload,
       };
     },
+    setConfig(state, { payload }) {
+      return {
+        ...state,
+        config: payload,
+      };
+    },
   },
   subscriptions: {
-    setup({ dispatch }) {
+    async setup({ dispatch }) {
       const meta = localStorage.getItem(LOCAL_USER_META_KEY) || '';
       if (isJson(meta)) {
         dispatch({
           type: 'setUserMeta',
           payload: JSON.parse(meta),
         });
+      }
+
+      try {
+        const config = await getConfig();
+        dispatch({
+          type: 'setConfig',
+          payload: config,
+        });
+      } catch {
+        // do nothing
       }
     },
   },

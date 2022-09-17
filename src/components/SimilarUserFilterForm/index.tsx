@@ -2,7 +2,7 @@ import { Form, Radio } from 'antd';
 import { GameMode } from '../../data/game-mode';
 import { GetSimilarityUsersOptions } from '../../services/requests/get-similarity-users';
 import { useTranslation } from '../../i18n';
-import { config } from '../../common/config';
+import { useConfig } from '../../hooks/useConfig';
 
 export type SimilarUserFormData = GetSimilarityUsersOptions;
 
@@ -16,6 +16,7 @@ export const SimilarUserFilterForm = ({
   initialValues,
 }: SimilarUserFilterFormProps) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   return (
     <Form<SimilarUserFormData>

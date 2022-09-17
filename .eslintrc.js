@@ -28,6 +28,7 @@ const ignoreWords = [
   'Tooltip',
   'interpolate',
   'rgb',
+  'dayjs',
 ];
 
 module.exports = {

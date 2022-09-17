@@ -82,24 +82,28 @@ export const Login = () => {
           </Button>
         </Form.Item>
       </Form>
-      <div className="user-history-title">{t('user-login-history')}</div>
-      <div className="user-history">
-        {userHistory.list.map(u => (
-          <Tag
-            className="user-tag"
-            key={u}
-            closable
-            onClick={() => {
-              handleLogin(u);
-            }}
-            onClose={() => {
-              userHistory.removeUser(u);
-            }}
-          >
-            {u}
-          </Tag>
-        ))}
-      </div>
+      {userHistory?.list?.length > 0 && (
+        <>
+          <div className="user-history-title">{t('user-login-history')}</div>
+          <div className="user-history">
+            {userHistory.list.map(u => (
+              <Tag
+                className="user-tag"
+                key={u}
+                closable
+                onClick={() => {
+                  handleLogin(u);
+                }}
+                onClose={() => {
+                  userHistory.removeUser(u);
+                }}
+              >
+                {u}
+              </Tag>
+            ))}
+          </div>
+        </>
+      )}
     </Container>
   );
 };

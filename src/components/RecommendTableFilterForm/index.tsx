@@ -3,7 +3,7 @@ import { useTranslation } from '../../i18n';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { IListRequestQuery } from '../../services/core/types';
 import { GameMode } from '../../data/game-mode';
-import { config } from '../../common/config';
+import { useConfig } from '../../hooks/useConfig';
 
 const marks = {
   0: '0%',
@@ -26,6 +26,7 @@ export const RecommendTableFilterForm = ({
   initialValues,
 }: RecommendTableFilterFormProps) => {
   const { t } = useTranslation();
+  const config = useConfig();
 
   return (
     <Form<RecommendTableFilterFormData>

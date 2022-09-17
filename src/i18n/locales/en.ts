@@ -17,6 +17,7 @@ const resource: Record<I18nKeys, string> = {
   'form-error-message-username-length': 'The username`s length is between 4 and 16',
   'player-username': 'Player',
   'player-similarity': 'Similarity',
+  'label-date-update-time': 'Data update time:',
   'label-current-pp': 'Current PP',
   'label-current-score': 'Current Score',
   'label-current-user': 'Current User: ',

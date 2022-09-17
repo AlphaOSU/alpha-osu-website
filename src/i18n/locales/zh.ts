@@ -16,6 +16,7 @@ const resource: Record<I18nKeys, string> = {
   'form-error-message-username-length': '用户名长度在 4 到 16 个字符',
   'player-username': '玩家',
   'player-similarity': '玩家相似度',
+  'label-date-update-time': '数据更新时间：',
   'label-current-pp': '目前 pp',
   'label-current-score': '目前得分',
   'label-current-user': '当前玩家：',

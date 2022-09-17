@@ -1,7 +1,14 @@
-import { request } from '../core/http';
-import { transformConfig } from '../tools/transform-config';
+import { request, transformResponse } from '../core/http';
+import { Config } from '../../data/config';
 
-export const getConfig = async () => {
-  const res = await request.get('/api/config');
-  return transformConfig(res);
+export const transformConfig = (res: any): Config => {
+  return {
+    dataUpdatedTime: res?.dataUpdatedTime || undefined,
+  };
+};
+
+export const getConfig = async (): Promise<Config> => {
+  const res = await request.get('/api/v1/config');
+  const data = transformResponse(res);
+  return transformConfig(data);
 };
