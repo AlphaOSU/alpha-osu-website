@@ -6,8 +6,7 @@ export const Container = styled.div`
   }
   
   .date-time {
-    margin: 40px 0;
-    font-size: 22px;
+    font-size: 14px;
     text-align: right;
   }
 `;

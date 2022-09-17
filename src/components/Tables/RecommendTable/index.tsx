@@ -3,7 +3,7 @@ import { scaleLinear } from 'd3-scale';
 import { interpolateRgb } from 'd3-interpolate';
 import { round } from 'lodash';
 import { useMemoizedFn } from 'ahooks';
-import { Button, Space, Table, Tooltip } from 'antd';
+import { Button, Space, Table, TableProps, Tooltip } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { ArrowUpOutlined, RiseOutlined, StarFilled, WarningOutlined } from '@ant-design/icons';
 import * as assets from '../../../assets';
@@ -104,7 +104,7 @@ const percentRender = (value: number) => {
   return <div style={{ color, fontWeight: 700 }}>{percent}%</div>;
 };
 
-export interface RecommendTableProps {
+export interface RecommendTableProps extends TableProps<RecommendTableItem>{
   data: RecommendTableItem[];
   loading?: boolean;
   pagination: Pagination;
@@ -114,6 +114,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
   data,
   loading,
   pagination,
+  ...props
 }: RecommendTableProps) => {
   const { t } = useTranslation();
 
@@ -273,7 +274,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
   return (
     <TableContainer>
       <Table
-        scroll={{ x: 1600 }}
+        scroll={{ x: 1280 }}
         size="small"
         columns={getColumns()}
         dataSource={data.map((item, index) => ({
@@ -283,6 +284,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
         }))}
         loading={loading}
         pagination={getPagination(pagination, (total) => `${t('label-total-maps', { total: String(total) })}`)}
+        {...props}
       />
     </TableContainer>
   );

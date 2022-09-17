@@ -60,11 +60,6 @@ export const Recommend = () => {
   return (
     <Authorization>
       <Container>
-        {dataUpdatedTime > 0 && (
-          <div className="date-time">
-            {t('label-date-update-time')}{dayjs(dataUpdatedTime * 1000).format('YYYY-MM-DD HH:mm:ss')}
-          </div>
-        )}
         <RecommendTableFilterForm
           initialValues={query}
           onChange={(values) => {
@@ -78,6 +73,15 @@ export const Recommend = () => {
           data={data?.list || []}
           loading={loading}
           pagination={pagination}
+          footer={() =>
+            dataUpdatedTime > 0
+              ? (
+                <div className="date-time">
+                  {t('label-date-update-time')}{dayjs(dataUpdatedTime * 1000).format('YYYY-MM-DD HH:mm:ss')}
+                </div>
+              )
+              : undefined
+          }
         />
         <BackTop />
       </Container>

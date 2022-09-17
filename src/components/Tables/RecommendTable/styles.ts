@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Space } from 'antd';
 
 export const DifficultyBadge = styled.div<{
   color: string;
@@ -36,16 +35,31 @@ export const CoverImg = styled.img`
 
 export const TableContainer = styled.div`
   margin-bottom: 80px;
-  
-  .map-name-column {
-    max-width: 720px;
-    overflow: hidden;
-  }
 `;
 
-export const MapNameWrapper = styled(Space)`
+export const MapNameWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media screen and (max-width: 1920px) and (min-width: 1600px) {
+    width: calc(100vw - 1072px - 80px);
+  }
+
+  @media screen and (max-width: 1600px) and (min-width: 1360px) {
+    width: calc(100vw - 880px - 80px);
+  }
+
+  @media screen and (max-width: 1360px) {
+    width: 400px;
+  }
+  
   a.title-text {
+    max-width: calc(100% - 116px - 8px - 14px - 8px);
+
     span {
+      max-width: 100%;
       display: block;
       text-align: left;
       white-space: nowrap;
