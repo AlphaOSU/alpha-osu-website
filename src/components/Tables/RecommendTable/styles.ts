@@ -48,7 +48,7 @@ export const MapNameWrapper = styled.div`
   }
 
   @media screen and (max-width: 1600px) and (min-width: 1360px) {
-    width: calc(100vw - 880px - 80px);
+    width: calc(100vw - 960px - 80px);
   }
 
   @media screen and (max-width: 1360px) {
