@@ -6,11 +6,13 @@ import { useSelector } from '../common/dvaHooks';
 import { useLocalUserMeta, useSetUserMeta } from '../hooks/userHooks';
 import { Logo } from '../components/Logo';
 import { LanguageSwitch } from '../components/LanguageSwitch';
+import { gdaic } from '../utils/factory';
 import { Header, Nav, NavItem, NavLeft, NavRight } from './styles';
 
 const RouteMenu = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const userMeta = useSelector(state => state.global.userMeta);
 
   return (
     <div className="nav-container">
@@ -21,16 +23,18 @@ const RouteMenu = () => {
         activeKey={pathname}
         multiple={false}
         items={[
-          {
-            key: '/self/pp-recommend',
-            label: <NavLink to="/self/pp-recommend">{t('pp-personal-recommend-system')}</NavLink>,
-            className: 'nav-menu-item',
-          },
-          {
-            key: '/self/similarity-users',
-            label: <NavLink to="/self/similarity-users">{t('similarity-user')}</NavLink>,
-            className: 'nav-menu-item',
-          },
+          ...gdaic(!!userMeta, [
+            {
+              key: '/self/pp-recommend',
+              label: <NavLink to="/self/pp-recommend">{t('pp-personal-recommend-system')}</NavLink>,
+              className: 'nav-menu-item',
+            },
+            {
+              key: '/self/similarity-users',
+              label: <NavLink to="/self/similarity-users">{t('similarity-user')}</NavLink>,
+              className: 'nav-menu-item',
+            },
+          ]),
           {
             key: '/about',
             label: <NavLink to="/about">{t('app-about')}</NavLink>,
@@ -99,7 +103,7 @@ export const Navigator = () => {
           {!username && loginRender()}
           {userMeta && logoutRender()}
           {userMeta && usernameRender()}
-          {userMeta && <RouteMenu />}
+          <RouteMenu />
         </NavRight>
       </Nav>
     </Header>

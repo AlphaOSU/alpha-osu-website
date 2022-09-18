@@ -1,6 +1,8 @@
 const getDestructArrayInCondition =
-  <T = any>(condition: any, thing: T): [T] | [] => {
-    return condition ? [thing] : [];
+  <T = any>(condition: any, thing: T | T[]): [T] | [] | T[] => {
+    return condition
+      ? Array.isArray(thing) ? [...thing] : [thing]
+      : [];
   };
 
 const getDestructObjectInCondition =
