@@ -10,7 +10,7 @@ export interface GetRecommendMapsParams extends Partial<IListRequestQuery>{
   newRecordPercent?: number[];
   passPercent?: number[];
   search?: string;
-  keyCount?: KeyCount;
+  keyCount?: KeyCount | KeyCount[];
   gameMode?: GameMode;
 }
 

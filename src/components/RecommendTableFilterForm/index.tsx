@@ -82,10 +82,28 @@ export const RecommendTableFilterForm = ({
       <Form.Item
         name="keyCount"
         label={t('common-key-count')}
+        getValueFromEvent={e => {
+          const { value } = e.target;
+          if (value === 47) {
+            return [4, 7];
+          }
+
+          return value;
+        }}
+        getValueProps={(value) => {
+          if (typeof value === 'number') {
+            return { value };
+          }
+
+          return {
+            value: 47,
+          };
+        }}
       >
         <Radio.Group buttonStyle="solid">
           <Radio.Button value={4}>4k</Radio.Button>
           <Radio.Button value={7}>7k</Radio.Button>
+          <Radio.Button value={47}>All</Radio.Button>
         </Radio.Group>
       </Form.Item>
       {config.enableFilterGameMode && (
