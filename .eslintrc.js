@@ -29,6 +29,8 @@ const ignoreWords = [
   'interpolate',
   'rgb',
   'dayjs',
+  'jax',
+  'tex',
 ];
 
 module.exports = {
