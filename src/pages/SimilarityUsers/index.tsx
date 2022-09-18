@@ -49,11 +49,6 @@ export const SimilarityUsers = () => {
   return (
     <Authorization>
       <Container>
-        {dataUpdatedTime > 0 && (
-          <div className="date-time">
-            {t('label-date-update-time')}{dayjs(dataUpdatedTime * 1000).format('YYYY-MM-DD HH:mm:ss')}
-          </div>
-        )}
         <SimilarUserFilterForm
           initialValues={query}
           onChange={(values) => {
@@ -63,6 +58,13 @@ export const SimilarityUsers = () => {
         <SimilarUserTable
           data={data || []}
           loading={loading}
+          footer={
+            () => dataUpdatedTime > 0 && (
+              <div className="date-time">
+                {t('label-date-update-time')}{dayjs(dataUpdatedTime * 1000).format('YYYY-MM-DD HH:mm:ss')}
+              </div>
+            )
+          }
         />
         <BackTop />
       </Container>

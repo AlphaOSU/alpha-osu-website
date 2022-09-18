@@ -8,6 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 40px;
   
   .footer-wrapper {
     width: 1080px;

@@ -34,7 +34,6 @@ export const CoverImg = styled.img`
 `;
 
 export const TableContainer = styled.div`
-  margin-bottom: 80px;
 `;
 
 export const MapNameWrapper = styled.div`

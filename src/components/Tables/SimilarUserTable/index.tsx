@@ -1,4 +1,4 @@
-import { Button, Table } from 'antd';
+import { Button, Table, TableProps } from 'antd';
 import { useMemoizedFn } from 'ahooks';
 import { ColumnType } from 'antd/es/table';
 import { round } from 'lodash';
@@ -6,7 +6,7 @@ import { SimilarityUser } from '../../../data/table';
 import { useTranslation } from '../../../i18n';
 import { HelpTitle } from '../base-components';
 
-export interface SimilarUserTableProps {
+export interface SimilarUserTableProps extends TableProps<SimilarityUser> {
   data: SimilarityUser[];
   loading?: boolean;
 }
@@ -14,6 +14,7 @@ export interface SimilarUserTableProps {
 export const SimilarUserTable = ({
   data,
   loading,
+  ...props
 }: SimilarUserTableProps) => {
   const { t } = useTranslation();
 
@@ -72,6 +73,7 @@ export const SimilarUserTable = ({
         ...item,
       }))}
       pagination={false}
+      {...props}
     />
   );
 };

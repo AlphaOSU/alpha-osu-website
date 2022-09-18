@@ -8,9 +8,9 @@ export const LayoutWrapper = styled.div`
 
 export const MainWrapper = styled.div`
   width: 100%;
-  padding: 20px 40px;
-  margin: 60px auto 160px;
+  margin: 60px auto;
   box-sizing: border-box;
+  padding: 20px 40px 120px;
 `;
 
 export const Header = styled.header`
