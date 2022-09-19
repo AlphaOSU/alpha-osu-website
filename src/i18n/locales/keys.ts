@@ -41,6 +41,14 @@ type Keys = [
   'tooltip-pp-increment-expect', // PP 提升潜力 = PP 提升（破纪录）× 破纪录概率 × Pass 概率，表示这张图能带给你 PP 提升的期望。
   'tooltip-recommend-not-accurate', // 由于数据缺乏，本推荐结果可能不准确
   'user-login-history', // 登录历史
+  'contact-label-name', // 姓名
+  'contact-label-email', // 邮箱
+  'contact-label-role', // 介绍
+  'contact-table-title', // 开发成员
+  'contact-table-acknowledgement-title', // 致谢
+  'role-rain7',
+  'role-kuit',
+  'role-xz',
   'service-error__10500',
   'service-error__10404',
   'service-error__10403',

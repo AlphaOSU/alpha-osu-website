@@ -9,4 +9,8 @@ export const Container = styled.div`
     font-size: 18px;
     text-indent: 2em;
   }
+  
+  div.about-content {
+    margin: 20px;
+  }
 `;

@@ -31,6 +31,7 @@ const ignoreWords = [
   'dayjs',
   'jax',
   'tex',
+  'unescaped',
 ];
 
 module.exports = {
@@ -69,8 +70,6 @@ module.exports = {
     'index.html',
     '.eslintrc.js',
     'src/vite-env.d.ts',
-    'src/pages/About/cn.tsx',
-    'src/pages/About/en.tsx',
   ],
   'rules': {
     'array-bracket-newline': ['error', { 'multiline': true }],
