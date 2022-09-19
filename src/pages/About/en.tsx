@@ -9,25 +9,86 @@ export function AboutEn() {
     <Container>
       <Typography>
         <Title level={1}>
-          Algorithm Introduction
+          AlphaOsu!
         </Title>
         <Paragraph>
-          AlphaOSU! 的算法分为两个部分：分数预测系统和 pass 概率预测系统（即进入 BP 榜的概率）。
+          Inspired by <Link href="https://www.deepmind.com/research/highlighted-research/alphago" target="_blank">AlphaGo</Link> and <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>, AlphaOsu! aims to use AI technology to mine the big data in the osu! game, and spawning a series of applications to benefit players and the community, including a PP beatmap recommender system, mining player's potential improvement, player/beatmap similarity analysis, beatmap difficulty estimation etc. Currently, only the osu!mania mode is supported, and the support for the rest of modes is under development. 
         </Paragraph>
+
         <Title level={2}>
-          分数预测系统
+          Introduction to Algorithms
+        </Title>
+
+        <Title level={3}>
+          Predict the playing scores
         </Title>
         <Paragraph>
-          分数预测系统用于<Text strong>预测用户在一张谱面上的得分分布</Text>。
-          AlphaOsu! 为每个用户赋予一个{i('d')}维的隐向量 {i('u\\in \\mathbb R^d')}，
-          每张谱面赋予一个 {i('d')} 维的隐向量 {i('v\\in \\mathbb R^d')}，
-          分别表示用户各个方面的实力和谱面各个方面的难度。在已知成绩{i('score')}的情况下，
-          可以使用 <Link href="https://sifter.org/~simon/journal/20061211.html">Latent Factor Model</Link>
-          来求解{i('u')} 和 {i('v')}，使得：
-          {l('u^\\top W v=\\text{score}')}
-          其中
-          {i('W\\in\\mathbb R^{d\\times d}')}
+          Score prediction system is used for <Text strong>estimating the player's score distribution on a beatmap.</Text> AlphaOsu! assigns a {i('d')}-dimensional latent vector {i('u\\in \\mathbb R^d')} to each player, and assigns a {i('d')}-dimensional latent vector {i('v\\in \\mathbb R^d')} to each beatmap, encoding the strength of all aspects of the player and the difficulty of all aspects of the beatmap, respectively. Given a known {i('\\text{score}')}, we can leverage <Link href="https://sifter.org/~simon/journal/20061211.html" target="_blank">Latent Factor Model</Link> to solve {i('u')} and {i('v')}, making:
+          {l('u^\\top W v=\\text{score},')} where {i('W\\in\\mathbb R^{d\\times d}')} is a {i('d\\times d')} diagonal matrix representing a context matrix. In AlphaOsu!, context matrix is defined to be the game mod. Each mod corresponds to a matrix, for example, {i('W_{\\text{HT}}')}, {i('W_{\\text{NM}}')} and {i('W_{\\text{DT}}')}.
         </Paragraph>
+        <Paragraph>
+          To speed up the convergence, AlphaOsu! leverages <Link href="https://www.jmlr.org/papers/volume16/hastie15a/hastie15a.pdf" target="_blank">Alternating Least Squares</Link> to optimize {i('u')}, {i('v')} and {i('W')}, i.e., fix two of the variables to optimize the third variable, and use the Least Squares method to optimize the third variable. Repeat this process to optimize {i('u')}, {i('v')} and {i('W')} respectively until the algorithm converges.
+        </Paragraph>
+
+
+        <Title level={3}>
+          Predict the score fluctuations
+        </Title>
+        <Paragraph>
+          Let {i('\\hat s=u^\\top W v')} denote the predicted score. Actually, rather than predicting a single score on a beatmap, we are more interested in predicting the <Text strong>score distribution</Text> of players on this beatmap. This is because players' scores tend to fluctuate, and playing the same beatmap several times often results in different scores. In order to predict the distribution, ordinary Least Squares can be replaced by Bayesian Least Squares (i.e., <Link href='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.27.9072&rep=rep1&type=pdf' target='_blank'>Bayesian Ridge Regression</Link>). Bayesian Ridge Regression allows us to obtain a Bayesian model that eventually estimates a Gaussian distribution to represent the distribution of scores, namely:
+          {l('\\text{score}\\sim \\mathcal N(\\cdot\\mid\\hat s, \\hat\\sigma^2),')}
+          where {i('\\hat\\sigma^2')} is the variance of scores predicted by Bayesian Ridge Regression for input vectors {i('u')}, {i('v')} and matrix {i('W')}. Using this distribution, we can predict the player's <Text strong>record-breaking probability</Text> given that the player's true score is {i('s_0')}:
+          {l('P(\\text{score}>s_0)=\\int_{s=s_0}^{\\infty}\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2) \\text{d}s')}
+        </Paragraph>
+
+        <Title level={3}>
+          Predicted the average PP increment
+        </Title>
+        <Paragraph>
+          In order to predict the PP improvement a player can get on a beatmap, one can directly calculate the PP corresponding to the score {i('\\hat s')}, and then calculate how much the total PP can improve. However, this approach will always result in a total PP increment of 0 when {i('\\hat s')} is less than the true score, even if the difference is small. This is not conducive to the stability of the recommender system. Therefore, given that we can estimate the distribution of player scores, it is straightforward to estimate the average single PP in the record-breaking situation:
+          {l('\\mathbb E_{s|s>x_0}[\\text{pp}(s)]=\\frac{\\int_{s=s_0}^{\\infty}\\text{pp}(s)\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2)  \\text{d}s}{\\int_{s=s_0}^{\\infty}\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2) \\text{d}s},')}
+          where {i('\\text{pp}(s)')} is the PP corresponding to the score {i('s')}. Therefore, the average PP that can be obtained when passing is:
+          {l('\\mathbb E_{s}[\\text{pp}(s)]=\\mathbb E_{s|s>x_0}[\\text{pp}(s)]\\cdot P(s>s_0)=\\int_{s=s_0}^{\\infty}\\text{pp}(s)\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2)  \\text{d}s')}
+        </Paragraph>
+
+        <Title level={3}>
+          Predict the passing probability
+        </Title>
+        <Paragraph>
+          Predicting the average pp alone is not sufficient, because the chances of player passes are also smaller for a highly difficult beatmap. However, only data on passing (positive sample) can be collected, and data on non-passing (negative sample) are missing. For the missing data, it is difficult to determine whether it is because the player did not visit the beatmap, or because the player could not pass. Also, the number of missing is generally much larger than the number of positive samples, resulting in an unbalanced sample problem. To obtain negative samples, AlphaOsu! first makes the assumption that if a beatmap has a predicted score {i('\\hat s')} sufficient to make it to the player's BP list, but the player does not have its score, it means that the player could not pass on this beatmap. Using this assumption, high quality negative samples (pp high enough) can be sampled for each player.
+        </Paragraph>
+        <Paragraph>
+          AlphaOsu! uses <Link href='https://arxiv.org/pdf/1603.02754.pdf' target='_blank'>XGBoost</Link> as the passing probability prediction model. The input features include the player vector {i('u')}, the beatmap vector {i('v')}, the mod, and some features of the beatmap: difficulty stars, length, amount of objects, pass rate, play counts, etc.
+        </Paragraph>
+        <Paragraph>
+          It is worth mentioning the number of play counts (PC). For some new beatmap, the number of PC tends to be low and the number of entries into the BP is low, leading to a low predicted pass probability. This problem is similar to the recommender system's (<Link href='https://www.cs.cornell.edu/people/tj/publications/joachims_etal_05a.pdf' target='_blank'>position bias</ Link>) problem. To solve this problem, PC can be used as one of the input features of the model during training. When predicting, for new beatmap (with low PC), increase its PC to a threshold value, thus correcting for this bias.
+        </Paragraph>
+
+        <Title level={3}>
+          Potential PP increment
+        </Title>
+        <Paragraph>
+          Potential PP increment is defined as the pass probability multiplied by the PP increment. It measures the potential of a beatmap to farm PP.
+        </Paragraph>
+
+        <Title level={2}>
+          Other application
+        </Title>
+        <Title level={3}>
+          User similarity
+        </Title>
+        <Paragraph>
+          The multidimensional strength of each aspect of the players is modeled as the vector  {i('u')}. Thus, the similarity of two players can be calculated using the Euclidean distance of the vectors:
+          {l('\\text{similarity}(u_1, u_2)=-||u_1-u_2||_2')}
+        </Paragraph>
+
+        <Title level={3}>
+          Others
+        </Title>
+        <Paragraph>
+          To be continue...
+        </Paragraph>
+
       </Typography>
     </Container>
   );
