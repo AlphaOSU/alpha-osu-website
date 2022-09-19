@@ -28,6 +28,14 @@ export const Container = styled.div`
   .user-history {
     margin-top: 5px;
     max-width: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    .user-tag {
+      margin: 5px;
+    }
     
     .user-tag:hover {
       cursor: pointer;
