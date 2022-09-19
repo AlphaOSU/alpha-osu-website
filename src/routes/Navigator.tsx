@@ -40,6 +40,11 @@ const RouteMenu = () => {
             label: <NavLink to="/about">{t('app-about')}</NavLink>,
             className: 'nav-menu-item',
           },
+          {
+            key: '/contact',
+            label: <NavLink to="/contact">{t('contact-us-label-title')}</NavLink>,
+            className: 'nav-menu-item',
+          },
         ]}
       />
     </div>

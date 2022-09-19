@@ -42,6 +42,7 @@ type Keys = [
   'tooltip-recommend-not-accurate', // 由于数据缺乏，本推荐结果可能不准确
   'user-login-history', // 登录历史
   'contact-label-name', // 姓名
+  'contact-us-label-title', // 联系我们
   'contact-label-email', // 邮箱
   'contact-label-role', // 介绍
   'contact-table-title', // 开发成员

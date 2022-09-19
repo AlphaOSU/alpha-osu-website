@@ -47,6 +47,7 @@ const resource: Record<I18nKeys, string> = {
   'contact-label-role': 'Role',
   'contact-table-title': 'Developer',
   'contact-table-acknowledgement-title': 'Thanks',
+  'contact-us-label-title': 'Contact Us',
   'role-rain7': 'AlphaOsu Website Developer',
   'role-kuit': 'AlphaOsu Server and Algorithm Developer',
   'role-xz': 'Project Creator',

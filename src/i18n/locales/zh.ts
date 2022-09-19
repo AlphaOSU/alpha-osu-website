@@ -46,6 +46,7 @@ const resource: Record<I18nKeys, string> = {
   'contact-label-role': '介绍',
   'contact-table-title': '开发成员',
   'contact-table-acknowledgement-title': '致谢',
+  'contact-us-label-title': '联系我们',
   'role-rain7': 'AlphaOsu 网站开发',
   'role-kuit': 'AlphaOsu 网站服务端和算法设计与开发',
   'role-xz': '项目发起人',

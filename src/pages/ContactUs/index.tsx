@@ -1,7 +1,8 @@
 import { Button, Table } from 'antd';
 import { ColumnType } from 'antd/es/table';
 import { useMemoizedFn } from 'ahooks';
-import { useTranslation } from '../../../i18n';
+import { Language, useTranslation } from '../../i18n';
+import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import { Container } from './styles';
 
 interface TableData {
@@ -14,6 +15,7 @@ interface TableData {
 
 export const ContactUs = () => {
   const { t } = useTranslation();
+  const [language] = useCookieLanguage();
 
   const getColumns = useMemoizedFn(() => {
     const columns: Array<ColumnType<TableData>> = [
@@ -45,9 +47,9 @@ export const ContactUs = () => {
 
   return (
     <Container>
+      <div className="center-title">{t('contact-table-title')}</div>
       <Table<TableData>
         size="small"
-        title={() => <div className="center-title">{t('contact-table-title')}</div>}
         pagination={false}
         bordered
         columns={getColumns()}
@@ -75,6 +77,29 @@ export const ContactUs = () => {
           },
         ]}
       />
+      <div className="contact-us-title">
+        {t('contact-us-label-title')}
+      </div>
+      <div className="contact-us-container">
+        {language === Language.ZH && (
+          <Button
+            type="link"
+            href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss"
+            target="_blank"
+            rel="noreferrer"
+          >
+            QQ 群
+          </Button>
+        )}
+        <Button
+          type="link"
+          href="https://discord.gg/H5VzJxeK4F"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Discord
+        </Button>
+      </div>
     </Container>
   );
 };

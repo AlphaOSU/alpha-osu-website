@@ -101,14 +101,3 @@ export const NavItem = styled.div`
     }
   }
 `;
-
-export const FooterWrapper = styled.footer`
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  background-color: #e9e9e9;
-`;
