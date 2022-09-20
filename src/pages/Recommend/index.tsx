@@ -53,7 +53,7 @@ export const Recommend = () => {
     {
       defaultPageSize: 20,
       defaultCurrent: 1,
-      throttleWait: 300,
+      debounceWait: 300,
       refreshDeps: [query],
     },
   );

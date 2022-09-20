@@ -42,7 +42,7 @@ export const SimilarityUsers = () => {
     () => getSimilarityUsers(query),
     {
       refreshDeps: [query],
-      throttleWait: 300,
+      debounceWait: 300,
     },
   );
 
