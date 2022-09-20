@@ -17,6 +17,7 @@ type Keys = [
   'player-username', // 玩家
   'player-similarity', // 玩家相似度
   'label-date-update-time', // 数据更新时间
+  'label-hide-played', // 隐藏已玩过的谱面
   'label-current-pp', // 当前 pp
   'label-current-search-maps', // 搜索谱面
   'label-current-score', // 目前得分

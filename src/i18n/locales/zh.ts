@@ -17,6 +17,7 @@ const resource: Record<I18nKeys, string> = {
   'player-username': '玩家',
   'player-similarity': '玩家相似度',
   'label-date-update-time': '数据更新时间：',
+  'label-hide-played': '隐藏游玩过的谱面',
   'label-current-pp': '目前 pp',
   'label-current-score': '目前得分',
   'label-current-user': '当前玩家：',

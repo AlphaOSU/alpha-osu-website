@@ -13,12 +13,13 @@ import { useConfig } from '../../hooks/useConfig';
 import { useTranslation } from '../../i18n';
 import { Container } from './styles';
 
-const getInitQuery = (userMeta: UserMeta) => ({
+const getInitQuery = (userMeta: UserMeta): GetRecommendMapsParams => ({
   gameMode: userMeta?.gameMode ?? GameMode.STD,
   keyCount: userMeta?.keyCount ?? 4,
   passPercent: [0, 100],
   newRecordPercent: [0, 100],
   search: '',
+  hidePlayed: 0,
 });
 
 export const Recommend = () => {

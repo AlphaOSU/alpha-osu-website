@@ -12,6 +12,7 @@ export interface GetRecommendMapsParams extends Partial<IListRequestQuery>{
   search?: string;
   keyCount?: KeyCount | KeyCount[];
   gameMode?: GameMode;
+  hidePlayed?: 0 | 1;
 }
 
 export const getRecommendMaps = async (params: GetRecommendMapsParams) => {

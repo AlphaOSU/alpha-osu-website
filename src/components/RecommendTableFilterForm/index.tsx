@@ -1,4 +1,4 @@
-import { Form, Input, Radio, Slider } from 'antd';
+import { Form, Input, Radio, Slider, Switch } from 'antd';
 import { useTranslation } from '../../i18n';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { IListRequestQuery } from '../../services/core/types';
@@ -78,6 +78,18 @@ export const RecommendTableFilterForm = ({
           marks={marks}
           range
         />
+      </Form.Item>
+      <Form.Item
+        name="hidePlayed"
+        label={t('label-hide-played')}
+        getValueFromEvent={(checked) => {
+          return checked ? 1 : 0;
+        }}
+        getValueProps={(value) => {
+          return { checked: value === 1 };
+        }}
+      >
+        <Switch />
       </Form.Item>
       <Form.Item
         name="keyCount"

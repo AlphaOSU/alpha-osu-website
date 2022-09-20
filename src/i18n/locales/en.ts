@@ -18,6 +18,7 @@ const resource: Record<I18nKeys, string> = {
   'player-username': 'Player',
   'player-similarity': 'Similarity',
   'label-date-update-time': 'Data update time:',
+  'label-hide-played': 'Hide Played Maps',
   'label-current-pp': 'Current PP',
   'label-current-score': 'Current Score',
   'label-current-user': 'Current User: ',
