@@ -50,7 +50,7 @@ const resource: Record<I18nKeys, string> = {
   'contact-us-label-title': '联系我们',
   'role-rain7': 'AlphaOsu 网站开发',
   'role-kuit': 'AlphaOsu 网站服务端和算法设计与开发',
-  'role-xz': '项目发起人',
+  'role-xz': '项目发起人并参与算法设计',
   'role-qr': '服务器提供者',
   'service-error__10500': '服务器开小差了，请稍后重试~',
   'service-error__10404': '用户名不存在、游戏模式暂不支持或账号排名超出机器学习训练范围',

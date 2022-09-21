@@ -51,7 +51,7 @@ const resource: Record<I18nKeys, string> = {
   'contact-us-label-title': 'Contact Us',
   'role-rain7': 'AlphaOsu Website Developer',
   'role-kuit': 'AlphaOsu Server and Algorithm Developer',
-  'role-xz': 'Project Creator',
+  'role-xz': 'Project Creator and Participate in algorithm design',
   'role-qr': 'Cloud Server Provider',
   'service-error__10500': 'The server deserted, please try again later~',
   'service-error__10404': 'The username does not exist, the game mode is not supported, or the account ranking is beyond the scope of machine learning training',
