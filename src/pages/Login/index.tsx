@@ -41,69 +41,71 @@ export const Login = () => {
 
   return (
     <Container>
-      <div className="title">
-        {t('app-title')}
-      </div>
-      <a href="https://osu.ppy.sh" rel="noreferrer" target="_blank">
-        <div className="description">
-          {t('app-description')}
+      <div className="wrapper">
+        <div className="title">
+          {t('app-title')}
         </div>
-      </a>
-      <Form<FormData>
-        style={{
-          width: 450,
-        }}
-        onFinish={(values) => {
-          handleLogin(values.username);
-        }}
-      >
-        <Form.Item
-          name="username"
-          rules={[
-            { required: true, message: t('form-error-message-username') },
-            { type: 'string', max: 30, min: 1, message: t('form-error-message-username-length') },
-          ]}
-        >
-          <Input
-            prefix={<UserOutlined />}
-            allowClear
-            placeholder={t('placeholder-input-username')}
-          />
-        </Form.Item>
-        <Form.Item
-          name="username"
-        >
-          <Button
-            block type="primary"
-            htmlType="submit"
-            className="login-button"
-          >
-            {t('common-login')}
-          </Button>
-        </Form.Item>
-      </Form>
-      {userHistory?.list?.length > 0 && (
-        <>
-          <div className="user-history-title">{t('user-login-history')}</div>
-          <div className="user-history">
-            {userHistory.list.map(u => (
-              <Tag
-                className="user-tag"
-                key={u}
-                closable
-                onClick={() => {
-                  handleLogin(u);
-                }}
-                onClose={() => {
-                  userHistory.removeUser(u);
-                }}
-              >
-                {u}
-              </Tag>
-            ))}
+        <a href="https://osu.ppy.sh" rel="noreferrer" target="_blank">
+          <div className="description">
+            {t('app-description')}
           </div>
-        </>
-      )}
+        </a>
+        <Form<FormData>
+          style={{
+            width: '100%',
+          }}
+          onFinish={(values) => {
+            handleLogin(values.username);
+          }}
+        >
+          <Form.Item
+            name="username"
+            rules={[
+              { required: true, message: t('form-error-message-username') },
+              { type: 'string', max: 30, min: 1, message: t('form-error-message-username-length') },
+            ]}
+          >
+            <Input
+              prefix={<UserOutlined />}
+              allowClear
+              placeholder={t('placeholder-input-username')}
+            />
+          </Form.Item>
+          <Form.Item
+            name="username"
+          >
+            <Button
+              block type="primary"
+              htmlType="submit"
+              className="login-button"
+            >
+              {t('common-login')}
+            </Button>
+          </Form.Item>
+        </Form>
+        {userHistory?.list?.length > 0 && (
+          <>
+            <div className="user-history-title">{t('user-login-history')}</div>
+            <div className="user-history">
+              {userHistory.list.map(u => (
+                <Tag
+                  className="user-tag"
+                  key={u}
+                  closable
+                  onClick={() => {
+                    handleLogin(u);
+                  }}
+                  onClose={() => {
+                    userHistory.removeUser(u);
+                  }}
+                >
+                  {u}
+                </Tag>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </Container>
   );
 };

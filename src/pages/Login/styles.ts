@@ -7,6 +7,15 @@ export const Container = styled.div`
   padding-top: 160px;
   flex-direction: column;
   
+  .wrapper {
+    max-width: 550px;
+    min-width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
   .title {
     text-align: center;
     font-size: 48px;

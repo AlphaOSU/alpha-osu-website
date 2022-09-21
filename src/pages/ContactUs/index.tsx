@@ -1,8 +1,7 @@
 import { Button, Table } from 'antd';
 import { ColumnType } from 'antd/es/table';
 import { useMemoizedFn } from 'ahooks';
-import { Language, useTranslation } from '../../i18n';
-import { useCookieLanguage } from '../../hooks/useCookieLanguage';
+import { useTranslation } from '../../i18n';
 import { Container } from './styles';
 
 interface TableData {
@@ -15,7 +14,6 @@ interface TableData {
 
 export const ContactUs = () => {
   const { t } = useTranslation();
-  const [language] = useCookieLanguage();
 
   const getColumns = useMemoizedFn(() => {
     const columns: Array<ColumnType<TableData>> = [
@@ -75,22 +73,27 @@ export const ContactUs = () => {
             osu: 'https://osu.ppy.sh/users/10500832',
             role: t('role-xz'),
           },
+          {
+            key: 'qr',
+            name: 'QuaoarRadiation',
+            email: '',
+            osu: 'https://osu.ppy.sh/users/30281907',
+            role: t('role-qr'),
+          },
         ]}
       />
       <div className="contact-us-title">
         {t('contact-us-label-title')}
       </div>
       <div className="contact-us-container">
-        {language === Language.ZH && (
-          <Button
-            type="link"
-            href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss"
-            target="_blank"
-            rel="noreferrer"
-          >
-            QQ 群
-          </Button>
-        )}
+        <Button
+          type="link"
+          href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss"
+          target="_blank"
+          rel="noreferrer"
+        >
+          QQ Group
+        </Button>
         <Button
           type="link"
           href="https://discord.gg/H5VzJxeK4F"

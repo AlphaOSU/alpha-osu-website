@@ -1,6 +1,6 @@
 {
   "name": "alpha-osu-front",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-beta",
   "scripts": {
     "prepare": "npx husky install",
     "reinstall": "rm -rf node_modules && pnpm i",
