@@ -61,7 +61,7 @@ export const Login = () => {
           name="username"
           rules={[
             { required: true, message: t('form-error-message-username') },
-            { type: 'string', max: 16, min: 4, message: t('form-error-message-username-length') },
+            { type: 'string', max: 30, min: 1, message: t('form-error-message-username-length') },
           ]}
         >
           <Input
