@@ -102,6 +102,14 @@ export const ContactUs = () => {
         >
           Discord
         </Button>
+        <Button
+          type="link"
+          href="https://github.com/AlphaOSU"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Github Source Code
+        </Button>
       </div>
     </Container>
   );
