@@ -26,7 +26,7 @@ const keyCountRender = (key: KeyCount) => {
   return <ModImg src={getImg()} alt={String(key)} key={key} />;
 };
 
-const modRender = (mod: Mod) => {
+const modRender = (mod: Mod, img = true) => {
   const getImg = () => {
     switch (mod) {
     case Mod.DT: return assets.dt;
@@ -44,6 +44,10 @@ const modRender = (mod: Mod) => {
     default: return 'No Mod';
     }
   };
+
+  if (!img) {
+    return getTooltip();
+  }
 
   return (
     <Tooltip title={getTooltip()}>
@@ -160,7 +164,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
         dataIndex: 'mod',
         align: 'center',
         render(value: Mod[]) {
-          return value.map(modRender);
+          return value.map(item => modRender(item));
         },
       },
       {
@@ -191,12 +195,11 @@ export const RecommendTable = memo<RecommendTableProps>(({
           }
 
           return (
-            <div>
+            <Tooltip title={<Space>{mod.map(item => modRender(item, false))}</Space>}>
               <Button type="link" target="_blank" href={currentScoreLink}>
                 {value}
               </Button>
-              <span>[{mod.join(',')}]</span>
-            </div>
+            </Tooltip>
           );
         },
       },
