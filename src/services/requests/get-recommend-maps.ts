@@ -9,6 +9,7 @@ import { gdoic } from '../../utils/factory';
 export interface GetRecommendMapsParams extends Partial<IListRequestQuery>{
   newRecordPercent?: number[];
   passPercent?: number[];
+  difficulty?: number[];
   search?: string;
   keyCount?: KeyCount | KeyCount[];
   gameMode?: GameMode;

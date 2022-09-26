@@ -1,11 +1,12 @@
 import { Form, Input, Radio, Slider, Switch } from 'antd';
+import { max } from 'lodash';
 import { useTranslation } from '../../i18n';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { IListRequestQuery } from '../../services/core/types';
 import { GameMode } from '../../data/game-mode';
 import { useConfig } from '../../hooks/useConfig';
 
-const marks = {
+const percent = {
   0: '0%',
   20: '20%',
   40: '40%',
@@ -66,7 +67,7 @@ export const RecommendTableFilterForm = ({
         label={t('label-pass-probability')}
       >
         <Slider
-          marks={marks}
+          marks={percent}
           range
         />
       </Form.Item>
@@ -75,7 +76,18 @@ export const RecommendTableFilterForm = ({
         label={t('label-new-record-probability')}
       >
         <Slider
-          marks={marks}
+          marks={percent}
+          range
+        />
+      </Form.Item>
+      <Form.Item
+        name="difficulty"
+        label={t('label-difficulty')}
+      >
+        <Slider
+          step={0.1}
+          min={0}
+          max={max(config?.maxDifficulty || [15])}
           range
         />
       </Form.Item>

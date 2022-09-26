@@ -28,6 +28,7 @@ const resource: Record<I18nKeys, string> = {
   'label-pp-increment-expect': 'PP Increment Potentiality',
   'label-predict-score': 'Predict Score',
   'label-predict-pp': 'Predict PP',
+  'label-difficulty': 'Difficulty',
   'placeholder-input-username': 'osu! Username',
   'placeholder-search-map-name': 'Map name, map id, creator or version',
   'player-real-ranking': 'Player Real Ranking',

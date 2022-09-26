@@ -27,6 +27,7 @@ const resource: Record<I18nKeys, string> = {
   'label-pp-increment-expect': 'pp 提升潜力',
   'label-predict-score': '预测得分',
   'label-predict-pp': '预测 pp',
+  'label-difficulty': '难度星级',
   'placeholder-input-username': 'osu! 用户名',
   'placeholder-search-map-name': '谱面名称，谱面 id， 谱面作者或版本',
   'player-real-ranking': '玩家实力榜',
