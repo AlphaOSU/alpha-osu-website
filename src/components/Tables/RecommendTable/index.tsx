@@ -185,15 +185,18 @@ export const RecommendTable = memo<RecommendTableProps>(({
         dataIndex: 'currentScore',
         align: 'center',
         className: 'current-column',
-        render(value, { currentScoreLink }) {
+        render(value, { currentScoreLink, mod }) {
           if (!value) {
             return '-';
           }
 
           return (
-            <Button type="link" target="_blank" href={currentScoreLink}>
-              {value}
-            </Button>
+            <div>
+              <Button type="link" target="_blank" href={currentScoreLink}>
+                {value}
+              </Button>
+              <span>[{mod.join(',')}]</span>
+            </div>
           );
         },
       },
