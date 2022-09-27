@@ -189,7 +189,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
         dataIndex: 'currentScore',
         align: 'center',
         className: 'current-column',
-        render(value, { currentScoreLink, mod }) {
+        render(value, { currentScoreLink, currentMod: mod }) {
           if (!value) {
             return '-';
           }

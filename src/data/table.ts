@@ -13,6 +13,7 @@ export interface RecommendTableItem {
   currentScore: number;
   currentScoreLink: string;
   currentPP: number;
+  currentMod: Mod[];
   predictScore: number;
   predictPP: number;
   newRecordPercent: number;
