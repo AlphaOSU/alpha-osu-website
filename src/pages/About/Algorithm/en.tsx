@@ -7,11 +7,49 @@ const { Title, Link, Text, Paragraph } = Typography;
 export function AboutEn() {
   return (
     <Typography>
-      <Title level={1}>
-        AlphaOsu!
+      <Title level={2}>
+        FAQ
+      </Title>
+      <Title level={4}>
+        Q: What is AlphaOsu?
       </Title>
       <Paragraph>
         Inspired by <Link href="https://www.deepmind.com/research/highlighted-research/alphago" target="_blank">AlphaGo</Link> and <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>, AlphaOsu! aims to use AI technology to mine the big data in the osu! game, and spawning a series of applications to benefit players and the community, including a PP beatmap recommender system, mining player's potential improvement, player/beatmap similarity analysis, beatmap difficulty estimation etc. Currently, only the osu!mania mode is supported, and the support for the rest of modes is under development.
+      </Paragraph>
+
+      <Title level={4}>
+        Q: Why can't I sign in?
+      </Title>
+      <Paragraph>
+        Due to the limit of the osu! website, currently only the global 4-digit players (osu!mania mode) and the top 10,000 players in the CN region are supported to query. We will support the remaining modes and lower ranked players in the future.
+      </Paragraph>
+
+      <Title level={4}>
+        Q: The beatmaps recommended to me are too difficult, I can't pass!
+      </Title>
+      <Paragraph>
+        Please try to increase the BP probability filter. The BP probability can be understood as the pass probability, so the recommended beatmaps after increasing will be more likely to pass.
+      </Paragraph>
+
+      <Title level={4}>
+        Q: How frequent is the website data updated?
+      </Title>
+      <Paragraph>
+        Currently, we update the data every three days. When updating, you will be notified in the <Link href="https: //discord.gg/H5VzJxeK4F" target="_blank">discord</Link> and <Link href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss" target="_blank">QQ group</Link>.
+      </Paragraph>
+
+      <Title level={4}>
+        Q: Why are some predicted scores lower than the real scores? And when it is low, there is still a PP increase?
+      </Title>
+      <Paragraph>
+        Generally speaking, the algorithm will predict half of the scores higher (which have more potential for improvement), and half of the scores will be predicted lower (indicating that they have performed well before). At the same time, we will calculate the increment in total PP for <strong>record breaking cases</strong>, not the increment in total PP for predicted scores. This is to ensure the stability of the recommendation results, so that beatmaps with low predicted scores can also be recommended.
+      </Paragraph>
+
+      <Title level={4}>
+        Q: The predicted score is inaccurate / the BP probability is inaccurate / ...?
+      </Title>
+      <Paragraph>
+        We will continue to improve the algorithm. If you have any ideas or questions, please join our <Link href="https ://discord.gg/H5VzJxeK4F" target="_blank">discord</Link> or <Link href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss" target="_blank">QQ group</Link>.
       </Paragraph>
 
       <Title level={2}>

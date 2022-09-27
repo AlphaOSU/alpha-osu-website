@@ -7,18 +7,58 @@ const { Title, Link, Text, Paragraph } = Typography;
 export function AboutCn() {
   return (
     <Typography>
-      <Title level={1}>
-        AlphaOsu!
+
+      <Title level={2}>
+        常见问题
+      </Title>
+      <Title level={4}>
+        Q: AlphaOsu! 是做什么的？
       </Title>
       <Paragraph>
-        AlphaOsu! 的命名灵感来自于 <Link href="https://baike.baidu.com/item/%E9%98%BF%E5%B0%94%E6%B3%95%E5%9B%B4%E6%A3%8B/19319610" target="_blank">AlphaGo</Link> 和 <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>，
-        旨在使用人工智能技术挖掘 osu! 游戏内的大数据，从而催生一系列应用以帮助玩家乃至社区的发展，
-        包括 PP 图推荐系统、玩家提升潜力挖掘、玩家 / 谱面相似度分析、谱面难度推断等。目前暂时仅支持 osu!mania 模式，其余模式的支持正火热开发中。
+        AlphaOsu! 的命名灵感来自于 <Link href="https://baike.baidu.com/item/%E9%98%BF%E5%B0%94%E6%B3%95%E5%9B%B4%E6%A3%8B/19319610" target="_blank">AlphaGo</Link> 和 <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>，旨在使用人工智能技术挖掘 osu! 游戏内的大数据，从而催生一系列应用以帮助玩家乃至社区的发展，包括 PP 图推荐系统、玩家提升潜力挖掘、玩家 / 谱面相似度分析、谱面难度推断等。目前暂时仅支持 osu!mania 模式，其余模式的支持正火热开发中。
+      </Paragraph>
+
+      <Title level={4}>
+        Q: 为什么我登录不了？
+      </Title>
+      <Paragraph>
+        由于 osu! 网站的限制，目前仅支持 osu!mania 模式世界排名四位数和 CN 地区前一万名的玩家来查询。我们将在未来支持其余模式和排名更低的玩家。
+      </Paragraph>
+
+      <Title level={4}>
+        Q: 给我推荐的图太难了，我活不了！
+      </Title>
+      <Paragraph>
+        请尝试筛选更高的上榜概率。上榜概率可以理解为存活概率，因此筛选后推荐的图会更加容易存活。
+      </Paragraph>
+
+      <Title level={4}>
+        Q: 网站数据更新频率多快？
+      </Title>
+      <Paragraph>
+        目前我们暂时定为每三天进行一次数据更新。在更新时，我们会及时在 <Link href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss" target="_blank">QQ 群</Link> 和 <Link href="https://discord.gg/H5VzJxeK4F" target="_blank">discord</Link> 通知。
+      </Paragraph>
+
+      <Title level={4}>
+        Q: 为什么有的预测成绩比真实成绩低？而且低的时候还有 PP 提升？
+      </Title>
+      <Paragraph>
+        一般而言，算法会将一半的成绩预测得更高（这些图更有提升潜力），一半的成绩预测得更低（说明之前超水平发挥）。同时，我们会计算<strong>破纪录情况下</strong>总 PP 的提升，而不是预测成绩对应的总 PP 提升。这是为了保证推荐结果的稳定性，使得预测分数低不太多的谱面也可以被推荐。
+      </Paragraph>
+
+      <Title level={4}>
+        Q: 预测分数不准 / 上榜概率不准 / ...？
+      </Title>
+      <Paragraph>
+        我们会不断地改进算法。如果有任何想法或问题，请加入我们的 <Link href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss" target="_blank">QQ 群</Link> 或 <Link href="https://discord.gg/H5VzJxeK4F" target="_blank">discord</Link>。
       </Paragraph>
 
       <Title level={2}>
         算法简介
       </Title>
+      <Paragraph>
+        AlphaOsu! 由两个系统组成：分数预测系统（用于预测游玩分数）和上榜概率预测系统（用于预测存活概率）。
+      </Paragraph>
 
       <Title level={3}>
         预测游玩分数
