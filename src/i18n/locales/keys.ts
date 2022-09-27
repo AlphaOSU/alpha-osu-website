@@ -30,6 +30,7 @@ type Keys = [
   'label-predict-pp', // 预测 pp
   'label-total-maps', // 共 {{total}} 张谱面
   'label-difficulty', // 难度星级
+  'label-filter-maps', // 过滤谱面
   'placeholder-input-username', // 用户名
   'placeholder-search-map-name', // 谱面名称，谱面 id， 谱面作者或版本
   'player-real-ranking', // 玩家实力榜

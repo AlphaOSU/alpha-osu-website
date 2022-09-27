@@ -5,6 +5,7 @@ import { GetRecommendMapsParams } from '../../services/requests/get-recommend-ma
 import { IListRequestQuery } from '../../services/core/types';
 import { GameMode } from '../../data/game-mode';
 import { useConfig } from '../../hooks/useConfig';
+import { DEFAULT_MAX_DIFFICULTY } from '../../common/constants';
 
 const percent = {
   0: '0%',
@@ -28,12 +29,14 @@ export const RecommendTableFilterForm = ({
 }: RecommendTableFilterFormProps) => {
   const { t } = useTranslation();
   const config = useConfig();
+  const maxDifficulty = max([...config?.maxDifficulty || [DEFAULT_MAX_DIFFICULTY]]) || DEFAULT_MAX_DIFFICULTY;
 
   return (
     <Form<RecommendTableFilterFormData>
       initialValues={{
         passPercent: [60, 100],
         newRecordPercent: [60, 100],
+        difficulty: [0, DEFAULT_MAX_DIFFICULTY],
         keyCount: 4,
         gameMode: GameMode.MANIA,
         ...initialValues,
@@ -86,8 +89,12 @@ export const RecommendTableFilterForm = ({
       >
         <Slider
           step={0.1}
+          marks={{
+            0: 0,
+            [maxDifficulty]: maxDifficulty,
+          }}
           min={0}
-          max={max(config?.maxDifficulty || [15])}
+          max={maxDifficulty}
           range
         />
       </Form.Item>
