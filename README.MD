@@ -1,5 +1,8 @@
-# Quick Start
+# Website for AlphaOsu! 
 
+**PR is welcome!**
+
+# Quick start
 ## Use pnpm package manager
 
 ```shell
