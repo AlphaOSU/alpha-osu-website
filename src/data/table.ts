@@ -1,4 +1,4 @@
-import { Mod } from './mod';
+import { Mod } from './enums/mod';
 
 export type KeyCount = 4 | 7;
 
@@ -10,8 +10,10 @@ export interface RecommendTableItem {
   mod: Mod[];
   difficulty: number;
   keyCount?: KeyCount;
-  currentScore: number;
-  currentScoreLink: string;
+  currentScore?: number;
+  currentScoreLink?: string;
+  currentAccuracy?: number;
+  currentAccuracyLink?: string;
   currentPP: number;
   currentMod: Mod[];
   predictScore: number;

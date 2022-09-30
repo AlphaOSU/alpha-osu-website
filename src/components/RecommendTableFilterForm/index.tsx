@@ -3,9 +3,10 @@ import { max } from 'lodash';
 import { useTranslation } from '../../i18n';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { IListRequestQuery } from '../../services/core/types';
-import { GameMode } from '../../data/game-mode';
+import { GameMode } from '../../data/enums/game-mode';
 import { useConfig } from '../../hooks/useConfig';
 import { DEFAULT_MAX_DIFFICULTY } from '../../common/constants';
+import { PpRule } from '../../data/enums/pp-rule';
 
 const percent = {
   0: '0%',
@@ -39,19 +40,19 @@ export const RecommendTableFilterForm = ({
         difficulty: [0, DEFAULT_MAX_DIFFICULTY],
         keyCount: 4,
         gameMode: GameMode.MANIA,
+        rule: PpRule.V3,
         ...initialValues,
       }}
       labelCol={{
-        span: 6,
+        span: 8,
       }}
       wrapperCol={{
-        span: 18,
+        span: 16,
         offset: 2,
       }}
       style={{
         maxWidth: 750,
       }}
-      labelAlign="left"
       onValuesChange={(_, values) => {
         onChange(values);
       }}
@@ -150,6 +151,15 @@ export const RecommendTableFilterForm = ({
           </Radio.Group>
         </Form.Item>
       )}
+      <Form.Item
+        name="rule"
+        label={t('common-pp-rule')}
+      >
+        <Radio.Group buttonStyle="solid">
+          <Radio.Button value={PpRule.V3}>{t('label-pp-calc-score')}</Radio.Button>
+          <Radio.Button value={PpRule.V4}>{t('label-pp-calc-accuracy')}</Radio.Button>
+        </Radio.Group>
+      </Form.Item>
     </Form>
   );
 };

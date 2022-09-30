@@ -1,5 +1,5 @@
 import { Form, Radio } from 'antd';
-import { GameMode } from '../../data/game-mode';
+import { GameMode } from '../../data/enums/game-mode';
 import { GetSimilarityUsersOptions } from '../../services/requests/get-similarity-users';
 import { useTranslation } from '../../i18n';
 import { useConfig } from '../../hooks/useConfig';

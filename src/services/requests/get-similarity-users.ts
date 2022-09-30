@@ -1,7 +1,7 @@
 import qs from 'qs';
 import { http, transformResponse } from '../core/http';
 import { KeyCount, SimilarityUser } from '../../data/table';
-import { GameMode } from '../../data/game-mode';
+import { GameMode } from '../../data/enums/game-mode';
 
 export interface GetSimilarityUsersOptions {
   keyCount?: KeyCount;

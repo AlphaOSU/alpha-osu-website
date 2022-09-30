@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { I18nKeys } from './keys';
 
 const resource: Record<I18nKeys, string> = {
@@ -12,6 +13,7 @@ const resource: Record<I18nKeys, string> = {
   'common-map': '谱面',
   'common-mod': 'MOD',
   'common-game-mode': '游戏模式',
+  'common-pp-rule': 'PP 计算规则',
   'form-error-message-username': '请输入用户名',
   'form-error-message-username-length': '用户名长度在 1 到 30 个字符',
   'player-username': '玩家',
@@ -29,6 +31,10 @@ const resource: Record<I18nKeys, string> = {
   'label-predict-pp': '预测 pp',
   'label-difficulty': '难度星级',
   'label-filter-maps': '过滤谱面',
+  'label-current-accuracy': '当前准确度',
+  'label-predict-accuracy': '预测准确度',
+  'label-pp-calc-score': '分数',
+  'label-pp-calc-accuracy': '加权准确度',
   'placeholder-input-username': 'osu! 用户名',
   'placeholder-search-map-name': '谱面名称，谱面 id， 谱面作者或版本',
   'player-real-ranking': '玩家实力榜',
@@ -43,6 +49,7 @@ const resource: Record<I18nKeys, string> = {
   'tooltip-pp-increment': '在破纪录的情况下，平均能增加多少的个人总PP值。',
   'tooltip-pp-increment-expect': 'PP 提升潜力 = PP 提升（破纪录）× 破纪录概率 × Pass 概率，表示这张图能带给你 PP 提升的期望。',
   'tooltip-recommend-not-accurate': '由于数据缺乏，本推荐结果可能不准确',
+  'tooltip-current-accuracy': '与 PP 计算相关的准确率，其中 MAX=320/320, 300=300/320, 200=200/320, 100=100/320, 50=50/320, miss=0',
   'user-login-history': '历史登录账号',
   'contact-label-name': '昵称',
   'contact-label-email': '邮箱',

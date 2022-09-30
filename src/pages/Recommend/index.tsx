@@ -1,20 +1,22 @@
-import { usePagination } from 'ahooks';
+import { useEffect } from 'react';
+import { usePagination, useSetState } from 'ahooks';
 import useUrlState from '@ahooksjs/use-url-state';
 import { BackTop, Collapse } from 'antd';
 import dayjs from 'dayjs';
 import { ceil } from 'lodash';
-import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
-import { GameMode } from '../../data/game-mode';
-import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
-import { useSelector } from '../../common/dvaHooks';
-import { Authorization } from '../Authorization';
-import { UserMeta } from '../../data/user-meta';
-import { RecommendTable } from '../../components/Tables/RecommendTable';
-import { useConfig } from '../../hooks/useConfig';
 import { useTranslation } from '../../i18n';
-import { Config } from '../../data/config';
 import { DEFAULT_MAX_DIFFICULTY } from '../../common/constants';
+import { useSelector } from '../../common/dvaHooks';
+import { GameMode } from '../../data/enums/game-mode';
+import { UserMeta } from '../../data/user-meta';
+import { Config } from '../../data/config';
+import { PpRule } from '../../data/enums/pp-rule';
+import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
+import { useConfig } from '../../hooks/useConfig';
 import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
+import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
+import { RecommendTable, RecommendTableProps } from '../../components/Tables/RecommendTable';
+import { Authorization } from '../Authorization';
 import { Container } from './styles';
 
 const getInitQuery = (
@@ -29,6 +31,7 @@ const getInitQuery = (
   newRecordPercent: [0, 100],
   search: '',
   hidePlayed: 0,
+  rule: PpRule.V3,
   ...localQuery,
 });
 
@@ -55,6 +58,11 @@ export const Recommend = () => {
     },
   );
 
+  const [tableConfig, setTableConfig] = useSetState<Required<RecommendTableProps>['config']>({
+    showAccuracy: false,
+    showScore: true,
+  });
+
   const {
     data,
     loading,
@@ -75,10 +83,25 @@ export const Recommend = () => {
     },
   );
 
+  useEffect(() => {
+    if (query.rule === PpRule.V4) {
+      setTableConfig({
+        showScore: false,
+        showAccuracy: true,
+      });
+      return;
+    }
+
+    setTableConfig({
+      showAccuracy: false,
+      showScore: true,
+    });
+  }, [query, setTableConfig]);
+
   return (
     <Authorization>
       <Container>
-        <Collapse ghost>
+        <Collapse>
           <Collapse.Panel
             key="filter-form"
             header={t('label-filter-maps')}
@@ -95,9 +118,11 @@ export const Recommend = () => {
           </Collapse.Panel>
         </Collapse>
         <RecommendTable
+          bordered
           data={data?.list || []}
           loading={loading}
           pagination={pagination}
+          config={tableConfig}
           footer={() =>
             config?.dataUpdatedTime && config.dataUpdatedTime > 0
               ? (

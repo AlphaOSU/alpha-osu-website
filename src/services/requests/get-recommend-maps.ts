@@ -1,10 +1,11 @@
 import qs from 'qs';
-import { GameMode } from '../../data/game-mode';
+import { gdoic } from '../../utils/factory';
 import { KeyCount, RecommendTableItem } from '../../data/table';
+import { GameMode } from '../../data/enums/game-mode';
+import { PpRule } from '../../data/enums/pp-rule';
 import { transformList } from '../tools/transform-list';
 import { IListRequestQuery } from '../core/types';
 import { http, transformResponse } from '../core/http';
-import { gdoic } from '../../utils/factory';
 
 export interface GetRecommendMapsParams extends Partial<IListRequestQuery>{
   newRecordPercent?: number[];
@@ -14,6 +15,7 @@ export interface GetRecommendMapsParams extends Partial<IListRequestQuery>{
   keyCount?: KeyCount | KeyCount[];
   gameMode?: GameMode;
   hidePlayed?: 0 | 1;
+  rule?: PpRule;
 }
 
 export const getRecommendMaps = async (params: GetRecommendMapsParams) => {

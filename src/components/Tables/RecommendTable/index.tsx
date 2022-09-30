@@ -1,17 +1,17 @@
 import { memo } from 'react';
-import { scaleLinear } from 'd3-scale';
-import { interpolateRgb } from 'd3-interpolate';
 import { round } from 'lodash';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Space, Table, TableProps, Tooltip } from 'antd';
-import { ColumnsType } from 'antd/es/table';
+import { ColumnsType, ColumnType } from 'antd/es/table';
 import { ArrowUpOutlined, RiseOutlined, StarFilled, WarningOutlined } from '@ant-design/icons';
 import * as assets from '../../../assets';
-import { KeyCount, RecommendTableItem } from '../../../data/table';
-import { Mod } from '../../../data/mod';
-import { getPagination, Pagination } from '../../../common/get-pagination';
 import { useTranslation } from '../../../i18n';
+import { gdaic } from '../../../utils/factory';
+import { getPagination, Pagination } from '../../../common/get-pagination';
+import { KeyCount, RecommendTableItem } from '../../../data/table';
+import { Mod } from '../../../data/enums/mod';
 import { HelpTitle } from '../base-components';
+import { getDifficultyColor, getPercentColor } from './helpers';
 import { CoverImg, DifficultyBadge, MapNameWrapper, ModImg, TableContainer } from './styles';
 
 const keyCountRender = (key: KeyCount) => {
@@ -56,24 +56,6 @@ const modRender = (mod: Mod, img = true) => {
   );
 };
 
-const difficultyColorSpectrum = scaleLinear<string>()
-  .domain([0.1, 1.25, 2, 2.5, 3.3, 4.2, 4.9, 5.8, 6.7, 7.7, 9])
-  .clamp(true)
-  // eslint-disable-next-line max-len
-  .range(['#4290FB', '#4FC0FF', '#4FFFD5', '#7CFF4F', '#F6F05C', '#FF8068', '#FF4E6F', '#C645B8', '#6563DE', '#18158E', '#000000'])
-  .interpolate(interpolateRgb.gamma(2.2));
-
-const getDifficultyColor = (rating: number) => {
-  if (rating < 0.1) {
-    return '#AAAAAA';
-  }
-  if (rating >= 9) {
-    return '#000000';
-  }
-
-  return difficultyColorSpectrum(rating);
-};
-
 const difficultyRender = (rating: number) => {
   const color = getDifficultyColor(rating);
 
@@ -91,15 +73,26 @@ const difficultyRender = (rating: number) => {
   );
 };
 
-const percentColorSpectrum = scaleLinear<string>()
-  .domain([0, 1])
-  .clamp(true)
-  // eslint-disable-next-line max-len
-  .range(['#00ff00', '#ff0000'])
-  .interpolate(interpolateRgb.gamma(2.2));
+const gradeRender = ({
+  value,
+  link,
+  mod,
+}: {
+  value?: number | string;
+  link?: string;
+  mod: Mod[];
+}) => {
+  if (!value) {
+    return '-';
+  }
 
-const getPercentColor = (percent: number) => {
-  return percentColorSpectrum(percent);
+  return (
+    <Tooltip title={<Space>{mod.map(item => modRender(item, false))}</Space>}>
+      <Button type="link" target="_blank" href={link}>
+        {value}
+      </Button>
+    </Tooltip>
+  );
 };
 
 const percentRender = (value: number) => {
@@ -112,15 +105,21 @@ export interface RecommendTableProps extends TableProps<RecommendTableItem>{
   data: RecommendTableItem[];
   loading?: boolean;
   pagination: Pagination;
+  config?: {
+    showAccuracy?: boolean;
+    showScore?: boolean;
+  };
 }
 
 export const RecommendTable = memo<RecommendTableProps>(({
   data,
   loading,
   pagination,
+  config,
   ...props
 }: RecommendTableProps) => {
   const { t } = useTranslation();
+  const { showScore, showAccuracy } = config || {};
 
   const getColumns = useMemoizedFn(() => {
     const columns: ColumnsType<RecommendTableItem> = [
@@ -183,33 +182,49 @@ export const RecommendTable = memo<RecommendTableProps>(({
         render: (_, { difficulty }) => difficultyRender(difficulty),
         align: 'center',
       },
-      {
-        key: 'currentScore',
-        title: <HelpTitle title={t('label-current-score')} tooltip={t('tooltip-current-score')} />,
-        dataIndex: 'currentScore',
-        align: 'center',
-        className: 'current-column',
-        render(value, { currentScoreLink, currentMod: mod }) {
-          if (!value) {
-            return '-';
-          }
-
-          return (
-            <Tooltip title={<Space>{mod.map(item => modRender(item, false))}</Space>}>
-              <Button type="link" target="_blank" href={currentScoreLink}>
-                {value}
-              </Button>
-            </Tooltip>
-          );
+      ...gdaic<ColumnType<RecommendTableItem>>(showScore, [
+        {
+          key: 'currentScore',
+          title: <HelpTitle title={t('label-current-score')} tooltip={t('tooltip-current-score')} />,
+          dataIndex: 'currentScore',
+          align: 'center',
+          className: 'current-column',
+          render(_, { currentScoreLink, currentMod: mod, currentScore: value }) {
+            return gradeRender({ value, link: currentScoreLink, mod });
+          },
         },
-      },
-      {
-        key: 'predictScore',
-        title: t('label-predict-score'),
-        dataIndex: 'predictScore',
-        align: 'center',
-        className: 'predict-column',
-      },
+        {
+          key: 'predictScore',
+          title: t('label-predict-score'),
+          dataIndex: 'predictScore',
+          align: 'center',
+          className: 'predict-column',
+        },
+      ]),
+      ...gdaic<ColumnType<RecommendTableItem>>(showAccuracy, [
+        {
+          key: 'currentAccuracy',
+          title: <HelpTitle title={t('label-current-accuracy')} tooltip={t('tooltip-current-accuracy')} />,
+          dataIndex: 'currentAccuracy',
+          align: 'center',
+          className: 'current-column',
+          render(_, { currentAccuracyLink, currentMod: mod, currentAccuracy: value }) {
+            return gradeRender({
+              value: value && `${round(value * 100, 2)}%`,
+              link: currentAccuracyLink,
+              mod,
+            });
+          },
+        },
+        {
+          key: 'predictAccuracy',
+          title: t('label-predict-accuracy'),
+          dataIndex: 'predictAccuracy',
+          align: 'center',
+          className: 'predict-column',
+          render: (value?: number) => value ? `${round(value * 100, 2)}%` : '-',
+        },
+      ]),
       {
         key: 'currentPP',
         title: t('label-current-pp'),

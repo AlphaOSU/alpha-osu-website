@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { ArrayToUnion } from '../../utils/types-util';
 
 type Keys = [
@@ -12,10 +13,13 @@ type Keys = [
   'common-map', // 谱面
   'common-mod', // mod
   'common-game-mode', // 游戏模式
+  'common-pp-rule', // pp 计算规则
   'form-error-message-username', // 请输入用户名
   'form-error-message-username-length', // 用户名长度在 4 到 16 个字符
   'player-username', // 玩家
   'player-similarity', // 玩家相似度
+  'label-pp-calc-score', // 分数
+  'label-pp-calc-accuracy', // 加权准确度
   'label-date-update-time', // 数据更新时间
   'label-hide-played', // 隐藏已玩过的谱面
   'label-current-pp', // 当前 pp
@@ -31,6 +35,9 @@ type Keys = [
   'label-total-maps', // 共 {{total}} 张谱面
   'label-difficulty', // 难度星级
   'label-filter-maps', // 过滤谱面
+  'label-current-accuracy', // 当前准确度
+  'label-predict-accuracy', // 预测准确度
+  'tooltip-current-accuracy', // 与 PP 计算相关的准确率，其中 MAX = 320/320, 300=300/320, 200=200/320, 100=100/320, 50=50/320, miss=0
   'placeholder-input-username', // 用户名
   'placeholder-search-map-name', // 谱面名称，谱面 id， 谱面作者或版本
   'player-real-ranking', // 玩家实力榜

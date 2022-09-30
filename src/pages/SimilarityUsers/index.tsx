@@ -2,16 +2,16 @@ import { useRequest } from 'ahooks';
 import { BackTop } from 'antd';
 import useUrlState from '@ahooksjs/use-url-state';
 import dayjs from 'dayjs';
-import { getSimilarityUsers } from '../../services/requests/get-similarity-users';
-import { GameMode } from '../../data/game-mode';
-import { Authorization } from '../Authorization';
+import { useTranslation } from '../../i18n';
 import { useSelector } from '../../common/dvaHooks';
+import { GameMode } from '../../data/enums/game-mode';
+import { UserMeta } from '../../data/user-meta';
+import { getSimilarityUsers } from '../../services/requests/get-similarity-users';
+import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
+import { useConfig } from '../../hooks/useConfig';
 import { SimilarUserTable } from '../../components/Tables/SimilarUserTable';
 import { SimilarUserFilterForm } from '../../components/SimilarUserFilterForm';
-import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
-import { UserMeta } from '../../data/user-meta';
-import { useConfig } from '../../hooks/useConfig';
-import { useTranslation } from '../../i18n';
+import { Authorization } from '../Authorization';
 import { Container } from './styles';
 
 const getInitQuery = (userMeta: UserMeta) => ({
