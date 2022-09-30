@@ -157,7 +157,7 @@ export const RecommendTableFilterForm = ({
       >
         <Radio.Group buttonStyle="solid">
           <Radio.Button value={PpRule.V3}>{t('label-pp-calc-score')}</Radio.Button>
-          <Radio.Button value={PpRule.V4}>{t('label-pp-calc-accuracy')}</Radio.Button>
+          <Radio.Button value={PpRule.V4}>{t('label-pp-calc-accuracy')}(Testing)</Radio.Button>
         </Radio.Group>
       </Form.Item>
     </Form>
