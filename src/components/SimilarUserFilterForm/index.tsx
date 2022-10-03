@@ -26,11 +26,11 @@ export const SimilarUserFilterForm = ({
         ...initialValues,
       }}
       labelCol={{
-        span: 6,
+        span: 8,
       }}
       wrapperCol={{
         span: 18,
-        offset: 2,
+        offset: 0,
       }}
       style={{
         maxWidth: 750,

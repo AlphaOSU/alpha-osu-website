@@ -3,11 +3,10 @@ import { useCreation } from 'ahooks';
 import { Language, useTranslation } from '../../i18n';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 
-export const LanguageSwitch = () => {
+export const useLanguageItems = () => {
   const [, setLanguage] = useCookieLanguage();
-  const { t } = useTranslation();
 
-  const languageItems = useCreation(() => {
+  return useCreation(() => {
     return [
       {
         label: '简体中文',
@@ -27,6 +26,11 @@ export const LanguageSwitch = () => {
       },
     ];
   }, []);
+};
+
+export const LanguageSwitch = () => {
+  const languageItems = useLanguageItems();
+  const { t } = useTranslation();
 
   return (
     <Dropdown

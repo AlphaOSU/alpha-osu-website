@@ -43,12 +43,14 @@ export const RecommendTableFilterForm = ({
         rule: PpRule.V3,
         ...initialValues,
       }}
+      layout="horizontal"
+      labelAlign="left"
       labelCol={{
-        span: 8,
+        span: 10,
       }}
       wrapperCol={{
         span: 16,
-        offset: 2,
+        offset: 0,
       }}
       style={{
         maxWidth: 750,

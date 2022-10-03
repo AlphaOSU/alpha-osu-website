@@ -20,7 +20,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://pre-alphaosu.keytoix.vip/',
+        target: 'https://alphaosu.keytoix.vip/',
         changeOrigin: true,
       },
     },
