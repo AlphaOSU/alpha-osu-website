@@ -7,7 +7,7 @@ import { useTranslation } from '../../i18n';
 import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
 import { useSelector } from '../../common/dvaHooks';
 import { useLanguageItems } from '../../components/LanguageSwitch';
-import { Header, MobileNavWrapper, NavLeft } from './styles';
+import { Header, MobileNavWrapper, NavItem, NavLeft } from './styles';
 import { useRouteConfig } from './route-config';
 
 export const MobileNav = () => {
@@ -45,6 +45,16 @@ export const MobileNav = () => {
         {t('common-exit')}
       </div>
     </Link>
+  ));
+
+  const loginRender = useMemoizedFn(() => (
+    <NavItem>
+      <Link to="/login">
+        <div className="link-button">
+          {t('common-login')}
+        </div>
+      </Link>
+    </NavItem>
   ));
 
   return (
@@ -85,6 +95,7 @@ export const MobileNav = () => {
               <div className="user-info-items">
                 {username && usernameRender()}
                 {username && logoutRender()}
+                {!username && loginRender()}
               </div>
               <div className="language-items">
                 {languageItems.map((item) => {
