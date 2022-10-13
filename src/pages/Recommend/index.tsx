@@ -3,7 +3,7 @@ import { usePagination, useSetState } from 'ahooks';
 import useUrlState from '@ahooksjs/use-url-state';
 import { BackTop, Collapse } from 'antd';
 import dayjs from 'dayjs';
-import { ceil } from 'lodash';
+import { ceil, omit } from 'lodash';
 import { useTranslation } from '../../i18n';
 import { DEFAULT_MAX_DIFFICULTY } from '../../common/constants';
 import { useSelector } from '../../common/dvaHooks';
@@ -28,7 +28,7 @@ const getInitQuery = (
   keyCount: userMeta?.keyCount ?? 4,
   difficulty: [0, ceil(config?.maxDifficulty?.[userMeta?.gameMode] || DEFAULT_MAX_DIFFICULTY)],
   passPercent: [20, 100],
-  newRecordPercent: [0, 100],
+  newRecordPercent: [20, 100],
   search: '',
   hidePlayed: 0,
   rule: PpRule.V3,
@@ -78,7 +78,7 @@ export const Recommend = () => {
       debounceWait: 300,
       refreshDeps: [query],
       onBefore() {
-        setLocalQuery(query);
+        setLocalQuery(omit(query, 'passPercent'));
       },
     },
   );

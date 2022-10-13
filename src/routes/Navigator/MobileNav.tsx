@@ -7,8 +7,8 @@ import { useTranslation } from '../../i18n';
 import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
 import { useSelector } from '../../common/dvaHooks';
 import { useLanguageItems } from '../../components/LanguageSwitch';
-import { Header, MobileNavWrapper, NavItem, NavLeft } from './styles';
 import { useRouteConfig } from './route-config';
+import { Header, MobileNavWrapper, NavItem, NavLeft } from './styles';
 
 export const MobileNav = () => {
   const { t } = useTranslation();

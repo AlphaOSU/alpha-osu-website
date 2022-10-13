@@ -35,12 +35,12 @@ export const RecommendTableFilterForm = ({
   return (
     <Form<RecommendTableFilterFormData>
       initialValues={{
-        passPercent: [60, 100],
-        newRecordPercent: [60, 100],
+        passPercent: [20, 100],
+        newRecordPercent: [20, 100],
         difficulty: [0, DEFAULT_MAX_DIFFICULTY],
         keyCount: 4,
         gameMode: GameMode.MANIA,
-        rule: PpRule.V3,
+        rule: PpRule.V4,
         ...initialValues,
       }}
       layout="horizontal"
@@ -153,15 +153,6 @@ export const RecommendTableFilterForm = ({
           </Radio.Group>
         </Form.Item>
       )}
-      <Form.Item
-        name="rule"
-        label={t('common-pp-rule')}
-      >
-        <Radio.Group buttonStyle="solid">
-          <Radio.Button value={PpRule.V3}>{t('label-pp-calc-score')}</Radio.Button>
-          <Radio.Button value={PpRule.V4}>{t('label-pp-calc-accuracy')}(Testing)</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
     </Form>
   );
 };
