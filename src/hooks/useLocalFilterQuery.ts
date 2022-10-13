@@ -10,13 +10,28 @@ export const useLocalFilterQuery = () => {
       defaultValue: {},
       deserializer(value) {
         if (value && isJson(value)) {
-          return JSON.parse(value);
+          const json = JSON.parse(value);
+          // remove undefined value
+          return JSON.parse(JSON.stringify({
+            newRecordPercent: json?.newRecordPercent || undefined,
+            difficulty: json?.difficulty || undefined,
+            keyCount: json?.keyCount || undefined,
+            gameMode: json?.gameMode || undefined,
+            hidePlayed: json?.hidePlayed || undefined,
+          }));
         }
 
         return {};
       },
       serializer(value) {
-        return JSON.stringify(value);
+        const json = {
+          newRecordPercent: value?.newRecordPercent || undefined,
+          difficulty: value?.difficulty || undefined,
+          keyCount: value?.keyCount || undefined,
+          gameMode: value?.gameMode || undefined,
+          hidePlayed: value?.hidePlayed || undefined,
+        };
+        return JSON.stringify(json);
       },
     },
   );
