@@ -12,7 +12,7 @@ export interface IGlobalState {
 }
 
 export const initState: WithNull<IGlobalState> = {
-  config: {},
+  config: null,
   userMeta: null,
 };
 

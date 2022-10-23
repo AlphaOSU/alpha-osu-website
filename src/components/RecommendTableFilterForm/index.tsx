@@ -6,7 +6,6 @@ import { IListRequestQuery } from '../../services/core/types';
 import { GameMode } from '../../data/enums/game-mode';
 import { useConfig } from '../../hooks/useConfig';
 import { DEFAULT_MAX_DIFFICULTY } from '../../common/constants';
-import { PpRule } from '../../data/enums/pp-rule';
 
 const percent = {
   0: '0%',
@@ -40,7 +39,6 @@ export const RecommendTableFilterForm = ({
         difficulty: [0, DEFAULT_MAX_DIFFICULTY],
         keyCount: 4,
         gameMode: GameMode.MANIA,
-        rule: PpRule.V4,
         ...initialValues,
       }}
       layout="horizontal"

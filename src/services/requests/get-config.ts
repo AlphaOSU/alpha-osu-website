@@ -1,6 +1,7 @@
 import { request, transformResponse } from '../core/http';
 import { Config } from '../../data/config';
 import { DEFAULT_MAX_DIFFICULTY } from '../../common/constants';
+import { PpRule } from '../../data/enums/pp-rule';
 
 export const transformConfig = (res: any): Required<Config> => {
   return {
@@ -11,6 +12,12 @@ export const transformConfig = (res: any): Required<Config> => {
       res?.maxDifficulty?.[1] || DEFAULT_MAX_DIFFICULTY,
       res?.maxDifficulty?.[2] || DEFAULT_MAX_DIFFICULTY,
       res?.maxDifficulty?.[3] || DEFAULT_MAX_DIFFICULTY,
+    ],
+    rule: [
+      res?.rule?.[0] || PpRule.Unknown,
+      res?.rule?.[1] || PpRule.Unknown,
+      res?.rule?.[2] || PpRule.Unknown,
+      res?.rule?.[3] || PpRule.V4,
     ],
   };
 };

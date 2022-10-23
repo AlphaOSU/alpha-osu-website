@@ -31,7 +31,7 @@ const getInitQuery = (
   newRecordPercent: [20, 100],
   search: '',
   hidePlayed: 0,
-  rule: PpRule.V4,
+  rule: config?.rule?.[3] || PpRule.V4,
   ...localQuery,
 });
 
