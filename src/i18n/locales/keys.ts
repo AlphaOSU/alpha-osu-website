@@ -64,6 +64,8 @@ type Keys = [
   'role-xz',
   'role-qr',
   'service-error__10500',
+  'service-error__10503',
+  'service-error__10513',
   'service-error__10404',
   'service-error__10403',
   'service-error__10400',

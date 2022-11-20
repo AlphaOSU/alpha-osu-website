@@ -64,6 +64,8 @@ const resource: Record<I18nKeys, string> = {
   'role-xz': 'Project Creator and Participate in algorithm design',
   'role-qr': 'Cloud Server Provider',
   'service-error__10500': 'The server deserted, please try again later~',
+  'service-error__10503': 'Connection to the osu service failed, please try again later. If the problem is not resolved, please contact us.',
+  'service-error__10513': 'Please do not refresh the data too frequently, try again later.',
   'service-error__10404': 'The username does not exist, the game mode is not supported, or the account ranking is beyond the scope of machine learning training',
   'service-error__10403': 'Uid illegal',
   'service-error__10400': 'The request parameter is not valid',
