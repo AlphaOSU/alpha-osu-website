@@ -1,4 +1,5 @@
 import { getUid } from '../../common/get-uid';
+import { gdoic } from '../../utils/factory';
 import type { IHttpInstance, RequestInterceptor, ResponseInterceptor } from './request';
 import { baseHttpFactory } from './request';
 
@@ -16,7 +17,7 @@ const httpRequestInterceptorFactory = () => {
       ...config,
       headers: {
         ...headers,
-        uid: getUid(),
+        ...gdoic(!!getUid(), { uid: getUid() }),
       },
     };
   };

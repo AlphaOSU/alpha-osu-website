@@ -22,6 +22,7 @@ export const Login = () => {
 
   const {
     run: handleLogin,
+    loading,
   } = useRequest(
     userLogin,
     {
@@ -78,6 +79,7 @@ export const Login = () => {
               block type="primary"
               htmlType="submit"
               className="login-button"
+              loading={loading}
             >
               {t('common-login')}
             </Button>
