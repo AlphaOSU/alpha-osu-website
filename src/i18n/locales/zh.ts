@@ -5,6 +5,8 @@ const resource: Record<I18nKeys, string> = {
   'app-description': '使用先进的机器学习技术来帮你在 osu! 刷 PP',
   'app-title': 'AlphaOsu!',
   'app-about': '关于',
+  'app-loading': '正在加载系统配置...',
+  'button-refresh-data-now': '立即同步 osu! 数据',
   'common-difficulty': '难度',
   'common-exit': '退出',
   'common-key-count': '键数',

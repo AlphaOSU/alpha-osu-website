@@ -1,4 +1,4 @@
-import { Button, Dropdown, Menu } from 'antd';
+import { Button, Dropdown } from 'antd';
 import { useCreation } from 'ahooks';
 import { Language, useTranslation } from '../../i18n';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
@@ -33,11 +33,7 @@ export const LanguageSwitch = () => {
   const { t } = useTranslation();
 
   return (
-    <Dropdown
-      overlay={(
-        <Menu items={languageItems} />
-      )}
-    >
+    <Dropdown menu={{ items: languageItems }}>
       <Button type="dashed">
         {t('common-language')}
       </Button>

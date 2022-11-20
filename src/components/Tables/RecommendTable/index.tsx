@@ -50,7 +50,7 @@ const modRender = (mod: Mod, img = true) => {
   }
 
   return (
-    <Tooltip title={getTooltip()}>
+    <Tooltip title={getTooltip()} key={mod}>
       <ModImg src={getImg()} alt={mod} key={mod} />
     </Tooltip>
   );
@@ -299,9 +299,9 @@ export const RecommendTable = memo<RecommendTableProps>(({
         size="small"
         columns={getColumns()}
         dataSource={data.map((item, index) => ({
-          key: item.id,
           index: index + pagination.pageSize * (pagination.current - 1) + 1,
           ...item,
+          key: item.id,
         }))}
         loading={loading}
         pagination={getPagination(pagination, (total) => `${t('label-total-maps', { total: String(total) })}`)}

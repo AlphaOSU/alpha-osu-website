@@ -68,9 +68,9 @@ export const SimilarUserTable = ({
       columns={getColumns()}
       loading={loading}
       dataSource={data.map((item, index) => ({
-        key: item.id,
         index: index + 1,
         ...item,
+        key: item.id,
       }))}
       pagination={false}
       {...props}

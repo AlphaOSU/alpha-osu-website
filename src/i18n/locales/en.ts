@@ -5,6 +5,8 @@ const resource: Record<I18nKeys, string> = {
   'app-description': 'Using advanced machine learning technology to help you farm PP in osu!',
   'app-title': 'AlphaOsu!',
   'app-about': 'About',
+  'app-loading': 'Loading system config...',
+  'button-refresh-data-now': 'Refresh osu! data immediately',
   'common-difficulty': 'Difficulty',
   'common-exit': 'Log out',
   'common-key-count': 'Key Count',
