@@ -53,6 +53,11 @@ const resource: Record<I18nKeys, string> = {
   'tooltip-recommend-not-accurate': '由于数据缺乏，本推荐结果可能不准确',
   'tooltip-current-accuracy': '与 PP 计算相关的准确率，其中 MAX=320/320, 300=300/320, 200=200/320, 100=100/320, 50=50/320, miss=0',
   'user-login-history': '历史登录账号',
+  'support-us-label-title': '支持我们',
+  'support-us-description-label': '说明', // 说明
+  'support-us-description-content': 'AlphaOSU 的开销包含了服务器日常费用、带宽费用和开发费用。由于我们的开发者大部分由学生组成，收入有限，所以希望有能力的人能赞助 AlphaOSU 的运行。非常感谢大家的支持！',
+  'support-us-ali-pay': '支付宝', // 支付宝
+  'support-us-wechat-pay': '微信支付', // 微信
   'contact-label-name': '昵称',
   'contact-label-email': '邮箱',
   'contact-label-role': '介绍',

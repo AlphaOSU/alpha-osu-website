@@ -59,6 +59,11 @@ type Keys = [
   'contact-label-role', // 介绍
   'contact-table-title', // 开发成员
   'contact-table-acknowledgement-title', // 致谢
+  'support-us-label-title', // 支持我们
+  'support-us-description-label', // 说明
+  'support-us-description-content', // 说明内容
+  'support-us-ali-pay', // 支付宝
+  'support-us-wechat-pay', // 微信
   'role-rain7',
   'role-kuit',
   'role-xz',

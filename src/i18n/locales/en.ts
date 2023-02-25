@@ -63,6 +63,11 @@ const resource: Record<I18nKeys, string> = {
   'role-kuit': 'AlphaOsu Server and Algorithm Developer',
   'role-xz': 'Project Creator and Participate in algorithm design',
   'role-qr': 'Cloud Server Provider',
+  'support-us-label-title': 'Support Us',
+  'support-us-description-label': 'Introduction', // 说明
+  'support-us-description-content': 'AlphaOSU\'s overhead covers daily server costs, bandwidth costs, and development costs. Since most of our developers are students with limited income, we hope that some capable people can sponsor us. Thank you all very much for your support!',
+  'support-us-ali-pay': 'Ali pay', // 支付宝
+  'support-us-wechat-pay': 'Wechat pay', // 微信
   'service-error__10500': 'The server deserted, please try again later~',
   'service-error__10503': 'Connection to the osu service failed, please try again later. If the problem is not resolved, please contact us.',
   'service-error__10513': 'Please do not refresh the data too frequently, try again later.',

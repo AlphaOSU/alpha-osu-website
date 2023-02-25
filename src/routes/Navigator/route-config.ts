@@ -25,5 +25,9 @@ export const useRouteConfig = () => {
       path: '/contact',
       label: t('contact-us-label-title'),
     },
+    {
+      path: '/support',
+      label: t('support-us-label-title'),
+    },
   ];
 };

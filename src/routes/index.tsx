@@ -11,6 +11,7 @@ import { About } from '../pages/About';
 import { Login } from '../pages/Login';
 import { ContactUs } from '../pages/ContactUs';
 import { changeLanguage, Language } from '../i18n';
+import { SupportUs } from '../pages/SupportUs';
 import { Layout } from './Layout';
 
 export const Routes = () => {
@@ -36,6 +37,7 @@ export const Routes = () => {
             <Route path="/login" component={Login} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={ContactUs} />
+            <Route path="/support" component={SupportUs} />
             <Redirect to="/self/pp-recommend" />
           </Switch>
         </Layout>
