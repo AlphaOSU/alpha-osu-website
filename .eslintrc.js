@@ -187,7 +187,7 @@ module.exports = {
     'spellcheck/spell-checker': [
       'error',
       {
-        'comments': true,
+        'comments': false,
         'strings': false,
         'templates': false,
         'identifiers': true,
