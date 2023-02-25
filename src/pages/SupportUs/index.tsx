@@ -19,6 +19,9 @@ export const SupportUs = () => {
         <Descriptions.Item label={t('support-us-wechat-pay')}>
           <Image width={200} src={payW} />
         </Descriptions.Item>
+        <Descriptions.Item label={t('support-us-paypal-pay')}>
+          <a rel="noreferrer" target="_blank" href="https://www.paypal.com/paypalme/kuiiiiteeee">{t('support-us-paypal-pay')}</a>
+        </Descriptions.Item>
       </Descriptions>
     </Container>
   );
