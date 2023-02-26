@@ -62,6 +62,7 @@ const resource: Record<I18nKeys, string> = {
   'role-rain7': 'AlphaOsu Website Developer',
   'role-kuit': 'AlphaOsu Server and Algorithm Developer',
   'role-xz': 'Project Creator and Participate in algorithm design',
+  'role-ca': 'AlphaOsu Algorithm Developer',
   'role-qr': 'Cloud Server Provider',
   'support-us-label-title': 'Support Us',
   'support-us-description-label': 'Introduction', // 说明

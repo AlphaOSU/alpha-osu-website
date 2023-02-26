@@ -74,6 +74,13 @@ export const ContactUs = () => {
             role: t('role-xz'),
           },
           {
+            key: 'ca',
+            name: '[Crz]Caicium',
+            email: '1091114620@qq.com',
+            osu: 'https://osu.ppy.sh/users/10702235',
+            role: t('role-ca'),
+          },
+          {
             key: 'qr',
             name: 'QuaoarRadiation',
             email: '',

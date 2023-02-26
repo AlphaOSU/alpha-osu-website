@@ -69,6 +69,7 @@ type Keys = [
   'role-rain7',
   'role-kuit',
   'role-xz',
+  'role-ca',
   'role-qr',
   'service-error__10500',
   'service-error__10503',
