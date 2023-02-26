@@ -31,7 +31,7 @@ export const SupportUs = () => {
               https://www.paypal.com/paypalme/kuiiiiteeee
             </a>
           </p>
-          <br /><br />
+          <br />
           <p>
             <strong>BTC:</strong>
             <br />
