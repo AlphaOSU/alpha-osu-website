@@ -58,6 +58,7 @@ const resource: Record<I18nKeys, string> = {
   'support-us-description-content': 'AlphaOSU 的开销包含了服务器日常费用、带宽费用和开发费用。由于我们的开发者大部分由学生组成，收入有限，所以希望有能力的人能赞助 AlphaOSU 的运行。非常感谢大家的支持！',
   'support-us-ali-pay': '支付宝', // 支付宝
   'support-us-wechat-pay': '微信支付', // 微信
+  'support-us-others-pay': '其他支付方式',
   'support-us-paypal-pay': 'Paypal',
   'contact-label-name': '昵称',
   'contact-label-email': '邮箱',

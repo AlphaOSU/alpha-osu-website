@@ -68,6 +68,7 @@ const resource: Record<I18nKeys, string> = {
   'support-us-description-content': 'AlphaOSU\'s overhead covers daily server costs, bandwidth costs, and development costs. Since most of our developers are students with limited income, we hope that some capable people can sponsor us. Thank you all very much for your support!',
   'support-us-ali-pay': 'Ali pay', // 支付宝
   'support-us-wechat-pay': 'Wechat pay', // 微信
+  'support-us-others-pay': 'Others',
   'support-us-paypal-pay': 'Paypal',
   'service-error__10500': 'The server deserted, please try again later~',
   'service-error__10503': 'Connection to the osu service failed, please try again later. If the problem is not resolved, please contact us.',

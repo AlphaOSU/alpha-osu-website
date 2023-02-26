@@ -64,6 +64,7 @@ type Keys = [
   'support-us-description-content', // 说明内容
   'support-us-ali-pay', // 支付宝
   'support-us-wechat-pay', // 微信
+  'support-us-others-pay',
   'support-us-paypal-pay',
   'role-rain7',
   'role-kuit',

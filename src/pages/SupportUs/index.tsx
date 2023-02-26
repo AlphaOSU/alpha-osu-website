@@ -23,17 +23,43 @@ export const SupportUs = () => {
         <Descriptions.Item label={t('support-us-wechat-pay')}>
           <Image width={200} src={payW} />
         </Descriptions.Item>
-        {/*<Descriptions.Item label={t('support-us-paypal-pay')}>*/}
-        {/*  <a rel="noreferrer" target="_blank" href="https://www.paypal.com/paypalme/kuiiiiteeee">{t('support-us-paypal-pay')}</a>*/}
-        {/*</Descriptions.Item>*/}
+        <Descriptions.Item label={t('support-us-others-pay')}>
+          <p>
+            <strong>{t('support-us-paypal-pay')}:</strong>
+            <br />
+            <a rel="noreferrer" target="_blank" href="https://www.paypal.com/paypalme/kuiiiiteeee">
+              https://www.paypal.com/paypalme/kuiiiiteeee
+            </a>
+          </p>
+          <br /><br />
+          <p>
+            <strong>BTC:</strong>
+            <br />
+            <span>3E9FbMygBotzk6GtsbxXoHMpKCtNUccw9t</span>
+          </p>
+          <br />
+          <p>
+            <strong>ETH:</strong>
+            <br />
+            <span>0x7C2B31D9B54f43fe548A6663fD5c27BF1093Eeb0</span>
+          </p>
+          <br />
+          <p>
+            <strong>USDT-TRC20:</strong>
+            <br />
+            <span>TM1oaHPrGYZGshaaX2YsGsMpnKU2VZDKX4</span>
+          </p>
+        </Descriptions.Item>
       </Descriptions>
       <Table
         dataSource={data}
         loading={loading}
+        rowKey="index"
         columns={[
           {
             title: '#',
             dataIndex: 'index',
+            render: value => (Number(value) || 0) + 1,
           },
           {
             title: 'Name',
