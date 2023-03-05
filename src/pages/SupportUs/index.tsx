@@ -25,14 +25,6 @@ export const SupportUs = () => {
         </Descriptions.Item>
         <Descriptions.Item label={t('support-us-others-pay')}>
           <p>
-            <strong>{t('support-us-paypal-pay')}:</strong>
-            <br />
-            <a rel="noreferrer" target="_blank" href="https://www.paypal.com/paypalme/kuiiiiteeee">
-              https://www.paypal.com/paypalme/kuiiiiteeee
-            </a>
-          </p>
-          <br />
-          <p>
             <strong>BTC:</strong>
             <br />
             <span>3E9FbMygBotzk6GtsbxXoHMpKCtNUccw9t</span>
