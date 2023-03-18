@@ -4,7 +4,7 @@ import { ColumnType } from 'antd/es/table';
 import { round } from 'lodash';
 import { SimilarityUser } from '../../../data/table';
 import { useTranslation } from '../../../i18n';
-import { HelpTitle } from '../base-components';
+import { HelpTitle } from '../HelpTitle';
 
 export interface SimilarUserTableProps extends TableProps<SimilarityUser> {
   data: SimilarityUser[];

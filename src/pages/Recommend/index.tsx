@@ -1,15 +1,8 @@
 import { useEffect } from 'react';
 import { usePagination, useRequest, useSetState } from 'ahooks';
-import useUrlState from '@ahooksjs/use-url-state';
 import { BackTop, Button, Collapse } from 'antd';
 import dayjs from 'dayjs';
-import { ceil, omit } from 'lodash';
 import { useTranslation } from '../../i18n';
-import { DEFAULT_MAX_DIFFICULTY } from '../../common/constants';
-import { useSelector } from '../../common/dvaHooks';
-import { GameMode } from '../../data/enums/game-mode';
-import { UserMeta } from '../../data/user-meta';
-import { Config } from '../../data/config';
 import { PpRule } from '../../data/enums/pp-rule';
 import { refreshData } from '../../services/requests/refresh-data';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
@@ -18,50 +11,21 @@ import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
 import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
 import { RecommendTable, RecommendTableProps } from '../../components/Tables/RecommendTable';
 import { Authorization } from '../Authorization';
+import { GameMode } from '../../data/enums/game-mode';
 import { Container } from './styles';
 
-const getInitQuery = (
-  localQuery: GetRecommendMapsParams,
-  userMeta: UserMeta,
-  config: Config,
-): GetRecommendMapsParams => ({
-  gameMode: userMeta?.gameMode ?? GameMode.STD,
-  keyCount: userMeta?.keyCount ?? 4,
-  difficulty: [0, ceil(config?.maxDifficulty?.[userMeta?.gameMode] || DEFAULT_MAX_DIFFICULTY)],
-  passPercent: [20, 100],
-  newRecordPercent: [20, 100],
-  search: '',
-  hidePlayed: 0,
-  rule: config?.rule?.[3] || PpRule.V4,
-  ...localQuery,
-});
-
 export const Recommend = () => {
-  const userMeta = useSelector(state => state.global.userMeta);
   const {
-    query: localQuery,
-    setQuery: setLocalQuery,
+    query,
+    setQuery,
   } = useLocalFilterQuery();
   const config = useConfig();
   const { t } = useTranslation();
 
-  const [query, setQuery] = useUrlState<GetRecommendMapsParams>(
-    getInitQuery(localQuery, userMeta, config),
-    {
-      parseOptions: {
-        parseBooleans: true,
-        parseNumbers: true,
-        arrayFormat: 'comma',
-      },
-      stringifyOptions: {
-        arrayFormat: 'comma',
-      },
-    },
-  );
-
   const [tableConfig, setTableConfig] = useSetState<Required<RecommendTableProps>['config']>({
     showAccuracy: false,
     showScore: true,
+    showKeyCount: false,
   });
 
   const {
@@ -78,9 +42,6 @@ export const Recommend = () => {
       defaultCurrent: 1,
       debounceWait: 300,
       refreshDeps: [query],
-      onBefore() {
-        setLocalQuery(omit(query, 'passPercent'));
-      },
     },
   );
 
@@ -95,10 +56,12 @@ export const Recommend = () => {
   );
 
   useEffect(() => {
+    const showKeyCount = query.gameMode === GameMode.MANIA;
     if (query.rule === PpRule.V4) {
       setTableConfig({
         showScore: false,
         showAccuracy: true,
+        showKeyCount,
       });
       return;
     }
@@ -106,6 +69,7 @@ export const Recommend = () => {
     setTableConfig({
       showAccuracy: false,
       showScore: true,
+      showKeyCount,
     });
   }, [query, setTableConfig]);
 

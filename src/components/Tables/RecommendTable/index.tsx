@@ -1,105 +1,17 @@
 import { memo } from 'react';
-import { round } from 'lodash';
+import round from 'lodash/round';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Space, Table, TableProps, Tooltip } from 'antd';
 import { ColumnsType, ColumnType } from 'antd/es/table';
-import { ArrowUpOutlined, RiseOutlined, StarFilled, WarningOutlined } from '@ant-design/icons';
-import * as assets from '../../../assets';
+import { ArrowUpOutlined, RiseOutlined, WarningOutlined } from '@ant-design/icons';
 import { useTranslation } from '../../../i18n';
 import { gdaic } from '../../../utils/factory';
 import { getPagination, Pagination } from '../../../common/get-pagination';
 import { KeyCount, RecommendTableItem } from '../../../data/table';
 import { Mod } from '../../../data/enums/mod';
-import { HelpTitle } from '../base-components';
-import { getDifficultyColor, getPercentColor } from './helpers';
-import { CoverImg, DifficultyBadge, MapNameWrapper, ModImg, TableContainer } from './styles';
-
-const keyCountRender = (key: KeyCount) => {
-  const getImg = () => {
-    switch (key) {
-    case 4: return assets.m4k;
-    case 7: return assets.m7k;
-    default: return assets.m4k;
-    }
-  };
-
-  return <ModImg src={getImg()} alt={String(key)} key={key} />;
-};
-
-const modRender = (mod: Mod, img = true) => {
-  const getImg = () => {
-    switch (mod) {
-    case Mod.DT: return assets.dt;
-    case Mod.HT: return assets.ht;
-    case Mod.NM: return assets.nm;
-    default: return assets.nm;
-    }
-  };
-
-  const getTooltip = () => {
-    switch (mod) {
-    case Mod.DT: return 'Double Time';
-    case Mod.HT: return 'Half Time';
-    case Mod.NM: return 'No Mod';
-    default: return 'No Mod';
-    }
-  };
-
-  if (!img) {
-    return getTooltip();
-  }
-
-  return (
-    <Tooltip title={getTooltip()} key={mod}>
-      <ModImg src={getImg()} alt={mod} key={mod} />
-    </Tooltip>
-  );
-};
-
-const difficultyRender = (rating: number) => {
-  const color = getDifficultyColor(rating);
-
-  return (
-    <DifficultyBadge
-      color={rating < 6.5 ? 'hsl(200, 10%, 10%)' : 'rgb(255, 217, 102)'}
-      backgroundColor={color}
-    >
-      <div className="rate-content">
-        <span>{round(rating, 2)}</span>
-        &nbsp;
-        <StarFilled />
-      </div>
-    </DifficultyBadge>
-  );
-};
-
-const gradeRender = ({
-  value,
-  link,
-  mod,
-}: {
-  value?: number | string;
-  link?: string;
-  mod: Mod[];
-}) => {
-  if (!value) {
-    return '-';
-  }
-
-  return (
-    <Tooltip title={<Space>{mod.map(item => modRender(item, false))}</Space>}>
-      <Button type="link" target="_blank" href={link}>
-        {value}
-      </Button>
-    </Tooltip>
-  );
-};
-
-const percentRender = (value: number) => {
-  const color = getPercentColor(value);
-  const percent = round(value * 100, 2);
-  return <div style={{ color, fontWeight: 700 }}>{percent}%</div>;
-};
+import { HelpTitle } from '../HelpTitle';
+import { difficultyRender, gradeRender, keyCountRender, modRender, percentRender } from './helpers';
+import { CoverImg, MapNameWrapper, TableContainer } from './styles';
 
 export interface RecommendTableProps extends TableProps<RecommendTableItem>{
   data: RecommendTableItem[];
@@ -108,6 +20,7 @@ export interface RecommendTableProps extends TableProps<RecommendTableItem>{
   config?: {
     showAccuracy?: boolean;
     showScore?: boolean;
+    showKeyCount?: boolean;
   };
 }
 
@@ -119,7 +32,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
   ...props
 }: RecommendTableProps) => {
   const { t } = useTranslation();
-  const { showScore, showAccuracy } = config || {};
+  const { showScore, showAccuracy, showKeyCount } = config || {};
 
   const getColumns = useMemoizedFn(() => {
     const columns: ColumnsType<RecommendTableItem> = [
@@ -166,15 +79,17 @@ export const RecommendTable = memo<RecommendTableProps>(({
           return value.map(item => modRender(item));
         },
       },
-      {
-        key: 'keyCount',
-        title: t('common-key-count'),
-        dataIndex: 'keyCount',
-        align: 'center',
-        render(value: KeyCount) {
-          return keyCountRender(value);
+      ...gdaic<ColumnType<RecommendTableItem>>(showKeyCount, [
+        {
+          key: 'keyCount',
+          title: t('common-key-count'),
+          dataIndex: 'keyCount',
+          align: 'center',
+          render(value: KeyCount) {
+            return keyCountRender(value);
+          },
         },
-      },
+      ]),
       {
         key: 'difficulty',
         title: t('common-difficulty'),
