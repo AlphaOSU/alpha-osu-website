@@ -19,11 +19,12 @@ export const useLocalFilterQuery = () => {
           const json = JSON.parse(value);
           // remove undefined value
           return JSON.parse(JSON.stringify({
-            newRecordPercent: json?.newRecordPercent || undefined,
-            difficulty: json?.difficulty || undefined,
-            keyCount: json?.keyCount || undefined,
-            gameMode: json?.gameMode || userMeta.gameMode || GameMode.STD,
-            hidePlayed: json?.hidePlayed || undefined,
+            newRecordPercent: json?.newRecordPercent ?? undefined,
+            passPercent: json?.passPercent ?? undefined,
+            difficulty: json?.difficulty ?? undefined,
+            keyCount: json?.keyCount ?? undefined,
+            gameMode: json?.gameMode ?? userMeta.gameMode ?? GameMode.STD,
+            hidePlayed: json?.hidePlayed ?? undefined,
           }));
         }
 
@@ -31,11 +32,12 @@ export const useLocalFilterQuery = () => {
       },
       serializer(value) {
         const json = {
-          newRecordPercent: value?.newRecordPercent || undefined,
-          difficulty: value?.difficulty || undefined,
-          keyCount: value?.keyCount || undefined,
-          gameMode: value?.gameMode || userMeta.gameMode || GameMode.STD,
-          hidePlayed: value?.hidePlayed || undefined,
+          newRecordPercent: value?.newRecordPercent ?? undefined,
+          passPercent: value?.passPercent ?? undefined,
+          difficulty: value?.difficulty ?? undefined,
+          keyCount: value?.keyCount ?? undefined,
+          gameMode: value?.gameMode ?? userMeta.gameMode ?? GameMode.STD,
+          hidePlayed: value?.hidePlayed ?? undefined,
         };
         return JSON.stringify(json);
       },

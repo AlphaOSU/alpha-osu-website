@@ -128,54 +128,50 @@ export const RecommendTableFilterForm = ({
       >
         <Switch />
       </Form.Item>
-      {data.gameMode === GameMode.STD && (
-        <Form.Item
-          name="mod"
-          label="Mod"
-        >
-          <Checkbox.Group>
-            <Row>
-              <Col span={8}><Checkbox value={Mod.NM}>NM</Checkbox></Col>
-              <Col span={8}><Checkbox value={Mod.HD}>HD</Checkbox></Col>
-              <Col span={8}><Checkbox value={Mod.HR}>HR</Checkbox></Col>
-              <Col span={8}><Checkbox value={Mod.DT}>DT</Checkbox></Col>
-              <Col span={8}><Checkbox value={[Mod.HD, Mod.HR].join('+')}>HD + HR</Checkbox></Col>
-              <Col span={8}><Checkbox value={[Mod.HD, Mod.DT].join('+')}>HD + DT</Checkbox></Col>
-              <Col span={8}><Checkbox value={[Mod.HR, Mod.DT].join('+')}>HR + DT</Checkbox></Col>
-              <Col span={8}><Checkbox value={[Mod.DT, Mod.HD, Mod.HR].join('+')}>HD + HR + DT</Checkbox></Col>
-            </Row>
-          </Checkbox.Group>
-        </Form.Item>
-      )}
-      {data.gameMode === GameMode.MANIA && (
-        <Form.Item
-          name="keyCount"
-          label={t('common-key-count')}
-          getValueFromEvent={e => {
-            const { value } = e.target;
-            if (value === 47) {
-              return [4, 7];
-            }
+      <Form.Item
+        name="mod"
+        label="Mod"
+      >
+        <Checkbox.Group disabled={data.gameMode !== GameMode.STD}>
+          <Row>
+            <Col span={8}><Checkbox value={Mod.NM}>NM</Checkbox></Col>
+            <Col span={8}><Checkbox value={Mod.HD}>HD</Checkbox></Col>
+            <Col span={8}><Checkbox value={Mod.HR}>HR</Checkbox></Col>
+            <Col span={8}><Checkbox value={Mod.DT}>DT</Checkbox></Col>
+            <Col span={8}><Checkbox value={[Mod.HD, Mod.HR].join('+')}>HD + HR</Checkbox></Col>
+            <Col span={8}><Checkbox value={[Mod.HD, Mod.DT].join('+')}>HD + DT</Checkbox></Col>
+            <Col span={8}><Checkbox value={[Mod.HR, Mod.DT].join('+')}>HR + DT</Checkbox></Col>
+            <Col span={8}><Checkbox value={[Mod.DT, Mod.HD, Mod.HR].join('+')}>HD + HR + DT</Checkbox></Col>
+          </Row>
+        </Checkbox.Group>
+      </Form.Item>
+      <Form.Item
+        name="keyCount"
+        label={t('common-key-count')}
+        getValueFromEvent={e => {
+          const { value } = e.target;
+          if (value === 47) {
+            return [4, 7];
+          }
 
-            return value;
-          }}
-          getValueProps={(value) => {
-            if (typeof value === 'number') {
-              return { value };
-            }
+          return value;
+        }}
+        getValueProps={(value) => {
+          if (typeof value === 'number') {
+            return { value };
+          }
 
-            return {
-              value: 47,
-            };
-          }}
-        >
-          <Radio.Group buttonStyle="solid">
-            <Radio.Button value={4}>4k</Radio.Button>
-            <Radio.Button value={7}>7k</Radio.Button>
-            <Radio.Button value={47}>All</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
-      )}
+          return {
+            value: 47,
+          };
+        }}
+      >
+        <Radio.Group buttonStyle="solid" disabled={data.gameMode !== GameMode.MANIA}>
+          <Radio.Button value={4}>4k</Radio.Button>
+          <Radio.Button value={7}>7k</Radio.Button>
+          <Radio.Button value={47}>All</Radio.Button>
+        </Radio.Group>
+      </Form.Item>
     </Form>
   );
 };
