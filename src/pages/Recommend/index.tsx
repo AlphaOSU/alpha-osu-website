@@ -24,7 +24,7 @@ export const Recommend = () => {
 
   const [tableConfig, setTableConfig] = useSetState<Required<RecommendTableProps>['config']>({
     showAccuracy: false,
-    showScore: true,
+    showPredictScore: true,
     showKeyCount: false,
   });
 
@@ -59,7 +59,7 @@ export const Recommend = () => {
     const showKeyCount = query.gameMode === GameMode.MANIA;
     if (query.rule === PpRule.V4) {
       setTableConfig({
-        showScore: false,
+        showPredictScore: false,
         showAccuracy: true,
         showKeyCount,
       });
@@ -68,7 +68,7 @@ export const Recommend = () => {
 
     setTableConfig({
       showAccuracy: false,
-      showScore: true,
+      showPredictScore: query.gameMode === GameMode.MANIA,
       showKeyCount,
     });
   }, [query, setTableConfig]);

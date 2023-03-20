@@ -19,7 +19,7 @@ export interface RecommendTableProps extends TableProps<RecommendTableItem>{
   pagination: Pagination;
   config?: {
     showAccuracy?: boolean;
-    showScore?: boolean;
+    showPredictScore?: boolean;
     showKeyCount?: boolean;
   };
 }
@@ -32,7 +32,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
   ...props
 }: RecommendTableProps) => {
   const { t } = useTranslation();
-  const { showScore, showAccuracy, showKeyCount } = config || {};
+  const { showPredictScore, showAccuracy, showKeyCount } = config || {};
 
   const getColumns = useMemoizedFn(() => {
     const columns: ColumnsType<RecommendTableItem> = [
@@ -97,17 +97,17 @@ export const RecommendTable = memo<RecommendTableProps>(({
         render: (_, { difficulty }) => difficultyRender(difficulty),
         align: 'center',
       },
-      ...gdaic<ColumnType<RecommendTableItem>>(showScore, [
-        {
-          key: 'currentScore',
-          title: <HelpTitle title={t('label-current-score')} tooltip={t('tooltip-current-score')} />,
-          dataIndex: 'currentScore',
-          align: 'center',
-          className: 'current-column',
-          render(_, { currentScoreLink, currentMod: mod, currentScore: value }) {
-            return gradeRender({ value, link: currentScoreLink, mod });
-          },
+      {
+        key: 'currentScore',
+        title: <HelpTitle title={t('label-current-score')} tooltip={t('tooltip-current-score')} />,
+        dataIndex: 'currentScore',
+        align: 'center',
+        className: 'current-column',
+        render(_, { currentScoreLink, currentMod: mod, currentScore: value }) {
+          return gradeRender({ value, link: currentScoreLink, mod });
         },
+      },
+      ...gdaic<ColumnType<RecommendTableItem>>(showPredictScore, [
         {
           key: 'predictScore',
           title: t('label-predict-score'),
