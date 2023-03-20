@@ -43,6 +43,8 @@ export const modRender = (mod: Mod, img = true) => {
     case Mod.DT: return assets.dt;
     case Mod.HT: return assets.ht;
     case Mod.NM: return assets.nm;
+    case Mod.HD: return assets.hd;
+    case Mod.HR: return assets.hr;
     default: return assets.nm;
     }
   };

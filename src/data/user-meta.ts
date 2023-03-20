@@ -6,4 +6,5 @@ export interface UserMeta {
   keyCount?: KeyCount;
   gameMode: GameMode;
   username?: string;
+  mod?: string[];
 }

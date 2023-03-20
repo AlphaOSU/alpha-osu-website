@@ -16,6 +16,7 @@ export interface GetRecommendMapsParams extends Partial<IListRequestQuery>{
   gameMode?: GameMode;
   hidePlayed?: 0 | 1;
   rule?: PpRule;
+  mod?: string[];
 }
 
 export const getRecommendMaps = async (params: GetRecommendMapsParams) => {

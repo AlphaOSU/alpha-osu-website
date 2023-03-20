@@ -13,6 +13,7 @@ export const useLocalFilterQuery = () => {
       defaultValue: {
         gameMode: userMeta?.gameMode,
         keyCount: userMeta?.keyCount,
+        mod: userMeta?.mod,
       },
       deserializer(value) {
         if (value && isJson(value)) {
@@ -25,6 +26,7 @@ export const useLocalFilterQuery = () => {
             keyCount: json?.keyCount ?? undefined,
             gameMode: json?.gameMode ?? userMeta.gameMode ?? GameMode.STD,
             hidePlayed: json?.hidePlayed ?? undefined,
+            mod: json?.mod ?? undefined,
           }));
         }
 
@@ -38,6 +40,7 @@ export const useLocalFilterQuery = () => {
           keyCount: value?.keyCount ?? undefined,
           gameMode: value?.gameMode ?? userMeta.gameMode ?? GameMode.STD,
           hidePlayed: value?.hidePlayed ?? undefined,
+          mod: value?.mod ?? undefined,
         };
         return JSON.stringify(json);
       },
