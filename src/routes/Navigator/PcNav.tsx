@@ -6,6 +6,7 @@ import { useSelector } from '../../common/dvaHooks';
 import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
 import { Logo } from '../../components/Logo';
 import { LanguageSwitch } from '../../components/LanguageSwitch';
+import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
 import { Header, Nav, NavItem, NavLeft, NavRight } from './styles';
 import { useRouteConfig } from './route-config';
 
@@ -36,6 +37,7 @@ export const PcNav = () => {
   const userMeta = useSelector(state => state.global.userMeta);
   const { username = '', uid = '' } = userMeta || {};
   const setUserMeta = useSetUserMeta();
+  const { setQuery } = useLocalFilterQuery();
   const { clearLocalUserMeta } = useLocalUserMeta();
 
   const usernameRender = useMemoizedFn(() => (
@@ -57,7 +59,8 @@ export const PcNav = () => {
           className="link-button"
           onClick={() => {
             clearLocalUserMeta();
-            setUserMeta();
+            setUserMeta(undefined);
+            setQuery(undefined);
           }}
         >
           {t('common-exit')}

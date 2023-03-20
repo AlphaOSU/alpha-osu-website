@@ -7,7 +7,7 @@ import { GameMode } from '../data/enums/game-mode';
 
 export const useLocalFilterQuery = () => {
   const userMeta = useSelector(state => state.global.userMeta);
-  const [query, setQuery] = useLocalStorageState<GetRecommendMapsParams>(
+  const [query, setQuery] = useLocalStorageState<GetRecommendMapsParams | undefined>(
     LOCAL_USER_FILTER_QUERY,
     {
       defaultValue: {

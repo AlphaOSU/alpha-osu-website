@@ -7,6 +7,7 @@ import { useTranslation } from '../../i18n';
 import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
 import { useSelector } from '../../common/dvaHooks';
 import { useLanguageItems } from '../../components/LanguageSwitch';
+import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
 import { useRouteConfig } from './route-config';
 import { Header, MobileNavWrapper, NavItem, NavLeft } from './styles';
 
@@ -16,6 +17,7 @@ export const MobileNav = () => {
   const userMeta = useSelector(state => state.global.userMeta);
   const { username = '', uid = '' } = userMeta || {};
   const { clearLocalUserMeta } = useLocalUserMeta();
+  const { setQuery } = useLocalFilterQuery();
   const setUserMeta = useSetUserMeta();
   const languageItems = useLanguageItems();
   const [showMenu, setShowMenu] = useState(false);
@@ -39,7 +41,8 @@ export const MobileNav = () => {
         className="link-button danger"
         onClick={() => {
           clearLocalUserMeta();
-          setUserMeta();
+          setUserMeta(undefined);
+          setQuery(undefined);
         }}
       >
         {t('common-exit')}

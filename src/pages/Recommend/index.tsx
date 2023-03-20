@@ -56,8 +56,8 @@ export const Recommend = () => {
   );
 
   useEffect(() => {
-    const showKeyCount = query.gameMode === GameMode.MANIA;
-    if (query.rule === PpRule.V4) {
+    const showKeyCount = query?.gameMode === GameMode.MANIA;
+    if (query?.rule === PpRule.V4) {
       setTableConfig({
         showPredictScore: false,
         showAccuracy: true,
@@ -68,7 +68,7 @@ export const Recommend = () => {
 
     setTableConfig({
       showAccuracy: false,
-      showPredictScore: query.gameMode === GameMode.MANIA,
+      showPredictScore: query?.gameMode === GameMode.MANIA,
       showKeyCount,
     });
   }, [query, setTableConfig]);
