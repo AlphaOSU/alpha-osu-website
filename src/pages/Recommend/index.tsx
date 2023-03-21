@@ -3,15 +3,13 @@ import { usePagination, useRequest, useSetState } from 'ahooks';
 import { BackTop, Button, Collapse } from 'antd';
 import dayjs from 'dayjs';
 import { useTranslation } from '../../i18n';
-import { PpRule } from '../../data/enums/pp-rule';
 import { refreshData } from '../../services/requests/refresh-data';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { useConfig } from '../../hooks/useConfig';
 import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
 import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
-import { RecommendTable, RecommendTableProps } from '../../components/Tables/RecommendTable';
+import { getTableConfig, RecommendTable, RecommendTableProps } from '../../components/Tables/RecommendTable';
 import { Authorization } from '../Authorization';
-import { GameMode } from '../../data/enums/game-mode';
 import { Container } from './styles';
 
 export const Recommend = () => {
@@ -56,21 +54,10 @@ export const Recommend = () => {
   );
 
   useEffect(() => {
-    const showKeyCount = query?.gameMode === GameMode.MANIA;
-    if (query?.rule === PpRule.V4) {
-      setTableConfig({
-        showPredictScore: false,
-        showAccuracy: true,
-        showKeyCount,
-      });
-      return;
-    }
-
-    setTableConfig({
-      showAccuracy: false,
-      showPredictScore: query?.gameMode === GameMode.MANIA,
-      showKeyCount,
-    });
+    setTableConfig(getTableConfig({
+      mode: query?.gameMode,
+      rule: query?.rule,
+    }));
   }, [query, setTableConfig]);
 
   const collapseHeader = (

@@ -6,6 +6,7 @@ import { StarFilled } from '@ant-design/icons';
 import { Mod } from '../../../data/enums/mod';
 import * as assets from '../../../assets';
 import { KeyCount } from '../../../data/table';
+import { formatNumber } from '../../../utils/number-format';
 import { DifficultyBadge, ModImg } from './styles';
 
 const difficultyColorSpectrum = scaleLinear<string>()
@@ -54,6 +55,8 @@ export const modRender = (mod: Mod, img = true) => {
     case Mod.DT: return 'Double Time';
     case Mod.HT: return 'Half Time';
     case Mod.NM: return 'No Mod';
+    case Mod.HD: return 'Hidden';
+    case Mod.HR: return 'Hard Rock';
     default: return 'No Mod';
     }
   };
@@ -112,9 +115,9 @@ export const gradeRender = ({
   }
 
   return (
-    <Tooltip title={<Space>{mod.map(item => modRender(item, false))}</Space>}>
+    <Tooltip title={<Space>{mod.map(item => modRender(item, false)).join(' + ')}</Space>}>
       <Button type="link" target="_blank" href={link}>
-        {value}
+        {formatNumber(value)}
       </Button>
     </Tooltip>
   );
