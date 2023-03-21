@@ -15,7 +15,7 @@ export function AboutCn() {
         Q: AlphaOsu! 是做什么的？
       </Title>
       <Paragraph>
-        AlphaOsu! 的命名灵感来自于 <Link href="https://baike.baidu.com/item/%E9%98%BF%E5%B0%94%E6%B3%95%E5%9B%B4%E6%A3%8B/19319610" target="_blank">AlphaGo</Link> 和 <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>，旨在使用人工智能技术挖掘 osu! 游戏内的大数据，从而催生一系列应用以帮助玩家乃至社区的发展，包括 PP 图推荐系统、玩家提升潜力挖掘、玩家 / 谱面相似度分析、谱面难度推断等。目前暂时仅支持 osu!mania 模式，其余模式的支持正火热开发中。
+        AlphaOsu! 的命名灵感来自于 <Link href="https://baike.baidu.com/item/%E9%98%BF%E5%B0%94%E6%B3%95%E5%9B%B4%E6%A3%8B/19319610" target="_blank">AlphaGo</Link> 和 <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>，旨在使用人工智能技术挖掘 osu! 游戏内的大数据，从而催生一系列应用以帮助玩家乃至社区的发展，包括 PP 图推荐系统、玩家提升潜力挖掘、玩家 / 谱面相似度分析、谱面难度推断等。目前暂时仅支持 osu!mania 和 osu!standard 模式，其余模式的支持正火热开发中。
       </Paragraph>
 
       <Title level={4}>

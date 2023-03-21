@@ -14,7 +14,7 @@ export function AboutEn() {
         Q: What is AlphaOsu?
       </Title>
       <Paragraph>
-        Inspired by <Link href="https://www.deepmind.com/research/highlighted-research/alphago" target="_blank">AlphaGo</Link> and <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>, AlphaOsu! aims to use AI technology to mine the big data in the osu! game, and spawning a series of applications to benefit players and the community, including a PP beatmap recommender system, mining player's potential improvement, player/beatmap similarity analysis, beatmap difficulty estimation etc. Currently, only the osu!mania mode is supported, and the support for the rest of modes is under development.
+        Inspired by <Link href="https://www.deepmind.com/research/highlighted-research/alphago" target="_blank">AlphaGo</Link> and <Link href="https://www.nature.com/articles/s41586-021-03819-2" target="_blank">AlphaFold</Link>, AlphaOsu! aims to use AI technology to mine the big data in the osu! game, and spawning a series of applications to benefit players and the community, including a PP beatmap recommender system, mining player's potential improvement, player/beatmap similarity analysis, beatmap difficulty estimation etc. Currently, only the osu!mania and the osu!standard mode is supported, and the support for the rest of modes is under development.
       </Paragraph>
 
       <Title level={4}>
