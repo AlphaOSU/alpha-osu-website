@@ -11,7 +11,6 @@ import { KeyCount, RecommendTableItem } from '../../../data/table';
 import { Mod } from '../../../data/enums/mod';
 import { HelpTitle } from '../HelpTitle';
 import { GameMode } from '../../../data/enums/game-mode';
-import { PpRule } from '../../../data/enums/pp-rule';
 import { difficultyRender, gradeRender, keyCountRender, modRender, percentRender } from './helpers';
 import { CoverImg, MapNameWrapper, TableContainer } from './styles';
 
@@ -236,18 +235,8 @@ RecommendTable.displayName = 'RecommendTable';
 
 export const getTableConfig = ({
   mode,
-  rule,
-}: { mode?: GameMode; rule?: PpRule}): Required<RecommendTableProps>['config'] => {
-  if (mode === GameMode.MANIA && rule === PpRule.V3) {
-    return {
-      showAccuracy: false,
-      showPredictScore: true,
-      showCurrentScore: true,
-      showKeyCount: true,
-    };
-  }
-
-  if (mode === GameMode.MANIA && rule === PpRule.V4) {
+}: { mode?: GameMode }): Required<RecommendTableProps>['config'] => {
+  if (mode === GameMode.MANIA) {
     return {
       showAccuracy: true,
       showPredictScore: false,

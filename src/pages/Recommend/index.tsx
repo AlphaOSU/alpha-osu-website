@@ -56,7 +56,6 @@ export const Recommend = () => {
   useEffect(() => {
     setTableConfig(getTableConfig({
       mode: query?.gameMode,
-      rule: query?.rule,
     }));
   }, [query, setTableConfig]);
 
@@ -93,7 +92,10 @@ export const Recommend = () => {
                 const filterParams: GetRecommendMapsParams = {
                   ...values,
                 };
-                setQuery(filterParams);
+                setQuery((prev) => ({
+                  ...prev,
+                  ...filterParams,
+                }));
               }}
             />
           </Collapse.Panel>

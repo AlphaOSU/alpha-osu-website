@@ -28,6 +28,8 @@ export const getRecommendMaps = async (params: GetRecommendMapsParams) => {
     ...gdoic(params.passPercent, {
       passPercent: params.passPercent?.map(item => item / 100),
     }),
+    // Force use pp v4
+    rule: PpRule.V4,
   };
   const res = await http.get('/api/v1/self/maps/recommend', {
     params: query,
