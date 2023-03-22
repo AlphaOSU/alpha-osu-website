@@ -13,4 +13,20 @@ export const Container = styled.div`
   div.about-content {
     margin: 20px;
   }
+  
+  div.useful-link-title {
+    margin-top: 80px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 60px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  div.similar-system {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
