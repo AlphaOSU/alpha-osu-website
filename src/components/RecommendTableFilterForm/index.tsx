@@ -62,19 +62,6 @@ export const RecommendTableFilterForm = ({
       }}
     >
       <Form.Item
-        name="gameMode"
-        label={t('common-game-mode')}
-      >
-        <Radio.Group buttonStyle="solid">
-          <Radio.Button value={GameMode.STD}>osu!standard</Radio.Button>
-          <Radio.Button value={GameMode.MANIA}>osu!mania</Radio.Button>
-          {config.enableFilterGameMode && <>
-            <Radio.Button value={GameMode.TAIKO}>osu!taiko</Radio.Button>
-            <Radio.Button value={GameMode.CTB}>osu!catch the beats</Radio.Button>,
-          </>}
-        </Radio.Group>
-      </Form.Item>
-      <Form.Item
         name="search"
         label={t('label-current-search-maps')}
       >

@@ -56,7 +56,7 @@ export function AboutEn() {
         Introduction to Algorithms
       </Title>
 
-      <Title level={3}>
+      <Title level={4}>
         Predict the playing scores
       </Title>
       <Paragraph>
@@ -68,7 +68,7 @@ export function AboutEn() {
       </Paragraph>
 
 
-      <Title level={3}>
+      <Title level={4}>
         Predict the score fluctuations
       </Title>
       <Paragraph>
@@ -78,7 +78,7 @@ export function AboutEn() {
         {l('P(\\text{score}>s_0)=\\int_{s=s_0}^{\\infty}\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2) \\text{d}s')}
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         Predicted the average PP increment
       </Title>
       <Paragraph>
@@ -88,7 +88,7 @@ export function AboutEn() {
         {l('\\mathbb E_{s}[\\text{pp}(s)]=\\mathbb E_{s|s>x_0}[\\text{pp}(s)]\\cdot P(s>s_0)=\\int_{s=s_0}^{\\infty}\\text{pp}(s)\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2)  \\text{d}s')}
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         Predict the passing probability
       </Title>
       <Paragraph>
@@ -101,7 +101,7 @@ export function AboutEn() {
         It is worth mentioning the number of play counts (PC). For some new beatmap, the number of PC tends to be low and the number of entries into the BP is low, leading to a low predicted pass probability. This problem is similar to the recommender system's (<Link href="https://www.cs.cornell.edu/people/tj/publications/joachims_etal_05a.pdf" target="_blank">position bias</Link>) problem. To solve this problem, PC can be used as one of the input features of the model during training. When predicting, for new beatmap (with low PC), increase its PC to a threshold value, thus correcting for this bias.
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         Potential PP increment
       </Title>
       <Paragraph>
@@ -111,7 +111,7 @@ export function AboutEn() {
       <Title level={2}>
         Other application
       </Title>
-      <Title level={3}>
+      <Title level={4}>
         User similarity
       </Title>
       <Paragraph>
@@ -119,7 +119,7 @@ export function AboutEn() {
         {l('\\text{similarity}(u_1, u_2)=-||u_1-u_2||_2')}
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         Others
       </Title>
       <Paragraph>

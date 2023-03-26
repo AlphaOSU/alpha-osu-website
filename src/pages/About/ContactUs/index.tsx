@@ -1,7 +1,7 @@
-import { Button, Table } from 'antd';
+import { Button, Descriptions, Table } from 'antd';
 import { ColumnType } from 'antd/es/table';
 import { useMemoizedFn } from 'ahooks';
-import { useTranslation } from '../../i18n';
+import { useTranslation } from '../../../i18n';
 import { Container } from './styles';
 
 interface TableData {
@@ -89,10 +89,10 @@ export const ContactUs = () => {
           },
         ]}
       />
-      <div className="contact-us-title">
+      <div className="center-title contact-us-title">
         {t('contact-us-label-title')}
       </div>
-      <div className="contact-us-container">
+      <div className="link-container contact-us-container">
         <Button
           type="link"
           href="https://jq.qq.com/?_wv=1027&k=uJ8Hv4Ss"
@@ -117,6 +117,24 @@ export const ContactUs = () => {
         >
           Github Source Code
         </Button>
+      </div>
+      <div className="center-title contact-us-title">
+        {t('useful-link-table-title')}
+      </div>
+      <div className="link-container">
+        <Descriptions bordered style={{ width: '100%' }}>
+          <Descriptions.Item label={t('useful-link-opal')}>
+            {t('useful-link-opal-description')}
+            <Button
+              type="link"
+              href="https://opal-ai.streamlit.app"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t('useful-link-opal-link')}
+            </Button>
+          </Descriptions.Item>
+        </Descriptions>
       </div>
     </Container>
   );

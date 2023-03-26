@@ -60,7 +60,7 @@ export function AboutCn() {
         AlphaOsu! 由两个系统组成：分数预测系统（用于预测游玩分数）和上榜概率预测系统（用于预测存活概率）。
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         预测游玩分数
       </Title>
       <Paragraph>
@@ -72,7 +72,7 @@ export function AboutCn() {
         为了加速算法收敛，AlphaOsu! 使用<Link href="https://www.jmlr.org/papers/volume16/hastie15a/hastie15a.pdf" target="_blank">交替最小二乘法</Link>来分别求解 {i('u')}、{i('v')} 和 {i('W')}，即：固定其中两个变量来优化第三个变量，利用最小二乘法来优化第三个变量。不断重复这个过程分别优化 {i('u')}, {i('v')} 和 {i('W')}，直至算法收敛。
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         预测成绩的波动
       </Title>
       <Paragraph>
@@ -82,7 +82,7 @@ export function AboutCn() {
         {l('P(\\text{score}>s_0)=\\int_{s=s_0}^{\\infty}\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2) \\text{d}s')}
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         预测平均 PP 提升
       </Title>
       <Paragraph>
@@ -92,7 +92,7 @@ export function AboutCn() {
         {l('\\mathbb E_{s}[\\text{pp}(s)]=\\mathbb E_{s|s>x_0}[\\text{pp}(s)]\\cdot P(s>s_0)=\\int_{s=s_0}^{\\infty}\\text{pp}(s)\\mathcal N(s\\mid \\hat s, \\hat\\sigma^2)  \\text{d}s')}
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         预测存活的概率
       </Title>
       <Paragraph>
@@ -109,7 +109,7 @@ export function AboutCn() {
         为了解决这一问题，可以在训练的时候将游玩次数作为模型的输入特征之一。预测时，对于新图（游玩次数较低的图），提升它的游玩次数到一个阈值，从而修正这一偏差。
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         PP 提升潜力
       </Title>
       <Paragraph>
@@ -119,7 +119,7 @@ export function AboutCn() {
       <Title level={2}>
         其他应用
       </Title>
-      <Title level={3}>
+      <Title level={4}>
         玩家实力相似度
       </Title>
       <Paragraph>
@@ -127,7 +127,7 @@ export function AboutCn() {
         {l('\\text{similarity}(u_1, u_2)=-||u_1-u_2||_2')}
       </Paragraph>
 
-      <Title level={3}>
+      <Title level={4}>
         其他
       </Title>
       <Paragraph>

@@ -66,6 +66,10 @@ type Keys = [
   'support-us-wechat-pay', // 微信
   'support-us-others-pay',
   'support-us-paypal-pay',
+  'useful-link-table-title',
+  'useful-link-opal',
+  'useful-link-opal-description',
+  'useful-link-opal-link',
   'role-rain7',
   'role-kuit',
   'role-xz',

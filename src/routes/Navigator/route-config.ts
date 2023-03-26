@@ -22,10 +22,6 @@ export const useRouteConfig = () => {
       label: t('app-about'),
     },
     {
-      path: '/contact',
-      label: t('contact-us-label-title'),
-    },
-    {
       path: '/support',
       label: t('support-us-label-title'),
     },

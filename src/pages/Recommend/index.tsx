@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { usePagination, useRequest, useSetState } from 'ahooks';
+import { useMemoizedFn, usePagination, useRequest, useSetState } from 'ahooks';
 import { BackTop, Button, Collapse } from 'antd';
 import dayjs from 'dayjs';
 import { useTranslation } from '../../i18n';
@@ -7,6 +7,7 @@ import { refreshData } from '../../services/requests/refresh-data';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { useConfig } from '../../hooks/useConfig';
 import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
+import { ModForm } from '../../components/ModForm';
 import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
 import { getTableConfig, RecommendTable, RecommendTableProps } from '../../components/Tables/RecommendTable';
 import { Authorization } from '../Authorization';
@@ -59,6 +60,16 @@ export const Recommend = () => {
     }));
   }, [query, setTableConfig]);
 
+  const handleFormChange = useMemoizedFn((values) => {
+    const filterParams: GetRecommendMapsParams = {
+      ...values,
+    };
+    setQuery((prev) => ({
+      ...prev,
+      ...filterParams,
+    }));
+  });
+
   const collapseHeader = (
     <div className="filter-collapse-panel-header">
       <div>{t('label-filter-maps')}</div>
@@ -77,10 +88,13 @@ export const Recommend = () => {
     </div>
   );
 
-
   return (
     <Authorization>
       <Container>
+        <ModForm
+          onChange={handleFormChange}
+          initialValues={query}
+        />
         <Collapse>
           <Collapse.Panel
             key="filter-form"
@@ -88,15 +102,7 @@ export const Recommend = () => {
           >
             <RecommendTableFilterForm
               initialValues={query}
-              onChange={(values) => {
-                const filterParams: GetRecommendMapsParams = {
-                  ...values,
-                };
-                setQuery((prev) => ({
-                  ...prev,
-                  ...filterParams,
-                }));
-              }}
+              onChange={handleFormChange}
             />
           </Collapse.Panel>
         </Collapse>

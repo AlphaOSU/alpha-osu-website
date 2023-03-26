@@ -71,6 +71,10 @@ const resource: Record<I18nKeys, string> = {
   'support-us-wechat-pay': 'Wechat pay', // 微信
   'support-us-others-pay': 'Others',
   'support-us-paypal-pay': 'Paypal',
+  'useful-link-table-title': 'Useful Link',
+  'useful-link-opal': 'Opal',
+  'useful-link-opal-description': 'An osu!mania accuracy prediction website --',
+  'useful-link-opal-link': 'Try Opal！',
   'service-error__10500': 'The server deserted, please try again later~',
   'service-error__10503': 'Connection to the osu service failed, please try again later. If the problem is not resolved, please contact us.',
   'service-error__10513': 'Please do not refresh the data too frequently, try again later.',

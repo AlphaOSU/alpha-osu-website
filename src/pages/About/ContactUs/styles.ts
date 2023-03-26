@@ -25,7 +25,7 @@ export const Container = styled.div`
     text-align: center;
   }
 
-  .contact-us-container {
+  .link-container {
     margin-top: 20px;
     display: flex;
     justify-content: center;

@@ -60,6 +60,10 @@ const resource: Record<I18nKeys, string> = {
   'support-us-wechat-pay': '微信支付', // 微信
   'support-us-others-pay': '其他支付方式',
   'support-us-paypal-pay': 'Paypal',
+  'useful-link-table-title': '友情链接',
+  'useful-link-opal': 'Opal',
+  'useful-link-opal-description': 'osu!mania 准确率预测网站——',
+  'useful-link-opal-link': '这就去看看！',
   'contact-label-name': '昵称',
   'contact-label-email': '邮箱',
   'contact-label-role': '介绍',
