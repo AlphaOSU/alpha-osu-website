@@ -7,7 +7,7 @@ import { refreshData } from '../../services/requests/refresh-data';
 import { getRecommendMaps, GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { useConfig } from '../../hooks/useConfig';
 import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
-import { ModForm } from '../../components/ModForm';
+import { GameModeForm } from '../../components/ModForm';
 import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
 import { getTableConfig, RecommendTable, RecommendTableProps } from '../../components/Tables/RecommendTable';
 import { Authorization } from '../Authorization';
@@ -91,7 +91,7 @@ export const Recommend = () => {
   return (
     <Authorization>
       <Container>
-        <ModForm
+        <GameModeForm
           onChange={handleFormChange}
           initialValues={query}
         />
@@ -103,6 +103,7 @@ export const Recommend = () => {
             <RecommendTableFilterForm
               initialValues={query}
               onChange={handleFormChange}
+              gameMode={query?.gameMode}
             />
           </Collapse.Panel>
         </Collapse>

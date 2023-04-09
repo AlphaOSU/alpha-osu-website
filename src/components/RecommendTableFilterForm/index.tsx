@@ -1,6 +1,5 @@
 import { Checkbox, Col, Form, Input, Radio, Row, Slider, Switch } from 'antd';
 import { max } from 'lodash';
-import { useState } from 'react';
 import { useTranslation } from '../../i18n';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 import { IListRequestQuery } from '../../services/core/types';
@@ -23,13 +22,14 @@ export type RecommendTableFilterFormData = Omit<GetRecommendMapsParams, keyof IL
 export interface RecommendTableFilterFormProps {
   onChange: (values: RecommendTableFilterFormData) => void;
   initialValues?: RecommendTableFilterFormData;
+  gameMode?: GameMode;
 }
 
 export const RecommendTableFilterForm = ({
+  gameMode,
   onChange,
   initialValues,
 }: RecommendTableFilterFormProps) => {
-  const [data, setData] = useState<RecommendTableFilterFormData>({ ...initialValues });
   const { t } = useTranslation();
   const config = useConfig();
   const maxDifficulty = max([...config?.maxDifficulty || [DEFAULT_MAX_DIFFICULTY]]) || DEFAULT_MAX_DIFFICULTY;
@@ -57,7 +57,6 @@ export const RecommendTableFilterForm = ({
         maxWidth: 750,
       }}
       onValuesChange={(_, values) => {
-        setData(values);
         onChange(values);
       }}
     >
@@ -119,7 +118,7 @@ export const RecommendTableFilterForm = ({
         name="mod"
         label="Mod"
       >
-        <Checkbox.Group disabled={data.gameMode !== GameMode.STD}>
+        <Checkbox.Group disabled={gameMode !== GameMode.STD}>
           <Row>
             <Col span={8}><Checkbox value={Mod.NM}>NM</Checkbox></Col>
             <Col span={8}><Checkbox value={Mod.HD}>HD</Checkbox></Col>
@@ -153,7 +152,7 @@ export const RecommendTableFilterForm = ({
           };
         }}
       >
-        <Radio.Group buttonStyle="solid" disabled={data.gameMode !== GameMode.MANIA}>
+        <Radio.Group buttonStyle="solid" disabled={gameMode !== GameMode.MANIA}>
           <Radio.Button value={4}>4k</Radio.Button>
           <Radio.Button value={7}>7k</Radio.Button>
           <Radio.Button value={47}>All</Radio.Button>

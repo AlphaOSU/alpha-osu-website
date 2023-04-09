@@ -4,22 +4,22 @@ import { useTranslation } from '../../i18n';
 import { useConfig } from '../../hooks/useConfig';
 import { GetRecommendMapsParams } from '../../services/requests/get-recommend-maps';
 
-type ModFormData = Pick<GetRecommendMapsParams, 'mod'>
+type GameModeFormData = Pick<GetRecommendMapsParams, 'mod'>
 
-export interface ModFormProps {
-  onChange: (value: ModFormData) => void;
-  initialValues?: ModFormData;
+export interface GameModeFormProps {
+  onChange: (value: GameModeFormData) => void;
+  initialValues?: GameModeFormData;
 }
 
-export const ModForm = ({
+export const GameModeForm = ({
   onChange,
   initialValues,
-}: ModFormProps) => {
+}: GameModeFormProps) => {
   const { t } = useTranslation();
   const config = useConfig();
 
   return (
-    <Form<ModFormData>
+    <Form<GameModeFormData>
       initialValues={initialValues}
       layout="horizontal"
       labelAlign="left"
