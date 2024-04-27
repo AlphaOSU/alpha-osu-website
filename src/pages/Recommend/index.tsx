@@ -79,7 +79,7 @@ export const Recommend = () => {
           type="primary"
           loading={refreshLoading}
           onClick={() => {
-            handleRefreshData();
+            handleRefreshData(query?.gameMode);
           }}
         >
           {t('button-refresh-data-now')}
