@@ -6,14 +6,15 @@ export const Container = styled.div`
     border-radius: 8px;
     color: #1890ff;
     padding: 12px 0;
-    font-size: 14px;
+    font-size: 18px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 
     .text {
       margin-left: 6px;
-      margin-right: 6px;
+      margin-right: 20px;
+      color: red;
     }
 
     &:hover {
@@ -24,14 +25,19 @@ export const Container = styled.div`
       margin: 0 20px;
       flex: 1;
       background-color: #1890ff25;
-      height: 6px;
-      border-radius: 3px;
-
+      height: 10px;
+      border-radius: 5px;
+      
       .active {
         width: 50%;
         background-color: #1890ff;
-        border-radius: 3px;
-        height: 6px;
+        border-radius: 5px;
+        height: 10px;
+      }
+      
+      .percent-text {
+        margin-top: 4px;
+        font-size: 16px;
       }
     }
   }
