@@ -55,7 +55,7 @@ const resource: Record<I18nKeys, string> = {
   'user-login-history': '历史登录账号',
   'support-us-label-title': '支持我们',
   'support-us-description-label': '说明', // 说明
-  'support-us-description-content': 'AlphaOSU 的开销包含了服务器日常费用、带宽费用和开发费用。由于我们的开发者大部分由学生组成，收入有限，所以希望有能力的人能赞助 AlphaOSU 的运行。非常感谢大家的支持！',
+  'support-us-description-content': 'AlphaOSU 的开销包含了服务器日常费用、带宽费用和开发费用。由于我们的开发者大部分由学生组成，收入有限，所以希望有能力的人能赞助 AlphaOSU 的运行。非常感谢大家的支持！请注意，您的捐助不会即时显示，需要一段时间后等待我们手动录入，请知悉。',
   'support-us-ali-pay': '支付宝', // 支付宝
   'support-us-wechat-pay': '微信支付', // 微信
   'support-us-others-pay': '其他支付方式',
@@ -64,6 +64,9 @@ const resource: Record<I18nKeys, string> = {
   'useful-link-opal': 'Opal',
   'useful-link-opal-description': 'osu!mania 准确率预测网站——',
   'useful-link-opal-link': '这就去看看！',
+  'donation-progress-bar-title': '捐赠进度',
+  'donation-raised-text': '已筹',
+  'donation-goal-text': '目标',
   'contact-label-name': '昵称',
   'contact-label-email': '邮箱',
   'contact-label-role': '介绍',
@@ -74,7 +77,7 @@ const resource: Record<I18nKeys, string> = {
   'role-kuit': 'AlphaOsu 网站服务端和算法设计与开发',
   'role-ca': 'AlphaOsu 算法开发',
   'role-xz': '项目发起人并参与算法设计',
-  'role-qr': '服务器提供者',
+  'role-qr': '前服务器提供者',
   'service-error__10500': '服务器开小差了，请稍后重试~',
   'service-error__10503': '连接到 osu 服务失败，请稍后重试。若问题未解决，请联系我们。',
   'service-error__10513': '刷新数据太过频繁，请一段时间后重试！',

@@ -63,10 +63,10 @@ const resource: Record<I18nKeys, string> = {
   'role-kuit': 'AlphaOsu Server and Algorithm Developer',
   'role-xz': 'Project Creator and Participate in algorithm design',
   'role-ca': 'AlphaOsu Algorithm Developer',
-  'role-qr': 'Cloud Server Provider',
+  'role-qr': 'Former Cloud Server Provider',
   'support-us-label-title': 'Support Us',
   'support-us-description-label': 'Introduction', // 说明
-  'support-us-description-content': 'AlphaOSU\'s overhead covers daily server costs, bandwidth costs, and development costs. Since most of our developers are students with limited income, we hope that some capable people can sponsor us. Thank you all very much for your support!',
+  'support-us-description-content': 'AlphaOSU\'s overhead covers daily server costs, bandwidth costs, and development costs. Since most of our developers are students with limited income, we hope that some capable people can sponsor us. Thank you all very much for your support!Please note that your donation will not be displayed immediately. It will take some time for us to manually enter it. Thank you for your understanding.',
   'support-us-ali-pay': 'Ali pay', // 支付宝
   'support-us-wechat-pay': 'Wechat pay', // 微信
   'support-us-others-pay': 'Others',
@@ -74,6 +74,9 @@ const resource: Record<I18nKeys, string> = {
   'useful-link-table-title': 'Useful Link',
   'useful-link-opal': 'Opal',
   'useful-link-opal-description': 'An osu!mania accuracy prediction website --',
+  'donation-progress-bar-title': 'Donations Progress',
+  'donation-raised-text': 'RAISED',
+  'donation-goal-text': 'GOAL',
   'useful-link-opal-link': 'Try Opal！',
   'service-error__10500': 'The server deserted, please try again later~',
   'service-error__10503': 'Connection to the osu service failed, please try again later. If the problem is not resolved, please contact us.',

@@ -11,6 +11,7 @@ import { GameModeForm } from '../../components/ModForm';
 import { RecommendTableFilterForm } from '../../components/RecommendTableFilterForm';
 import { getTableConfig, RecommendTable, RecommendTableProps } from '../../components/Tables/RecommendTable';
 import { Authorization } from '../Authorization';
+import { Donate } from '../../components/Donate';
 import { Container } from './styles';
 
 export const Recommend = () => {
@@ -76,7 +77,6 @@ export const Recommend = () => {
       <div onClick={(e) => e.stopPropagation()}>
         <Button
           danger
-          type="primary"
           loading={refreshLoading}
           onClick={() => {
             handleRefreshData(query?.gameMode);
@@ -91,6 +91,7 @@ export const Recommend = () => {
   return (
     <Authorization>
       <Container>
+        <Donate />
         <GameModeForm
           onChange={handleFormChange}
           initialValues={query}

@@ -4,6 +4,7 @@ import payZ from '../../assets/pay-zfb.jpg';
 import payW from '../../assets/pay-wx.jpg';
 import { useTranslation } from '../../i18n';
 import { getSupport } from '../../services/requests/get-support';
+import { Donate } from '../../components/Donate';
 import { Container } from './styles';
 
 export const SupportUs = () => {
@@ -13,6 +14,7 @@ export const SupportUs = () => {
 
   return (
     <Container>
+      <Donate />
       <Descriptions title={t('support-us-label-title')} layout="vertical" bordered>
         <Descriptions.Item label={t('support-us-description-label')} span={3}>
           {t('support-us-description-content')}
@@ -24,6 +26,18 @@ export const SupportUs = () => {
           <Image width={200} src={payW} />
         </Descriptions.Item>
         <Descriptions.Item label={t('support-us-others-pay')}>
+          <p>
+            <strong>osu!supporter:</strong>
+            <br />
+            <span>
+              <a href="https://osu.ppy.sh/store/products/supporter-tag" target="_blank" rel="noreferrer">
+                https://osu.ppy.sh/store/products/supporter-tag
+              </a>
+              &nbsp;
+              <span>To: Kuiiiiteeee</span>
+            </span>
+          </p>
+          <br />
           <p>
             <strong>BTC:</strong>
             <br />

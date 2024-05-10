@@ -17,7 +17,7 @@
     "@ahooksjs/use-url-state": "^3.5.0",
     "@ant-design/icons": "^4.7.0",
     "ahooks": "^3.7.1",
-    "antd": "^4.23.1",
+    "antd": "^5.17.0",
     "axios": "^0.23.0",
     "classnames": "^2.3.1",
     "d3": "^7.6.1",
