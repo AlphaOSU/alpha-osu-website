@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   .container {
-    margin: 12px 0;
+    margin-bottom: 24px;
     border-radius: 8px;
     color: #1890ff;
     padding: 12px 0;
-    font-size: 18px;
+    font-size: 14px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -29,10 +29,29 @@ export const Container = styled.div`
       border-radius: 5px;
       
       .active {
-        width: 50%;
         background-color: #1890ff;
         border-radius: 5px;
         height: 10px;
+        animation: load 3s;
+        position: relative;
+        overflow: hidden;
+
+        .animate-dot {
+          position: absolute;
+          width: 100%;
+          height: 10px;
+          background-image: linear-gradient(90deg, #FFFFFF00 0%, #FFFFFF 50%, #FFFFFF00 100%); ;
+          animation: gogo 1.5s infinite ease;
+          
+          @keyframes gogo {
+            from {
+              left: -100%;
+            }
+            to {
+              left: 100%;
+            }
+          }
+        }
       }
       
       .percent-text {

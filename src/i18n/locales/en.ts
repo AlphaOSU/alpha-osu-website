@@ -74,7 +74,7 @@ const resource: Record<I18nKeys, string> = {
   'useful-link-table-title': 'Useful Link',
   'useful-link-opal': 'Opal',
   'useful-link-opal-description': 'An osu!mania accuracy prediction website --',
-  'donation-progress-bar-title': 'Donations Progress',
+  'donation-progress-bar-title': 'Support the Server',
   'donation-raised-text': 'RAISED',
   'donation-goal-text': 'GOAL',
   'useful-link-opal-link': 'Try Opal！',

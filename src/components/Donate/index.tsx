@@ -32,8 +32,10 @@ export const Donate = ({
         <div className="donation">{t('donation-raised-text')} ${data.donation.toFixed(2)}</div>
         <Tooltip title={t('support-us-label-title')}>
           <div className="progress-bar" style={{ maxWidth: full ? undefined : '228px' }}>
-            <div className="active" style={{ width: `${data.donation / data.payment * 100}%` }} />
-            <div className="percent-text">{(data.donation / data.payment * 100).toFixed(2)}%</div>
+            <div className="active" style={{ width: `${data.donation / data.payment * 100}%` }}>
+              <div className="animate-dot" />
+            </div>
+            <div className="percent-text">{(data.donation / data.payment * 100).toFixed(0)}%</div>
           </div>
         </Tooltip>
         <div className="payment">{t('donation-goal-text')} ${data.payment.toFixed(2)}</div>

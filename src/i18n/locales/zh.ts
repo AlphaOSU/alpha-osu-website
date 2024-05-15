@@ -64,7 +64,7 @@ const resource: Record<I18nKeys, string> = {
   'useful-link-opal': 'Opal',
   'useful-link-opal-description': 'osu!mania 准确率预测网站——',
   'useful-link-opal-link': '这就去看看！',
-  'donation-progress-bar-title': '捐赠进度',
+  'donation-progress-bar-title': '服务器赞助',
   'donation-raised-text': '已筹',
   'donation-goal-text': '目标',
   'contact-label-name': '昵称',
