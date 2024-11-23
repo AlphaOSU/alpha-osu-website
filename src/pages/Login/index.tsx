@@ -1,12 +1,12 @@
-import { Button, Form, Input, Tag } from 'antd';
-import { useRequest } from 'ahooks';
-import { useHistory } from 'react-router';
 import { UserOutlined } from '@ant-design/icons';
-import { userLogin } from '../../services/requests/user-login';
-import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
-import { useTranslation } from '../../i18n';
+import { useRequest } from 'ahooks';
+import { Button, Form, Input, Tag } from 'antd';
+import { useHistory } from 'react-router';
 import { UserMeta } from '../../data/user-meta';
 import { useLocalUserHistory } from '../../hooks/useLocalUserHistory';
+import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
+import { useTranslation } from '../../i18n';
+import { userLogin } from '../../services/requests/user-login';
 import { Container } from './styles';
 
 interface FormData {
@@ -85,7 +85,7 @@ export const Login = () => {
             </Button>
           </Form.Item>
         </Form>
-        {userHistory?.list?.length > 0 && (
+        {userHistory && userHistory.list && userHistory.list.length > 0 && (
           <>
             <div className="user-history-title">{t('user-login-history')}</div>
             <div className="user-history">
