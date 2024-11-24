@@ -1,10 +1,13 @@
-import React, { ReactNode } from 'react';
 import { Spin } from 'antd';
-import { useTranslation } from '../i18n';
+import { ReactNode } from 'react';
+import { DarkModeProvider } from '../components/DarkModeToggle';
+
 import { useConfig } from '../hooks/useConfig';
+import { useTranslation } from '../i18n';
 import { Navigator } from './Navigator';
 import { PageFooter } from './PageFooter';
 import { LayoutWrapper, MainWrapper, SpinWrapper } from './styles';
+
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const config = useConfig();
@@ -20,11 +23,13 @@ export const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <LayoutWrapper>
-      <Navigator />
-      <MainWrapper>
-        {children}
-      </MainWrapper>
-      <PageFooter />
+      <DarkModeProvider>
+        <Navigator />
+        <MainWrapper>
+          {children}
+        </MainWrapper>
+        <PageFooter />
+      </DarkModeProvider>
     </LayoutWrapper>
   );
 };

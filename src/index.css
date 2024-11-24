@@ -1,21 +1,21 @@
 @font-face {
   font-family: Torus;
   /*noinspection CssUnknownTarget*/
-  src: url('/fonts/Torus-Regular.otf');
+  src: url("/fonts/Torus-Regular.otf");
   font-weight: 500;
 }
 
 @font-face {
   font-family: Torus;
   /*noinspection CssUnknownTarget*/
-  src: url('/fonts/Torus-SemiBold.otf');
+  src: url("/fonts/Torus-SemiBold.otf");
   font-weight: 600;
 }
 
 @font-face {
   font-family: Torus;
   /*noinspection CssUnknownTarget*/
-  src: url('/fonts/Torus-Bold.otf');
+  src: url("/fonts/Torus-Bold.otf");
   font-weight: 700;
 }
 
@@ -26,18 +26,50 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--osu-default-font, var(--fallback-font));
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 :root {
-  --osu-default-font: Torus,Inter;
-  --fallback-font: "Helvetica Neue",Tahoma,Arial,"Hiragino Sans GB","Microsoft YaHei","Apple SD Gothic Neo",system-ui,sans-serif， -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif,
+  --osu-default-font: Torus, Inter;
+  --fallback-font: "Helvetica Neue", Tahoma, Arial, "Hiragino Sans GB",
+    "Microsoft YaHei", "Apple SD Gothic Neo", system-ui,
+    sans-serif， -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/* TODO: Use CSS variables to handle styles of components that are not from antd */
+:root {
+  --primary: #1890ff;
+  --background: #ffffff;
+  --background-secondary: #ffffff;
+  --foreground: rgba(0, 0, 0, 0.85);
+  --border: #d9d9d9;
+}
+
+:root.dark {
+  --primary: #177ddc;
+  --background: #1c1e21;
+  --background-secondary: rgb(28, 30, 33);
+  --foreground: rgba(255, 255, 255, 0.85);
+  --border: #434343;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background-color: var(--background);
+  color: var(--foreground);
 }
