@@ -1,14 +1,15 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu } from 'antd';
 import { useMemoizedFn } from 'ahooks';
-import { useTranslation } from '../../i18n';
+import { Menu } from 'antd';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from '../../common/dvaHooks';
-import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
-import { Logo } from '../../components/Logo';
+import { DarkModeToggleComp } from '../../components/DarkModeToggle';
 import { LanguageSwitch } from '../../components/LanguageSwitch';
+import { Logo } from '../../components/Logo';
 import { useLocalFilterQuery } from '../../hooks/useLocalFilterQuery';
-import { Header, Nav, NavItem, NavLeft, NavRight } from './styles';
+import { useLocalUserMeta, useSetUserMeta } from '../../hooks/userHooks';
+import { useTranslation } from '../../i18n';
 import { useRouteConfig } from './route-config';
+import { Header, Nav, NavItem, NavLeft, NavRight } from './styles';
 
 const RouteMenu = () => {
   const { pathname } = useLocation();
@@ -88,6 +89,7 @@ export const PcNav = () => {
         </NavLeft>
         <NavRight>
           <LanguageSwitch />
+          <DarkModeToggleComp />
           {!username && loginRender()}
           {userMeta && logoutRender()}
           {userMeta && usernameRender()}
