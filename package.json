@@ -39,7 +39,7 @@
     "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
     "redux": "^4.1.1",
-    "styled-components": "^5.3.1"
+    "styled-components": "^6.1.15"
   },
   "devDependencies": {
     "@types/d3": "^7.4.0",

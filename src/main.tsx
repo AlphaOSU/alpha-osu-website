@@ -5,7 +5,6 @@ import { Routes } from './routes';
 import models from './models';
 import { initI18n } from './i18n';
 import './index.d.ts';
-import 'antd/dist/antd.css';
 import './reset.css';
 import './index.css';
 import { prodLog } from './utils/log';

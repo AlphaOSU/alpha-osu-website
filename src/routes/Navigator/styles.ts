@@ -12,6 +12,7 @@ export const Nav = styled.nav`
   &.pc-nav {
     min-width: 1280px;
     padding: 0 40px;
+    box-sizing: border-box;
   }
 `;
 

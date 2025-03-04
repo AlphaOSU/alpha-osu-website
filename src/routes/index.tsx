@@ -3,7 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import zh from 'antd/lib/locale/zh_CN';
 import en from 'antd/lib/locale/en_US';
-import type { Locale } from 'antd/es/locale-provider';
+import { Locale } from 'antd/lib/locale';
 import { useCookieLanguage } from '../hooks/useCookieLanguage';
 import { Recommend } from '../pages/Recommend';
 import { SimilarityUsers } from '../pages/SimilarityUsers';

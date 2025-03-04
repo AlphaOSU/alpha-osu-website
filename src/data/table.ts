@@ -23,6 +23,9 @@ export interface RecommendTableItem {
   passPercent: number;
   ppIncrementExpect: number;
   accurate: boolean;
+  bpm: number;
+  length: number;
+  sliderRatio: number;
 }
 
 export interface SimilarityUser {

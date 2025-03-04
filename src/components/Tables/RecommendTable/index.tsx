@@ -11,6 +11,7 @@ import { KeyCount, RecommendTableItem } from '../../../data/table';
 import { Mod } from '../../../data/enums/mod';
 import { HelpTitle } from '../HelpTitle';
 import { GameMode } from '../../../data/enums/game-mode';
+import { formatTime } from '../../../utils/format-time';
 import { difficultyRender, gradeRender, keyCountRender, modRender, percentRender } from './helpers';
 import { CoverImg, MapNameWrapper, TableContainer } from './styles';
 
@@ -23,6 +24,7 @@ export interface RecommendTableProps extends TableProps<RecommendTableItem>{
     showPredictScore?: boolean;
     showCurrentScore?: boolean;
     showKeyCount?: boolean;
+    showLN?: boolean;
   };
 }
 
@@ -34,7 +36,7 @@ export const RecommendTable = memo<RecommendTableProps>(({
   ...props
 }: RecommendTableProps) => {
   const { t } = useTranslation();
-  const { showPredictScore, showAccuracy, showKeyCount, showCurrentScore } = config || {};
+  const { showPredictScore, showAccuracy, showKeyCount, showCurrentScore, showLN } = config || {};
 
   const getColumns = useMemoizedFn(() => {
     const columns: ColumnsType<RecommendTableItem> = [
@@ -49,25 +51,34 @@ export const RecommendTable = memo<RecommendTableProps>(({
         title: t('common-map'),
         dataIndex: 'mapName',
         className: 'map-name-column',
-        render(value: string, { mapLink, accurate, mapCoverUrl }) {
+        render(value: string, { mapLink, accurate, mapCoverUrl, bpm, length, sliderRatio }) {
           return (
             <MapNameWrapper>
               {mapCoverUrl && <CoverImg title={value} alt="cover" src={mapCoverUrl} />}
-              <Tooltip title={value}>
-                <Button
-                  className="title-text"
-                  type="link"
-                  target="_blank"
-                  href={mapLink}
-                >
-                  {value}
-                </Button>
-              </Tooltip>
-              {!accurate && (
-                <Tooltip title={t('tooltip-recommend-not-accurate')}>
-                  <WarningOutlined style={{ color: '#e7bb00' }} />
-                </Tooltip>
-              )}
+              <div className="main-info">
+                <div className="main-title">
+                  <Tooltip title={value}>
+                    <Button
+                      className="title-text"
+                      type="link"
+                      target="_blank"
+                      href={mapLink}
+                    >
+                      {value}
+                    </Button>
+                  </Tooltip>
+                  {!accurate && (
+                    <Tooltip title={t('tooltip-recommend-not-accurate')}>
+                      <WarningOutlined style={{ color: '#e7bb00' }} />
+                    </Tooltip>
+                  )}
+                </div>
+                <div className="main-status">
+                  <div className="main-status-item">BPM: {Math.floor(bpm)}</div>
+                  <div className="main-status-item">Length: {formatTime(Math.floor(length))}</div>
+                  <div className="main-status-item">{showLN ? 'LN' : 'Slider'}: {Math.floor(sliderRatio * 100)}%</div>
+                </div>
+              </div>
             </MapNameWrapper>
           );
         },
@@ -242,6 +253,7 @@ export const getTableConfig = ({
       showPredictScore: false,
       showCurrentScore: false,
       showKeyCount: true,
+      showLN: true,
     };
   }
 
@@ -250,5 +262,6 @@ export const getTableConfig = ({
     showPredictScore: false,
     showCurrentScore: true,
     showKeyCount: false,
+    showLN: false,
   };
 };

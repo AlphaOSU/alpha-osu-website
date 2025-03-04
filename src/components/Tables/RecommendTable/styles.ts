@@ -41,6 +41,38 @@ export const MapNameWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  
+  .main-info {
+    max-width: calc(100% - 116px);
+    
+    .main-title {
+      max-width: 100%;
+    }
+    
+    a.title-text {
+      max-width: 100%;
+
+      span {
+        max-width: 100%;
+        display: block;
+        text-align: left;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+    
+    .main-status {
+      font-size: 12px;
+      display: flex;
+      flex-direction: row;
+      margin-left: 12px;
+      
+      .main-status-item {
+        margin: 0 4px;
+      }
+    }
+  }
 
   @media screen and (max-width: 1920px) and (min-width: 1600px) {
     width: calc(100vw - 1072px - 80px);
@@ -53,17 +85,4 @@ export const MapNameWrapper = styled.div`
   @media screen and (max-width: 1360px) {
     width: 400px;
   }
-  
-  a.title-text {
-    max-width: calc(100% - 116px - 8px - 14px - 8px);
-
-    span {
-      max-width: 100%;
-      display: block;
-      text-align: left;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }  
 `;

@@ -85,7 +85,7 @@ export const Login = () => {
             </Button>
           </Form.Item>
         </Form>
-        {userHistory?.list?.length > 0 && (
+        {userHistory?.list?.length && userHistory.list.length > 0 && (
           <>
             <div className="user-history-title">{t('user-login-history')}</div>
             <div className="user-history">
